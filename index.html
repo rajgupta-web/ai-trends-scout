@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Trends Scout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #08090d;
+    --surface: #12141c;
+    --border: #ffffff0d;
+    --border-hover: #ffffff1a;
+    --text: #f0f1f4;
+    --text-secondary: #a0a4b8;
+    --text-dim: #6b7084;
+    --accent-1: #818cf8;
+    --accent-2: #a78bfa;
+    --accent-gradient: linear-gradient(135deg, #818cf8, #a78bfa, #c084fc);
+    --green: #34d399;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .container {
+    max-width: 580px;
+    margin: 0 auto;
+    padding: 0 24px 100px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero {
+    padding: 100px 0 60px;
+    text-align: center;
+    position: relative;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-1), transparent);
+    opacity: 0.3;
+  }
+  .hero .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent-1);
+    background: linear-gradient(135deg, rgba(129,140,248,0.1), rgba(167,139,250,0.1));
+    border: 1px solid rgba(129,140,248,0.15);
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+  }
+  .hero p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .issues {
+    margin-top: 48px;
+    list-style: none;
+  }
+
+  .issue {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s, transform 0.15s, box-shadow 0.3s;
+  }
+  .issue:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 0 40px rgba(129,140,248,0.06);
+  }
+  .issue a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 24px;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .issue .info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .issue .issue-date {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+  }
+  .issue .issue-sub {
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .issue .pill {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 5px 14px;
+    border-radius: 100px;
+  }
+  .issue.latest .pill {
+    background: rgba(52,211,153,0.1);
+    color: var(--green);
+    border: 1px solid rgba(52,211,153,0.15);
+  }
+  .issue:not(.latest) .pill {
+    background: rgba(129,140,248,0.08);
+    color: var(--accent-1);
+    border: 1px solid rgba(129,140,248,0.1);
+  }
+
+  .cta {
+    text-align: center;
+    margin-top: 56px;
+    padding: 36px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+  }
+  .cta p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+  }
+  .cta .sub {
+    font-size: 13px;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: 56px;
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+  .footer a {
+    color: var(--accent-1);
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="hero">
+    <div class="badge">&#9889; Weekly Newsletter</div>
+    <h1>AI Trends Scout</h1>
+    <p>Curated AI use cases, techniques, and community buzz for entrepreneurs and builders.</p>
+  </div>
+
+  <ul class="issues">
+    <li class="issue latest">
+      <a href="digest-2026-04-03.html">
+        <div class="info">
+          <span class="issue-date">April 3, 2026</span>
+          <span class="issue-sub">Worktree agents, Codex plugin, SwiftUI vibe coding, slopsquatting</span>
+        </div>
+        <span class="pill">Latest</span>
+      </a>
+    </li>
+    <!-- New issues are prepended here -->
+  </ul>
+
+  <div class="cta">
+    <p>New digest published every Monday morning.</p>
+    <p class="sub">Bookmark this page or share the link with your team.</p>
+  </div>
+
+  <div class="footer">
+    <p>Built with <a href="https://claude.ai/code">Claude Code</a></p>
+  </div>
+
+</div>
+</body>
+</html>
