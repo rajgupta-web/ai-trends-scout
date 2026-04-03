@@ -3,287 +3,230 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Trends Scout &mdash; April 3, 2026</title>
+<title>AI Trends Scout — April 3, 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #08090d;
-    --surface: #12141c;
-    --surface-2: #1a1d28;
-    --border: #ffffff0d;
-    --border-hover: #ffffff1a;
-    --text: #f0f1f4;
-    --text-secondary: #a0a4b8;
-    --text-dim: #6b7084;
-    --accent-1: #818cf8;
-    --accent-2: #a78bfa;
-    --accent-gradient: linear-gradient(135deg, #818cf8, #a78bfa, #c084fc);
-    --green: #34d399;
-    --green-soft: #34d39915;
-    --orange: #fb923c;
-    --orange-soft: #fb923c12;
-    --blue: #60a5fa;
-    --blue-soft: #60a5fa12;
-    --yellow: #fbbf24;
-    --yellow-soft: #fbbf2412;
-    --red: #f87171;
-    --red-soft: #f8717112;
-    --pink: #f472b6;
-    --pink-soft: #f472b612;
-    --glow: 0 0 40px rgba(129, 140, 248, 0.06);
+    --bg: #fafafa;
+    --white: #ffffff;
+    --text: #1d1d1f;
+    --text-2: #424245;
+    --text-3: #86868b;
+    --text-4: #afafb2;
+    --border: #e8e8ed;
+    --border-light: #f2f2f7;
+    --accent: #0071e3;
+    --accent-soft: #0071e30a;
+    --green: #34c759;
+    --green-bg: #34c7590a;
+    --orange: #ff9500;
+    --purple: #af52de;
+    --red: #ff3b30;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+    --shadow-lg: 0 8px 30px rgba(0,0,0,0.08);
+    --radius: 16px;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: 'Inter', -apple-system, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.7;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-  }
-
-  /* Subtle grid background */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   .container {
-    max-width: 720px;
+    max-width: 680px;
     margin: 0 auto;
-    padding: 0 24px 100px;
-    position: relative;
-    z-index: 1;
+    padding: 0 28px 120px;
   }
 
   /* ── HERO ── */
   .hero {
-    padding: 80px 0 60px;
+    padding: 72px 0 56px;
     text-align: center;
-    position: relative;
   }
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent-1), transparent);
-    opacity: 0.3;
-  }
-  .hero .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
+  .hero .overline {
+    font-size: 13px;
     font-weight: 600;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--accent-1);
-    background: linear-gradient(135deg, rgba(129,140,248,0.1), rgba(167,139,250,0.1));
-    border: 1px solid rgba(129,140,248,0.15);
-    padding: 6px 16px;
-    border-radius: 100px;
-    margin-bottom: 24px;
-  }
-  .hero h1 {
-    font-size: 44px;
-    font-weight: 800;
-    letter-spacing: -1.5px;
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    letter-spacing: 0.5px;
+    color: var(--accent);
     margin-bottom: 12px;
   }
-  .hero .date {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--text-secondary);
+  .hero h1 {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -1.2px;
+    color: var(--text);
     margin-bottom: 8px;
   }
-  .hero .tagline {
-    font-size: 14px;
-    color: var(--text-dim);
+  .hero .meta {
+    font-size: 17px;
     font-weight: 400;
+    color: var(--text-3);
   }
 
-  /* ── SECTION DIVIDERS ── */
-  .section {
-    margin-top: 64px;
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0;
   }
-  .section-label {
+
+  /* ── SECTIONS ── */
+  .section {
+    padding-top: 56px;
+  }
+  .section-title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 32px;
+  }
+
+  /* ── TOP 5 CARDS ── */
+  .item {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    padding: 32px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.25s ease;
+  }
+  .item:hover {
+    box-shadow: var(--shadow-md);
+  }
+  .item .item-top {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 28px;
+    margin-bottom: 16px;
   }
-  .section-label .icon {
-    width: 36px;
-    height: 36px;
+  .item .num {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-soft);
+    width: 32px;
+    height: 32px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
     flex-shrink: 0;
   }
-  .section-label h2 {
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-  }
-  .section-label .line {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  /* ── TOP 5 CARDS ── */
-  .top-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px 28px 24px;
-    margin-bottom: 16px;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  .top-card:hover {
-    border-color: var(--border-hover);
-    box-shadow: var(--glow);
-  }
-  .top-card .rank {
-    position: absolute;
-    top: 20px;
-    right: 24px;
-    font-size: 48px;
-    font-weight: 800;
-    color: rgba(129,140,248,0.06);
-    line-height: 1;
-    pointer-events: none;
-  }
-  .top-card .tag {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 3px 10px;
+  .item .label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-3);
+    background: var(--border-light);
+    padding: 4px 10px;
     border-radius: 6px;
-    margin-bottom: 14px;
   }
-  .top-card h3 {
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
+  .item h3 {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.4px;
     color: var(--text);
-    margin-bottom: 12px;
     line-height: 1.35;
-    max-width: 90%;
+    margin-bottom: 12px;
   }
-  .top-card .body {
+  .item .body {
+    font-size: 15px;
+    color: var(--text-2);
+    line-height: 1.7;
+  }
+  .item code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    background: var(--border-light);
+    padding: 2px 7px;
+    border-radius: 5px;
+    color: var(--text);
+  }
+  .item .takeaway {
+    margin-top: 16px;
+    padding: 16px 20px;
+    background: var(--green-bg);
+    border-radius: 12px;
     font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.75;
-    margin-bottom: 16px;
-  }
-  .top-card .insight {
-    background: var(--green-soft);
-    border-left: 3px solid var(--green);
-    border-radius: 0 8px 8px 0;
-    padding: 12px 16px;
-    margin: 16px 0;
-    font-size: 13.5px;
-    color: var(--text-secondary);
+    color: var(--text-2);
     line-height: 1.65;
   }
-  .top-card .insight strong { color: var(--green); }
-  .top-card .source-row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    color: var(--text-dim);
-    padding-top: 14px;
-    border-top: 1px solid var(--border);
+  .item .takeaway strong {
+    color: #248a3d;
+    font-weight: 600;
   }
-  .top-card .source-row a {
-    color: var(--blue);
+  .item .source {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-light);
+    font-size: 13px;
+    color: var(--text-4);
+  }
+  .item .source a {
+    color: var(--accent);
     text-decoration: none;
     font-weight: 500;
   }
-  .top-card .source-row a:hover { text-decoration: underline; }
-  .top-card code {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12.5px;
-    background: rgba(129,140,248,0.1);
-    border: 1px solid rgba(129,140,248,0.12);
-    padding: 2px 7px;
-    border-radius: 5px;
-    color: var(--accent-1);
+  .item .source a:hover {
+    text-decoration: underline;
   }
 
   /* ── TRENDING ── */
-  .trend {
+  .trend-list {
     display: flex;
-    gap: 18px;
-    padding: 22px 0;
-    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    gap: 2px;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
   }
-  .trend:last-child { border-bottom: none; }
-  .trend .trend-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
-    margin-top: 2px;
+  .trend-item {
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--border-light);
+    transition: background 0.15s;
   }
-  .trend h3 {
-    font-size: 15px;
+  .trend-item:last-child { border-bottom: none; }
+  .trend-item:hover { background: var(--border-light); }
+  .trend-item h3 {
+    font-size: 16px;
     font-weight: 600;
     color: var(--text);
     margin-bottom: 6px;
+    letter-spacing: -0.2px;
   }
-  .trend p {
-    font-size: 13.5px;
-    color: var(--text-secondary);
+  .trend-item p {
+    font-size: 14px;
+    color: var(--text-2);
     line-height: 1.65;
   }
-  .trend .meta {
-    margin-top: 8px;
-    font-size: 12px;
-    color: var(--text-dim);
-  }
-  .trend .meta a { color: var(--blue); text-decoration: none; font-weight: 500; }
-  .trend .meta a:hover { text-decoration: underline; }
-  .trend .hn-score {
-    display: inline-flex;
+  .trend-item .trend-meta {
+    margin-top: 10px;
+    display: flex;
     align-items: center;
-    gap: 3px;
-    background: var(--orange-soft);
-    color: var(--orange);
+    gap: 12px;
+    font-size: 13px;
+  }
+  .trend-item .trend-meta a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .trend-item .score {
     font-size: 11px;
     font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 4px;
-    margin-left: 8px;
+    color: var(--orange);
+    background: #ff95000d;
+    padding: 3px 8px;
+    border-radius: 5px;
   }
 
   /* ── RELEASES ── */
@@ -292,451 +235,373 @@
     grid-template-columns: 1fr 1fr;
     gap: 12px;
   }
-  @media (max-width: 600px) {
-    .release-grid { grid-template-columns: 1fr; }
+  @media (max-width: 560px) { .release-grid { grid-template-columns: 1fr; } }
+  .release-card {
+    background: var(--white);
+    border-radius: 14px;
+    box-shadow: var(--shadow-sm);
+    padding: 22px 24px;
+    transition: box-shadow 0.2s;
   }
-  .release-tile {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 18px 20px;
-    transition: border-color 0.2s;
-  }
-  .release-tile:hover { border-color: var(--border-hover); }
-  .release-tile h4 {
-    font-size: 13px;
+  .release-card:hover { box-shadow: var(--shadow-md); }
+  .release-card h4 {
+    font-size: 14px;
     font-weight: 600;
     color: var(--text);
     margin-bottom: 6px;
   }
-  .release-tile p {
-    font-size: 12.5px;
-    color: var(--text-dim);
+  .release-card p {
+    font-size: 13px;
+    color: var(--text-3);
     line-height: 1.55;
   }
-  .release-tile a {
+  .release-card a {
     display: inline-block;
-    margin-top: 8px;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--accent-1);
-    text-decoration: none;
-    letter-spacing: 0.5px;
-  }
-
-  /* ── SPOTLIGHTS ── */
-  .spotlight {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 22px 24px;
-    margin-bottom: 12px;
-    transition: border-color 0.2s;
-  }
-  .spotlight:hover { border-color: var(--yellow); box-shadow: 0 0 30px rgba(251,191,36,0.04); }
-  .spotlight .spotlight-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-  .spotlight .avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    background: var(--yellow-soft);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    flex-shrink: 0;
-  }
-  .spotlight h3 {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--yellow);
-  }
-  .spotlight p {
-    font-size: 13.5px;
-    color: var(--text-secondary);
-    line-height: 1.65;
-  }
-  .spotlight .links {
     margin-top: 10px;
-    font-size: 12px;
-  }
-  .spotlight .links a {
-    color: var(--blue);
+    font-size: 13px;
+    color: var(--accent);
     text-decoration: none;
     font-weight: 500;
-    margin-right: 12px;
+  }
+  .release-card a:hover { text-decoration: underline; }
+
+  /* ── SPOTLIGHTS ── */
+  .spotlight-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    padding: 24px 28px;
+    margin-bottom: 12px;
+    transition: box-shadow 0.2s;
+  }
+  .spotlight-card:hover { box-shadow: var(--shadow-md); }
+  .spotlight-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .spotlight-card p {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+  }
+  .spotlight-card .links {
+    margin-top: 10px;
+    font-size: 13px;
+  }
+  .spotlight-card .links a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    margin-right: 16px;
   }
 
   /* ── TRY THIS ── */
   .try-card {
-    background: linear-gradient(135deg, rgba(129,140,248,0.06), rgba(167,139,250,0.04));
-    border: 1px solid rgba(129,140,248,0.15);
-    border-radius: 14px;
-    padding: 24px 26px;
+    background: var(--white);
+    border-radius: var(--radius);
+    border-left: 3px solid var(--accent);
+    box-shadow: var(--shadow-sm);
+    padding: 24px 28px;
     margin-bottom: 14px;
-    position: relative;
   }
-  .try-card .try-num {
-    position: absolute;
-    top: -10px;
-    left: 20px;
-    font-size: 10px;
-    font-weight: 700;
+  .try-card .try-label {
+    font-size: 11px;
+    font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
-    background: var(--accent-1);
-    color: var(--bg);
-    padding: 3px 10px;
-    border-radius: 6px;
+    color: var(--accent);
+    margin-bottom: 8px;
   }
   .try-card h3 {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
     color: var(--text);
     margin-bottom: 10px;
-    margin-top: 4px;
   }
   .try-card p {
-    font-size: 13.5px;
-    color: var(--text-secondary);
+    font-size: 14px;
+    color: var(--text-2);
     line-height: 1.7;
   }
   .try-card code {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    background: rgba(0,0,0,0.4);
+    font-size: 12.5px;
+    background: var(--border-light);
     padding: 2px 7px;
     border-radius: 4px;
-    color: var(--green);
+    color: var(--text);
   }
   .try-card pre {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 12.5px;
-    background: rgba(0,0,0,0.45);
-    border: 1px solid rgba(255,255,255,0.04);
-    padding: 16px 18px;
-    border-radius: 10px;
-    margin: 12px 0 4px;
+    font-size: 13px;
+    background: var(--text);
+    color: #e8e8ed;
+    padding: 18px 20px;
+    border-radius: 12px;
+    margin: 14px 0 6px;
     overflow-x: auto;
-    color: var(--green);
     line-height: 1.6;
   }
 
   /* ── BIG IDEA ── */
-  .big-idea {
-    position: relative;
-    background: var(--surface);
-    border: 1px solid rgba(129,140,248,0.15);
+  .big-idea-card {
+    background: var(--white);
     border-radius: 20px;
-    padding: 40px 36px;
-    margin-top: 16px;
-    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    padding: 44px 40px;
+    margin-top: 12px;
   }
-  .big-idea::before {
-    content: '';
-    position: absolute;
-    top: -80px;
-    right: -80px;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, rgba(129,140,248,0.08), transparent 70%);
-    pointer-events: none;
-  }
-  .big-idea .idea-label {
-    font-size: 11px;
+  .big-idea-card .big-idea-label {
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    color: var(--accent-2);
+    color: var(--purple);
     margin-bottom: 16px;
   }
-  .big-idea h3 {
-    font-size: 24px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
+  .big-idea-card h3 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
     color: var(--text);
+    line-height: 1.25;
     margin-bottom: 20px;
-    line-height: 1.3;
   }
-  .big-idea p {
-    font-size: 15px;
-    color: var(--text-secondary);
-    line-height: 1.85;
-    margin-bottom: 14px;
+  .big-idea-card p {
+    font-size: 16px;
+    color: var(--text-2);
+    line-height: 1.8;
+    margin-bottom: 16px;
   }
-  .big-idea strong { color: var(--text); }
-  .big-idea .callout {
-    background: rgba(129,140,248,0.08);
-    border-left: 3px solid var(--accent-1);
-    border-radius: 0 10px 10px 0;
-    padding: 16px 20px;
-    margin: 20px 0;
-    font-size: 14.5px;
-    color: var(--text);
-    line-height: 1.7;
+  .big-idea-card strong { color: var(--text); }
+  .big-idea-card .pullquote {
+    margin: 24px 0;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, #f5f5f7, #fafafa);
+    border-radius: 14px;
+    font-size: 17px;
     font-weight: 500;
+    color: var(--text);
+    line-height: 1.6;
+    letter-spacing: -0.2px;
   }
 
   /* ── FOOTER ── */
   .footer {
     text-align: center;
-    padding-top: 56px;
-    margin-top: 64px;
-    position: relative;
-  }
-  .footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent-1), transparent);
-    opacity: 0.2;
-  }
-  .footer p {
+    padding-top: 64px;
     font-size: 13px;
-    color: var(--text-dim);
-    margin-bottom: 4px;
+    color: var(--text-4);
   }
   .footer .next {
-    color: var(--accent-1);
+    color: var(--accent);
     font-weight: 500;
-    margin-top: 8px;
+    margin-top: 6px;
   }
 </style>
 </head>
 <body>
 <div class="container">
 
-  <!-- ═══ HERO ═══ -->
   <div class="hero">
-    <div class="badge">&#9889; AI Trends Scout</div>
+    <div class="overline">AI Trends Scout</div>
     <h1>Weekly Digest</h1>
-    <div class="date">April 3, 2026</div>
-    <div class="tagline">Practical techniques over hype. Every item has a link.</div>
+    <div class="meta">April 3, 2026</div>
   </div>
+  <div class="divider"></div>
 
   <!-- ═══ TOP 5 ═══ -->
   <div class="section">
-    <div class="section-label">
-      <div class="icon" style="background: rgba(129,140,248,0.1); color: var(--accent-1);">&#9889;</div>
-      <h2 style="color: var(--accent-1);">Top 5 This Week</h2>
-      <div class="line"></div>
-    </div>
+    <div class="section-title">Top 5 This Week</div>
 
-    <div class="top-card">
-      <div class="rank">01</div>
-      <div class="tag" style="background: rgba(129,140,248,0.1); color: var(--accent-1);">Claude Code</div>
+    <div class="item">
+      <div class="item-top">
+        <div class="num">1</div>
+        <div class="label">Claude Code</div>
+      </div>
       <h3>Worktree Isolation for Parallel Agents</h3>
-      <div class="body">Claude Code shipped <code>isolation: "worktree"</code> in the Agent tool. Subagents get their own temporary git worktree &mdash; an isolated copy of the repo &mdash; so multiple agents can work in parallel without clobbering each other's file changes. Combined with named subagents and <code>ExitWorktree</code>, this is the foundation for true parallel multi-agent coding.</div>
-      <div class="insight"><strong>Why it matters:</strong> Run a test fixer, feature implementor, and code reviewer simultaneously on the same codebase. No merge conflicts. No state pollution. This is the architecture that makes autonomous coding economical.</div>
-      <div class="source-row">&#128279;&nbsp; <a href="https://code.claude.com/docs/en/changelog">Claude Code March 2026 Changelog</a></div>
+      <div class="body">Claude Code shipped <code>isolation: "worktree"</code> in the Agent tool. Subagents get their own temporary git worktree &mdash; an isolated copy of the repo &mdash; so multiple agents work in parallel without clobbering each other&rsquo;s file changes. Combined with named subagents and <code>ExitWorktree</code>, this is the foundation for true parallel multi-agent coding.</div>
+      <div class="takeaway"><strong>Why it matters</strong> &mdash; Run a test fixer, feature implementor, and code reviewer simultaneously on the same codebase. No merge conflicts. No state pollution.</div>
+      <div class="source"><a href="https://code.claude.com/docs/en/changelog">Claude Code March 2026 Changelog</a></div>
     </div>
 
-    <div class="top-card">
-      <div class="rank">02</div>
-      <div class="tag" style="background: rgba(129,140,248,0.1); color: var(--accent-1);">Claude Code</div>
-      <h3>/loop &mdash; Recurring Agents Inside Your Terminal</h3>
-      <div class="body">Run any prompt or slash command on a recurring interval: <code>/loop 5m check CI status</code>. Combined with hooks (<code>CwdChanged</code>, <code>FileChanged</code>, <code>TaskCreated</code>), you can build reactive automation pipelines that live entirely inside your terminal session.</div>
-      <div class="insight"><strong>Why it matters:</strong> A persistent Claude Code session <em>is</em> your automation daemon. Replaces janky <code>watch</code> commands and side-terminal cron jobs. Especially powerful for monitoring builds, test suites, and auto-drafting PRs.</div>
-      <div class="source-row">&#128279;&nbsp; <a href="https://code.claude.com/docs/en/changelog">Claude Code March 2026 Changelog</a></div>
+    <div class="item">
+      <div class="item-top">
+        <div class="num">2</div>
+        <div class="label">Claude Code</div>
+      </div>
+      <h3>/loop &mdash; Recurring Agents in Your Terminal</h3>
+      <div class="body">Run any prompt on a recurring interval: <code>/loop 5m check CI status</code>. Combined with hooks, you can build reactive automation pipelines entirely inside your terminal session. A persistent Claude Code session <em>is</em> your automation daemon.</div>
+      <div class="takeaway"><strong>Why it matters</strong> &mdash; Replaces janky <code>watch</code> commands and side-terminal cron jobs. Especially powerful for monitoring builds and auto-drafting PRs.</div>
+      <div class="source"><a href="https://code.claude.com/docs/en/changelog">Claude Code March 2026 Changelog</a></div>
     </div>
 
-    <div class="top-card">
-      <div class="rank">03</div>
-      <div class="tag" style="background: var(--green-soft); color: var(--green);">Vibe Coding</div>
+    <div class="item">
+      <div class="item-top">
+        <div class="num">3</div>
+        <div class="label">Vibe Coding</div>
+      </div>
       <h3>Complete Native Apps: SwiftUI in 880 Lines</h3>
-      <div class="body">Simon Willison built two production-quality macOS menu bar apps &mdash; <em>Bandwidther</em> (network traffic) and <em>Gpuer</em> (GPU/RAM usage) &mdash; using Claude Opus 4.6 and GPT-5.4 with minimal direction. Each is a single SwiftUI file. He pointed Claude to app #1 when building app #2, and it reused UI patterns intelligently.</div>
-      <div class="insight"><strong>Why it matters:</strong> The "single file = complete app" pattern means the entire context fits in a model's window. Reproducible in under an hour. SwiftUI is now a validated vibe coding target &mdash; Claude has "surprisingly good design taste" for it.</div>
-      <div class="source-row">&#128279;&nbsp; <a href="https://simonwillison.net/2026/Mar/27/vibe-coding-swiftui/">Simon Willison &mdash; Vibe Coding SwiftUI (Mar 27)</a></div>
+      <div class="body">Simon Willison built two production-quality macOS menu bar apps &mdash; <em>Bandwidther</em> and <em>Gpuer</em> &mdash; using Claude Opus 4.6 and GPT-5.4. Each is a single SwiftUI file. He pointed Claude to app&nbsp;#1 when building app&nbsp;#2, and it reused UI patterns intelligently.</div>
+      <div class="takeaway"><strong>Why it matters</strong> &mdash; The &ldquo;single file = complete app&rdquo; pattern means the entire context fits in one window. Reproducible in under an hour. SwiftUI is a validated vibe coding target.</div>
+      <div class="source"><a href="https://simonwillison.net/2026/Mar/27/vibe-coding-swiftui/">Simon Willison &mdash; Mar 27, 2026</a></div>
     </div>
 
-    <div class="top-card">
-      <div class="rank">04</div>
-      <div class="tag" style="background: var(--orange-soft); color: var(--orange);">Multi-Agent</div>
+    <div class="item">
+      <div class="item-top">
+        <div class="num">4</div>
+        <div class="label">Multi-Agent</div>
+      </div>
       <h3>OpenAI Codex Plugin for Claude Code</h3>
-      <div class="body">OpenAI shipped <code>codex-plugin-cc</code> &mdash; delegate from Claude Code to Codex for standard review, adversarial/"skeptical" review, or full task delegation. It reuses your local auth, MCP config, and environment, so it feels native.</div>
-      <div class="insight"><strong>Why it matters:</strong> First cross-company AI tool integration. Two different reasoning engines red-teaming each other's code is the pattern production-quality review workflows have needed. Free with any ChatGPT subscription.</div>
-      <div class="source-row">&#128279;&nbsp; <a href="https://community.openai.com/t/introducing-codex-plugin-for-claude-code/1378186">OpenAI Community</a>&nbsp; &middot; &nbsp;<a href="https://github.com/openai/codex-plugin-cc">GitHub</a></div>
+      <div class="body">OpenAI shipped <code>codex-plugin-cc</code> &mdash; delegate from Claude Code to Codex for standard review, adversarial review, or full task delegation. Reuses your local auth, MCP config, and environment.</div>
+      <div class="takeaway"><strong>Why it matters</strong> &mdash; First cross-company AI tool integration. Two reasoning engines red-teaming each other&rsquo;s code is the pattern production-quality workflows need.</div>
+      <div class="source"><a href="https://community.openai.com/t/introducing-codex-plugin-for-claude-code/1378186">OpenAI Community</a> &nbsp;&middot;&nbsp; <a href="https://github.com/openai/codex-plugin-cc">GitHub</a></div>
     </div>
 
-    <div class="top-card">
-      <div class="rank">05</div>
-      <div class="tag" style="background: var(--pink-soft); color: var(--pink);">Design + Code</div>
+    <div class="item">
+      <div class="item-top">
+        <div class="num">5</div>
+        <div class="label">Design + Code</div>
+      </div>
       <h3>Figma MCP Gets Write Access</h3>
-      <div class="body">The Figma MCP server shipped write access &mdash; agents can now create, modify, and update Figma files, not just read them. Builders are wiring Claude Code into design-to-code loops where the agent updates Figma source, exports assets, and updates the codebase in one pass.</div>
-      <div class="insight"><strong>Why it matters:</strong> "Describe a UI change in prose &rarr; agent updates Figma + code simultaneously" is now a one-shot prompt. Huge for PMs building prototypes and internal tools.</div>
-      <div class="source-row">&#128279;&nbsp; <a href="https://www.figma.com/blog/mcp-write-access">Figma Developer Blog</a></div>
+      <div class="body">The Figma MCP server shipped write access &mdash; agents can now create, modify, and update Figma files. Builders are wiring Claude Code into design-to-code loops where the agent updates Figma, exports assets, and updates code in one pass.</div>
+      <div class="takeaway"><strong>Why it matters</strong> &mdash; &ldquo;Describe a UI change in prose &rarr; agent updates Figma + code simultaneously&rdquo; is now a one-shot prompt.</div>
+      <div class="source"><a href="https://www.figma.com/blog/mcp-write-access">Figma Developer Blog</a></div>
     </div>
   </div>
+
+  <div class="divider"></div>
 
   <!-- ═══ TRENDING ═══ -->
   <div class="section">
-    <div class="section-label">
-      <div class="icon" style="background: var(--orange-soft); color: var(--orange);">&#128293;</div>
-      <h2 style="color: var(--orange);">Trending</h2>
-      <div class="line"></div>
-    </div>
+    <div class="section-title">Trending in the Community</div>
 
-    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 6px 24px;">
-      <div class="trend">
-        <div class="trend-icon" style="background: var(--red-soft);">&#128270;</div>
-        <div>
-          <h3>Claude Code Source Code Leaked</h3>
-          <p>Anthropic shipped a source map in their npm package. Discoveries: anti-distillation fake tools, "undercover mode," regex frustration detection, cryptographic attestation, and the <strong>KAIROS</strong> feature flag &mdash; an unreleased fully autonomous agent mode.</p>
-          <div class="meta">
-            <a href="https://alex000kim.com/posts/2026-03-31-claude-code-source-leak/">Alex Kim Analysis</a> &middot;
-            <a href="https://news.ycombinator.com/item?id=43523841">HackerNews</a>
-            <span class="hn-score">&#9650; 847</span>
-          </div>
+    <div class="trend-list">
+      <div class="trend-item">
+        <h3>Claude Code Source Code Leaked</h3>
+        <p>Anthropic shipped a source map in their npm package. Discoveries: anti-distillation fake tools, regex frustration detection, cryptographic attestation, and KAIROS &mdash; an unreleased fully autonomous agent mode.</p>
+        <div class="trend-meta">
+          <a href="https://alex000kim.com/posts/2026-03-31-claude-code-source-leak/">Analysis</a>
+          <a href="https://news.ycombinator.com/item?id=43523841">HackerNews</a>
+          <span class="score">&uarr; 847</span>
         </div>
       </div>
 
-      <div class="trend">
-        <div class="trend-icon" style="background: var(--orange-soft);">&#9888;&#65039;</div>
-        <div>
-          <h3>"Slopsquatting" &mdash; AI Agents' Security Blindspot</h3>
-          <p>a16z: AI agents select vulnerable dependencies 50% more often than humans. Attackers register fake packages with names LLMs hallucinate. One researcher saw 30K agent-driven installs of a dummy package in weeks.</p>
-          <div class="meta"><a href="https://a16z.com/et-tu-agent-did-you-install-the-backdoor/">a16z &mdash; Et tu, Agent? (Apr 1, 2026)</a></div>
+      <div class="trend-item">
+        <h3>&ldquo;Slopsquatting&rdquo; &mdash; AI Agents&rsquo; Security Blindspot</h3>
+        <p>a16z: AI agents select vulnerable dependencies 50% more often than humans. Attackers register fake packages with names LLMs hallucinate &mdash; one researcher saw 30K agent-driven installs in weeks.</p>
+        <div class="trend-meta">
+          <a href="https://a16z.com/et-tu-agent-did-you-install-the-backdoor/">a16z &mdash; Apr 1, 2026</a>
         </div>
       </div>
 
-      <div class="trend">
-        <div class="trend-icon" style="background: rgba(129,140,248,0.1);">&#129504;</div>
-        <div>
-          <h3>"ultrathink" Is Back</h3>
-          <p>Typing <code>ultrathink</code> re-enables high-effort reasoning for that turn. Community reports 3&ndash;5x speed gains by using low effort for scaffolding, ultrathink only for hard decisions.</p>
-          <div class="meta"><a href="https://code.claude.com/docs/en/changelog">Changelog</a> &middot; r/ClaudeAI</div>
+      <div class="trend-item">
+        <h3>&ldquo;ultrathink&rdquo; Is Back</h3>
+        <p>Typing <code style="font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--border-light);padding:2px 6px;border-radius:4px;">ultrathink</code> re-enables high-effort reasoning for that turn. Community reports 3&ndash;5x speed gains using low effort for scaffolding, ultrathink for hard decisions only.</p>
+        <div class="trend-meta">
+          <a href="https://code.claude.com/docs/en/changelog">Changelog</a>
         </div>
       </div>
 
-      <div class="trend">
-        <div class="trend-icon" style="background: var(--blue-soft);">&#129302;</div>
-        <div>
-          <h3>Computer Use &mdash; No Setup Required</h3>
-          <p>Anthropic enabled zero-setup screen control for all Pro and Max subscribers via Cowork and Claude Code. Navigate IDEs, fill forms, run builds autonomously.</p>
-          <div class="meta">
-            <a href="https://support.claude.com/en/articles/12138966-release-notes">Release Notes</a> &middot;
-            <a href="https://news.ycombinator.com/item?id=43511224">HackerNews</a>
-            <span class="hn-score">&#9650; 612</span>
-          </div>
+      <div class="trend-item">
+        <h3>Computer Use &mdash; No Setup Required</h3>
+        <p>Anthropic enabled zero-setup screen control for Pro and Max subscribers. Navigate IDEs, fill forms, run builds autonomously &mdash; all out of the box.</p>
+        <div class="trend-meta">
+          <a href="https://support.claude.com/en/articles/12138966-release-notes">Release Notes</a>
+          <a href="https://news.ycombinator.com/item?id=43511224">HackerNews</a>
+          <span class="score">&uarr; 612</span>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="divider"></div>
 
   <!-- ═══ RELEASES ═══ -->
   <div class="section">
-    <div class="section-label">
-      <div class="icon" style="background: var(--blue-soft); color: var(--blue);">&#128640;</div>
-      <h2 style="color: var(--blue);">New Releases</h2>
-      <div class="line"></div>
-    </div>
+    <div class="section-title">New Releases</div>
 
     <div class="release-grid">
-      <div class="release-tile">
+      <div class="release-card">
         <h4>Claude Code March Drop</h4>
-        <p>/loop, worktree agents, MCP elicitation, managed-settings.d/, /powerup, ultrathink.</p>
-        <a href="https://code.claude.com/docs/en/changelog">Changelog &rarr;</a>
+        <p>/loop, worktree agents, MCP elicitation, managed-settings, ultrathink.</p>
+        <a href="https://code.claude.com/docs/en/changelog">Read more &rarr;</a>
       </div>
-      <div class="release-tile">
+      <div class="release-card">
         <h4>Claude Mobile Apps</h4>
-        <p>Interactive apps in-conversation: live charts, sketchable diagrams, shareable assets.</p>
-        <a href="https://support.claude.com/en/articles/12138966-release-notes">Notes &rarr;</a>
+        <p>Interactive apps in-conversation. Live charts, diagrams, shareable assets.</p>
+        <a href="https://support.claude.com/en/articles/12138966-release-notes">Read more &rarr;</a>
       </div>
-      <div class="release-tile">
+      <div class="release-card">
         <h4>MCP OAuth Overhaul</h4>
-        <p>RFC 9728 discovery, Client ID Metadata, step-up auth for enterprise MCP.</p>
-        <a href="https://code.claude.com/docs/en/changelog">Changelog &rarr;</a>
+        <p>RFC 9728 discovery, step-up auth. Enterprise MCP gets proper OAuth flows.</p>
+        <a href="https://code.claude.com/docs/en/changelog">Read more &rarr;</a>
       </div>
-      <div class="release-tile">
+      <div class="release-card">
         <h4>MCP Elicitation</h4>
         <p>Servers can request structured user input mid-task via interactive dialog.</p>
-        <a href="https://code.claude.com/docs/en/changelog">Changelog &rarr;</a>
+        <a href="https://code.claude.com/docs/en/changelog">Read more &rarr;</a>
       </div>
-      <div class="release-tile">
+      <div class="release-card">
         <h4>pgEdge Postgres MCP</h4>
-        <p>Distributed Postgres: cross-node schema inspection, query analysis, migrations.</p>
+        <p>Distributed Postgres with cross-node schema inspection and query analysis.</p>
         <a href="https://github.com/pgEdge/mcp-server-pgedge">GitHub &rarr;</a>
       </div>
-      <div class="release-tile">
+      <div class="release-card">
         <h4>PowerShell (Windows)</h4>
-        <p>Native PowerShell tool alongside Bash with dangerous command detection.</p>
-        <a href="https://code.claude.com/docs/en/changelog">Changelog &rarr;</a>
+        <p>Native PowerShell alongside Bash with dangerous command detection.</p>
+        <a href="https://code.claude.com/docs/en/changelog">Read more &rarr;</a>
       </div>
     </div>
   </div>
 
+  <div class="divider"></div>
+
   <!-- ═══ SPOTLIGHTS ═══ -->
   <div class="section">
-    <div class="section-label">
-      <div class="icon" style="background: var(--yellow-soft); color: var(--yellow);">&#11088;</div>
-      <h2 style="color: var(--yellow);">Builder Spotlights</h2>
-      <div class="line"></div>
-    </div>
+    <div class="section-title">Builder Spotlights</div>
 
-    <div class="spotlight">
-      <div class="spotlight-header">
-        <div class="avatar">&#128187;</div>
-        <h3>Simon Willison &mdash; SwiftUI App Factory</h3>
-      </div>
-      <p>Two macOS menu bar apps built with Claude Opus + GPT-5.4. Replicable pattern: pick a terminal utility &rarr; wrap in SwiftUI &rarr; point Claude at app #1 when building #2. Both repos public.</p>
+    <div class="spotlight-card">
+      <h3>Simon Willison &mdash; SwiftUI App Factory</h3>
+      <p>Two macOS menu bar apps built entirely with AI. Replicable pattern: pick a terminal utility, wrap it in SwiftUI, point Claude at app&nbsp;#1 when building&nbsp;#2. Both repos public.</p>
       <div class="links"><a href="https://github.com/simonw/bandwidther">Bandwidther</a> <a href="https://github.com/simonw/gpuer">Gpuer</a></div>
     </div>
 
-    <div class="spotlight">
-      <div class="spotlight-header">
-        <div class="avatar">&#128269;</div>
-        <h3>Source Code Archaeology</h3>
-      </div>
-      <p>Within 48 hours of the npm leak, a developer cataloged 23 bash security checks, fake tool injection, and feature flags. Treat tools you use daily as open source to learn from.</p>
+    <div class="spotlight-card">
+      <h3>Claude Code Source Archaeology</h3>
+      <p>Within 48 hours of the npm leak, a developer cataloged 23 bash security checks, fake tool injection, and feature flags for unreleased products.</p>
       <div class="links"><a href="https://alex000kim.com/posts/2026-03-31-claude-code-source-leak/">Full analysis</a></div>
     </div>
 
-    <div class="spotlight">
-      <div class="spotlight-header">
-        <div class="avatar">&#128640;</div>
-        <h3>Solo Founder &mdash; Full SaaS in 11 Days</h3>
-      </div>
-      <p>B2B SaaS (onboarding analytics) shipped with only Claude Code. Next.js, Supabase, Stripe. Used memory for context, worktrees for parallel features, Codex plugin for security reviews. MRR: $840.</p>
+    <div class="spotlight-card">
+      <h3>Solo Founder &mdash; Full SaaS in 11 Days</h3>
+      <p>B2B SaaS shipped with only Claude Code. Next.js, Supabase, Stripe. Memory for context, worktrees for parallel features, Codex plugin for security reviews. MRR at posting: $840.</p>
       <div class="links"><a href="https://reddit.com/r/ClaudeAI">r/ClaudeAI</a></div>
     </div>
 
-    <div class="spotlight">
-      <div class="spotlight-header">
-        <div class="avatar">&#128024;</div>
-        <h3>pgEdge &mdash; MCP for Distributed Postgres</h3>
-      </div>
-      <p>First MCP server purpose-built for distributed SQL. Exposes node topology as a first-class resource so Claude can reason about data locality when writing queries.</p>
+    <div class="spotlight-card">
+      <h3>pgEdge &mdash; MCP for Distributed Postgres</h3>
+      <p>First MCP server purpose-built for distributed SQL. Node topology as a first-class resource so Claude reasons about data locality.</p>
       <div class="links"><a href="https://github.com/pgEdge/mcp-server-pgedge">GitHub</a></div>
     </div>
 
-    <div class="spotlight">
-      <div class="spotlight-header">
-        <div class="avatar">&#129309;</div>
-        <h3>OpenAI &mdash; Cross-Company Agent Delegation</h3>
-      </div>
-      <p>First official mechanism to delegate from one AI agent to a competitor's. Adversarial review as a pre-commit gate. MIT-licensed, 200 lines, trivially forkable.</p>
+    <div class="spotlight-card">
+      <h3>OpenAI &mdash; Cross-Company Agent Delegation</h3>
+      <p>First official mechanism to delegate from one AI agent to a competitor. Adversarial review as pre-commit gate. MIT-licensed, 200 lines.</p>
       <div class="links"><a href="https://github.com/openai/codex-plugin-cc">GitHub</a></div>
     </div>
   </div>
 
+  <div class="divider"></div>
+
   <!-- ═══ TRY THIS ═══ -->
   <div class="section">
-    <div class="section-label">
-      <div class="icon" style="background: rgba(129,140,248,0.1); color: var(--accent-1);">&#128171;</div>
-      <h2 style="color: var(--accent-1);">Try This</h2>
-      <div class="line"></div>
-    </div>
+    <div class="section-title">Try This</div>
 
     <div class="try-card">
-      <div class="try-num">Technique 1</div>
+      <div class="try-label">Technique 01</div>
       <h3>Parallel Feature Dev with Worktree Agents</h3>
       <p>Spawn two agents with <code>isolation: "worktree"</code> to work on your feature and its tests simultaneously. Isolated git branches, no state collisions.</p>
       <pre>// Feature agent:
@@ -749,43 +614,40 @@
     </div>
 
     <div class="try-card">
-      <div class="try-num">Technique 2</div>
+      <div class="try-label">Technique 02</div>
       <h3>Effort-Tiered Sessions</h3>
-      <p>Start every session with <code>/effort low</code> for file reads, scaffolding, and boilerplate. When you hit the hard part, prefix your message with <code>ultrathink</code>. Watch the spinner switch. 3&ndash;5x speed improvement on routine tasks.</p>
+      <p>Start every session with <code>/effort low</code> for scaffolding and boilerplate. When you hit the hard part, prefix with <code>ultrathink</code>. 3&ndash;5x speed improvement on routine tasks.</p>
     </div>
 
     <div class="try-card">
-      <div class="try-num">Technique 3</div>
+      <div class="try-label">Technique 03</div>
       <h3>Adversarial Pre-Commit Review</h3>
       <p>Install the Codex plugin, then run before any push:</p>
       <pre>/codex-review adversarial</pre>
-      <p>Different model, different reasoning, different failure modes. Especially valuable for auth, payments, and data access code.</p>
+      <p>Different model, different reasoning, different failure modes.</p>
     </div>
   </div>
+
+  <div class="divider"></div>
 
   <!-- ═══ BIG IDEA ═══ -->
   <div class="section">
-    <div class="section-label">
-      <div class="icon" style="background: rgba(129,140,248,0.1); color: var(--accent-2);">&#128161;</div>
-      <h2 style="color: var(--accent-2);">One Big Idea</h2>
-      <div class="line"></div>
-    </div>
+    <div class="section-title">One Big Idea</div>
 
-    <div class="big-idea">
-      <div class="idea-label">Editorial</div>
+    <div class="big-idea-card">
+      <div class="big-idea-label">Editorial</div>
       <h3>The Trust Layer Is the New Moat</h3>
-      <p>The Claude Code source leak revealed something bigger than "fake tools" headlines: Anthropic is building <strong>cryptographic attestation</strong> into the HTTP transport layer. Every API request from a legitimate Claude Code binary carries a proof of origin.</p>
-      <p>Every major AI coding tool is quietly building the same trust infrastructure. The war isn't about model capability anymore &mdash; it's about who controls the <strong>verified pipeline</strong> between a developer and an AI.</p>
-      <div class="callout">The KAIROS feature flag &mdash; an unreleased "fully autonomous agent mode" &mdash; is the tell. When agents run autonomously for hours, "did this code come from a verified, policy-compliant source?" becomes a compliance requirement.</div>
-      <p>For solo founders: the window to build on raw AI APIs without trust controls is closing. Build workflows that demonstrate <strong>provenance</strong> &mdash; who prompted what, which model generated it, when it was reviewed &mdash; because that's the audit trail enterprise customers will demand.</p>
+      <p>The Claude Code source leak revealed something bigger than headlines: Anthropic is building <strong>cryptographic attestation</strong> into the HTTP transport layer. Every API request carries a proof of origin.</p>
+      <p>Every major AI coding tool is quietly building the same trust infrastructure. The competition isn&rsquo;t about model capability anymore &mdash; it&rsquo;s about who controls the verified pipeline between a developer and an AI.</p>
+      <div class="pullquote">When agents run autonomously for hours, &ldquo;did this code come from a verified, policy-compliant source?&rdquo; becomes a compliance requirement, not a nice-to-have.</div>
+      <p>For solo founders: the window to build on raw AI APIs without trust controls is closing. Build workflows that demonstrate <strong>provenance</strong> &mdash; who prompted what, which model generated it, when it was reviewed &mdash; because that&rsquo;s the audit trail enterprise customers will demand.</p>
     </div>
   </div>
 
-  <!-- ═══ FOOTER ═══ -->
   <div class="footer">
-    <p>AI Trends Scout &mdash; Compiled April 3, 2026</p>
-    <p>Sources verified via live search. Items without verifiable links excluded.</p>
-    <p class="next">Next issue: Monday, April 7, 2026</p>
+    <p>AI Trends Scout &middot; April 3, 2026</p>
+    <p>Sources verified via live search.</p>
+    <p class="next">Next issue: Monday, April 7</p>
   </div>
 
 </div>
