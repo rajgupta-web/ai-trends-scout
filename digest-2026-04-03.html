@@ -11,7 +11,7 @@
      DESIGN SYSTEM
      ═══════════════════════════════ */
   :root {
-    --bg: #fafafa;
+    --bg: #ffffff;
     --surface: #ffffff;
     --ink: #111111;
     --ink-2: #333333;
@@ -67,9 +67,8 @@
     .rel { border-top-color: var(--border); }
     .rel:hover { border-top-color: var(--accent); }
     .story code, .play code { background: var(--border); }
-    .lead-story { background: linear-gradient(135deg, #251520 0%, #1e1530 50%, #1a1028 100%); }
-    .lead-story .why-box { background: rgba(255,255,255,0.04); }
-    .lead-story code { background: rgba(255,255,255,0.08); }
+    .lead-story .why-box { background: var(--border); }
+    .lead-story code { background: var(--border); }
     .big-idea-body { background: #131525; }
     .big-idea-header { background: linear-gradient(135deg, #0d0f1a, #1a1f35); }
     .share-cta { border-color: var(--border); }
@@ -116,7 +115,7 @@
   }
   .sticky-nav.visible { transform: translateY(0); }
   @media (prefers-color-scheme: dark) {
-    .sticky-nav { background: rgba(10,10,10,0.92); }
+    .sticky-nav { background: rgba(23,25,35,0.92); }
   }
   .sticky-nav-inner {
     max-width: 720px;
@@ -340,6 +339,28 @@
   .toc a:hover .toc-arrow { color: var(--accent); transform: translateX(2px); }
 
   /* ═══════════════════════════════
+     FULL-BLEED TINTED BANDS
+     ═══════════════════════════════ */
+  .band {
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    padding-left: calc(50vw - 50%);
+    padding-right: calc(50vw - 50%);
+    padding-top: 16px;
+    padding-bottom: 24px;
+  }
+  .band-cool {
+    background: #f5f7fb;
+  }
+  .band-warm {
+    background: #faf8f5;
+  }
+  @media (prefers-color-scheme: dark) {
+    .band-cool { background: #161829; }
+    .band-warm { background: #1c1a1e; }
+  }
+
+  /* ═══════════════════════════════
      SECTION HEADERS
      ═══════════════════════════════ */
   .sec {
@@ -374,16 +395,15 @@
      LEAD STORY (hero card)
      ═══════════════════════════════ */
   .lead-story {
-    background: linear-gradient(135deg, #fef2f2 0%, #fff1f2 50%, #fce7f3 100%);
+    background: var(--surface);
     border-radius: 20px;
     padding: 36px 36px 32px;
     margin-bottom: 20px;
     position: relative;
     overflow: hidden;
     box-shadow: var(--shadow-md);
-  }
-  @media (prefers-color-scheme: dark) {
-    .lead-story { background: linear-gradient(135deg, #1c1017 0%, #1a1225 50%, #1a0e23 100%); }
+    border: 1px solid var(--border-light);
+    border-left: 5px solid var(--rose);
   }
   .lead-story .lead-badge {
     display: inline-block;
@@ -429,24 +449,16 @@
   .lead-story code {
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
-    background: rgba(0,0,0,0.05);
+    background: var(--border-light);
     padding: 2px 7px;
     border-radius: 4px;
     font-weight: 500;
   }
-  @media (prefers-color-scheme: dark) {
-    .lead-story code { background: rgba(255,255,255,0.08); }
-  }
   .lead-story .why-box {
     margin-top: 20px;
-    background: rgba(255,255,255,0.6);
+    background: var(--border-light);
     border-radius: 12px;
     padding: 18px 20px;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-  @media (prefers-color-scheme: dark) {
-    .lead-story .why-box { background: rgba(255,255,255,0.05); }
   }
   .lead-story .cite {
     margin-top: 16px;
@@ -905,7 +917,7 @@
     font-size: 14px;
     font-weight: 600;
     color: #fff;
-    background: var(--ink);
+    background: var(--accent);
     border: none;
     padding: 12px 28px;
     border-radius: 10px;
@@ -913,7 +925,7 @@
     transition: background 0.2s, transform 0.1s;
     font-family: inherit;
   }
-  .share-btn:hover { background: #333; transform: translateY(-1px); }
+  .share-btn:hover { background: #1d4ed8; transform: translateY(-1px); }
   .share-btn:active { transform: translateY(0); }
   .share-btn.copied { background: var(--emerald); }
 
@@ -1074,6 +1086,7 @@
   </div>
 
   <!-- ═══ SIGNALS ═══ -->
+  <div class="band band-cool">
   <div class="sec" id="signals">
     <div class="sec-header">
       <div class="sec-eyebrow" style="color:var(--amber);">Signals &amp; Buzz</div>
@@ -1132,6 +1145,8 @@
     </div>
   </div>
 
+  </div><!-- /band-cool -->
+
   <!-- ═══ RELEASES ═══ -->
   <div class="sec" id="releases">
     <div class="sec-header">
@@ -1175,6 +1190,7 @@
   </div>
 
   <!-- ═══ BUILDERS ═══ -->
+  <div class="band band-warm">
   <div class="sec" id="builders">
     <div class="sec-header">
       <div class="sec-eyebrow" style="color:var(--violet);">Builder Spotlights</div>
@@ -1215,6 +1231,8 @@
       </div>
     </div>
   </div>
+
+  </div><!-- /band-warm -->
 
   <!-- ═══ PLAYBOOK ═══ -->
   <div class="sec" id="playbook">
