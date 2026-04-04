@@ -5,651 +5,1329 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Trends Scout — April 3, 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  /* ═══════════════════════════════
+     DESIGN SYSTEM
+     ═══════════════════════════════ */
   :root {
     --bg: #fafafa;
-    --white: #ffffff;
-    --text: #1d1d1f;
-    --text-2: #424245;
-    --text-3: #86868b;
-    --text-4: #afafb2;
-    --border: #e8e8ed;
-    --border-light: #f2f2f7;
-    --accent: #0071e3;
-    --accent-soft: #0071e30a;
-    --green: #34c759;
-    --green-bg: #34c7590a;
-    --orange: #ff9500;
-    --purple: #af52de;
-    --red: #ff3b30;
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
-    --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
-    --shadow-lg: 0 8px 30px rgba(0,0,0,0.08);
+    --surface: #ffffff;
+    --ink: #111111;
+    --ink-2: #333333;
+    --ink-3: #666666;
+    --ink-4: #999999;
+    --ink-5: #cccccc;
+    --border: #e5e5e5;
+    --border-light: #f0f0f0;
+
+    --accent: #2563eb;
+    --accent-soft: #eff6ff;
+    --rose: #e11d48;
+    --rose-soft: #fff1f2;
+    --amber: #d97706;
+    --amber-soft: #fffbeb;
+    --emerald: #059669;
+    --emerald-soft: #ecfdf5;
+    --violet: #7c3aed;
+    --violet-soft: #f5f3ff;
+
     --radius: 16px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.03);
+    --shadow-lg: 0 12px 32px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.04);
+
+    --grad-hero: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #0f172a 100%);
+    --grad-accent: linear-gradient(135deg, #2563eb, #7c3aed);
+    --grad-warm: linear-gradient(135deg, #f59e0b, #ef4444);
+  }
+
+  /* ── Dark mode — warm slate, not black ── */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #171923;
+      --surface: #1e2133;
+      --ink: #eef0f6;
+      --ink-2: #c9cdd8;
+      --ink-3: #8b90a0;
+      --ink-4: #5c6178;
+      --ink-5: #363b50;
+      --border: #2a2e42;
+      --border-light: #222538;
+      --accent-soft: #1a2450;
+      --rose-soft: #35182a;
+      --amber-soft: #30250e;
+      --emerald-soft: #0e2a20;
+      --violet-soft: #231840;
+    }
+    .hero { background: linear-gradient(135deg, #0d0f1a 0%, #1a1f35 50%, #0d0f1a 100%); }
+    .sticky-nav { background: rgba(23,25,35,0.92); }
+    .why-box { background: var(--border); }
+    .play { border-color: var(--border); }
+    .rel { border-top-color: var(--border); }
+    .rel:hover { border-top-color: var(--accent); }
+    .story code, .play code { background: var(--border); }
+    .lead-story { background: linear-gradient(135deg, #251520 0%, #1e1530 50%, #1a1028 100%); }
+    .lead-story .why-box { background: rgba(255,255,255,0.04); }
+    .lead-story code { background: rgba(255,255,255,0.08); }
+    .big-idea-body { background: #131525; }
+    .big-idea-header { background: linear-gradient(135deg, #0d0f1a, #1a1f35); }
+    .share-cta { border-color: var(--border); }
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  html { scroll-behavior: smooth; }
+
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
+    color: var(--ink);
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
   }
 
-  .container {
-    max-width: 680px;
+  /* ── READING PROGRESS BAR ── */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--grad-accent);
+    z-index: 1000;
+    transition: width 0.1s linear;
+  }
+
+  /* ── STICKY NAV ── */
+  .sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 999;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    padding: 0 24px;
+  }
+  .sticky-nav.visible { transform: translateY(0); }
+  @media (prefers-color-scheme: dark) {
+    .sticky-nav { background: rgba(10,10,10,0.92); }
+  }
+  .sticky-nav-inner {
+    max-width: 720px;
     margin: 0 auto;
-    padding: 0 28px 120px;
-  }
-
-  /* ── HERO ── */
-  .hero {
-    padding: 72px 0 56px;
-    text-align: center;
-  }
-  .hero .overline {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    color: var(--accent);
-    margin-bottom: 12px;
-  }
-  .hero h1 {
-    font-size: 40px;
-    font-weight: 700;
-    letter-spacing: -1.2px;
-    color: var(--text);
-    margin-bottom: 8px;
-  }
-  .hero .meta {
-    font-size: 17px;
-    font-weight: 400;
-    color: var(--text-3);
-  }
-
-  .divider {
-    height: 1px;
-    background: var(--border);
-    margin: 0;
-  }
-
-  /* ── SECTIONS ── */
-  .section {
-    padding-top: 56px;
-  }
-  .section-title {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    color: var(--text-3);
-    margin-bottom: 32px;
-  }
-
-  /* ── TOP 5 CARDS ── */
-  .item {
-    background: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-sm);
-    padding: 32px;
-    margin-bottom: 20px;
-    transition: box-shadow 0.25s ease;
-  }
-  .item:hover {
-    box-shadow: var(--shadow-md);
-  }
-  .item .item-top {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
+    justify-content: space-between;
+    height: 48px;
   }
-  .item .num {
-    font-size: 13px;
+  .sticky-nav .nav-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.3px;
+  }
+  .sticky-nav .nav-links {
+    display: flex;
+    gap: 6px;
+  }
+  .sticky-nav .nav-links a {
+    font-size: 11px;
     font-weight: 600;
+    color: var(--ink-3);
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    letter-spacing: 0.2px;
+  }
+  .sticky-nav .nav-links a:hover {
     color: var(--accent);
     background: var(--accent-soft);
-    width: 32px;
-    height: 32px;
+  }
+  @media (max-width: 600px) {
+    .sticky-nav .nav-links { display: none; }
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px 100px;
+  }
+
+  /* ═══════════════════════════════
+     HERO
+     ═══════════════════════════════ */
+  .hero {
+    background: var(--grad-hero);
+    margin: 0 -24px;
+    padding: 64px 48px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 25% 40%, rgba(37,99,235,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 75% 60%, rgba(124,58,237,0.1) 0%, transparent 45%);
+    pointer-events: none;
+  }
+  /* Subtle grain texture */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #60a5fa;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero-eyebrow .dot {
+    width: 6px;
+    height: 6px;
+    background: #60a5fa;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 52px;
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: -1.5px;
+    line-height: 1.05;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .hero .tagline {
+    font-size: 16px;
+    color: #94a3b8;
+    font-weight: 400;
+    line-height: 1.5;
+    position: relative;
+  }
+  .hero .date {
+    margin-top: 28px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #64748b;
+    position: relative;
+  }
+
+  /* ═══════════════════════════════
+     TL;DR + TOC
+     ═══════════════════════════════ */
+  .tldr-toc {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: -32px;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 600px) {
+    .tldr-toc { grid-template-columns: 1fr; }
+  }
+
+  .tldr {
+    background: var(--surface);
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 24px 24px 20px;
+    box-shadow: var(--shadow-lg);
+  }
+  .tldr-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .tldr ul {
+    list-style: none;
+  }
+  .tldr li {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.55;
+    padding: 7px 0;
+    padding-left: 20px;
+    position: relative;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .tldr li:last-child { border-bottom: none; padding-bottom: 0; }
+  .tldr li:first-child { padding-top: 0; }
+  .tldr li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .tldr li:first-child::before { top: 7px; }
+  .tldr li:nth-child(1)::before { background: var(--rose); }
+  .tldr li:nth-child(2)::before { background: var(--accent); }
+  .tldr li:nth-child(3)::before { background: var(--amber); }
+  .tldr li strong { color: var(--ink); font-weight: 700; }
+
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 24px 20px;
+    box-shadow: var(--shadow-lg);
+  }
+  .toc-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    margin-bottom: 14px;
+  }
+  .toc ul { list-style: none; }
+  .toc li { border-bottom: 1px solid var(--border-light); }
+  .toc li:last-child { border-bottom: none; }
+  .toc a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 0;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-2);
+    transition: color 0.2s;
+  }
+  .toc a:hover { color: var(--accent); }
+  .toc .toc-icon {
+    font-size: 14px;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .toc .toc-arrow {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--ink-5);
+    transition: color 0.2s, transform 0.2s;
+  }
+  .toc a:hover .toc-arrow { color: var(--accent); transform: translateX(2px); }
+
+  /* ═══════════════════════════════
+     SECTION HEADERS
+     ═══════════════════════════════ */
+  .sec {
+    margin-top: 64px;
+  }
+  .sec-header {
+    margin-bottom: 32px;
+  }
+  .sec-header .sec-eyebrow {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .sec-header h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.8px;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .sec-header .sec-rule {
+    width: 48px;
+    height: 3px;
+    border-radius: 2px;
+  }
+
+  /* ═══════════════════════════════
+     LEAD STORY (hero card)
+     ═══════════════════════════════ */
+  .lead-story {
+    background: linear-gradient(135deg, #fef2f2 0%, #fff1f2 50%, #fce7f3 100%);
+    border-radius: 20px;
+    padding: 36px 36px 32px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+  @media (prefers-color-scheme: dark) {
+    .lead-story { background: linear-gradient(135deg, #1c1017 0%, #1a1225 50%, #1a0e23 100%); }
+  }
+  .lead-story .lead-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--rose);
+    padding: 5px 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+  }
+  .lead-story .lead-num {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 96px;
+    font-weight: 400;
+    position: absolute;
+    right: 28px;
+    top: 12px;
+    color: rgba(225,29,72,0.07);
+    line-height: 1;
+    pointer-events: none;
+  }
+  @media (prefers-color-scheme: dark) {
+    .lead-story .lead-num { color: rgba(225,29,72,0.12); }
+  }
+  .lead-story h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    max-width: 85%;
+  }
+  .lead-story .lede {
+    font-size: 15px;
+    color: var(--ink-2);
+    line-height: 1.75;
+  }
+  .lead-story code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    background: rgba(0,0,0,0.05);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  @media (prefers-color-scheme: dark) {
+    .lead-story code { background: rgba(255,255,255,0.08); }
+  }
+  .lead-story .why-box {
+    margin-top: 20px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 12px;
+    padding: 18px 20px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  @media (prefers-color-scheme: dark) {
+    .lead-story .why-box { background: rgba(255,255,255,0.05); }
+  }
+  .lead-story .cite {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--ink-4);
+  }
+  .lead-story .cite a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  /* ═══════════════════════════════
+     STORY CARDS (2-5)
+     ═══════════════════════════════ */
+  .stories-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 600px) {
+    .stories-grid { grid-template-columns: 1fr; }
+  }
+
+  .story {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 24px 24px 20px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.25s, transform 0.15s;
+  }
+  .story:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .story::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+  }
+  .story.c-blue::before { background: var(--accent); }
+  .story.c-green::before { background: var(--emerald); }
+  .story.c-amber::before { background: var(--amber); }
+  .story.c-violet::before { background: var(--violet); }
+
+  .story .story-num {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--border);
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 4px;
+  }
+  .story .badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+  }
+  .badge-blue { color: #1e40af; background: var(--accent-soft); }
+  .badge-green { color: #065f46; background: var(--emerald-soft); }
+  .badge-amber { color: #92400e; background: var(--amber-soft); }
+  .badge-violet { color: #5b21b6; background: var(--violet-soft); }
+  .badge-rose { color: #9f1239; background: var(--rose-soft); }
+
+  .story h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.2px;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .story .lede {
+    font-size: 13px;
+    color: var(--ink-3);
+    line-height: 1.65;
+  }
+  .story code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    background: var(--border-light);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+  .story .cite {
+    margin-top: 12px;
+    font-size: 11px;
+    color: var(--ink-4);
+  }
+  .story .cite a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .story .cite a:hover { text-decoration: underline; }
+
+  .why-box {
+    margin-top: 12px;
+    background: var(--border-light);
     border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .why-box .why-label {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    margin-bottom: 4px;
+  }
+  .why-box p {
+    font-size: 12.5px;
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+
+  /* ═══════════════════════════════
+     SIGNALS
+     ═══════════════════════════════ */
+  .signal {
+    display: flex;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-light);
+    align-items: flex-start;
+  }
+  .signal:last-child { border-bottom: none; }
+  .signal-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 20px;
     flex-shrink: 0;
   }
-  .item .label {
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--text-3);
-    background: var(--border-light);
-    padding: 4px 10px;
-    border-radius: 6px;
-  }
-  .item h3 {
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: -0.4px;
-    color: var(--text);
-    line-height: 1.35;
-    margin-bottom: 12px;
-  }
-  .item .body {
-    font-size: 15px;
-    color: var(--text-2);
-    line-height: 1.7;
-  }
-  .item code {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    background: var(--border-light);
-    padding: 2px 7px;
-    border-radius: 5px;
-    color: var(--text);
-  }
-  .item .takeaway {
-    margin-top: 16px;
-    padding: 16px 20px;
-    background: var(--green-bg);
-    border-radius: 12px;
-    font-size: 14px;
-    color: var(--text-2);
-    line-height: 1.65;
-  }
-  .item .takeaway strong {
-    color: #248a3d;
-    font-weight: 600;
-  }
-  .item .source {
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid var(--border-light);
-    font-size: 13px;
-    color: var(--text-4);
-  }
-  .item .source a {
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: 500;
-  }
-  .item .source a:hover {
-    text-decoration: underline;
-  }
-
-  /* ── TRENDING ── */
-  .trend-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    background: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-sm);
-    overflow: hidden;
-  }
-  .trend-item {
-    padding: 24px 28px;
-    border-bottom: 1px solid var(--border-light);
-    transition: background 0.15s;
-  }
-  .trend-item:last-child { border-bottom: none; }
-  .trend-item:hover { background: var(--border-light); }
-  .trend-item h3 {
+  .signal-body { flex: 1; }
+  .signal-body h3 {
     font-size: 16px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 6px;
-    letter-spacing: -0.2px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 4px;
   }
-  .trend-item p {
-    font-size: 14px;
-    color: var(--text-2);
-    line-height: 1.65;
+  .signal-body p {
+    font-size: 13px;
+    color: var(--ink-3);
+    line-height: 1.6;
   }
-  .trend-item .trend-meta {
-    margin-top: 10px;
+  .signal-meta {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 13px;
+    gap: 10px;
+    margin-top: 8px;
+    flex-wrap: wrap;
   }
-  .trend-item .trend-meta a {
+  .signal-meta a {
+    font-size: 12px;
     color: var(--accent);
     text-decoration: none;
-    font-weight: 500;
-  }
-  .trend-item .score {
-    font-size: 11px;
     font-weight: 600;
-    color: var(--orange);
-    background: #ff95000d;
-    padding: 3px 8px;
-    border-radius: 5px;
+  }
+  .signal-meta a:hover { text-decoration: underline; }
+
+  /* HN Points Bar */
+  .hn-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--amber);
+  }
+  .hn-bar .bar-track {
+    width: 48px;
+    height: 4px;
+    background: var(--amber-soft);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .hn-bar .bar-fill {
+    height: 100%;
+    background: var(--amber);
+    border-radius: 2px;
   }
 
-  /* ── RELEASES ── */
-  .release-grid {
+  /* ═══════════════════════════════
+     RELEASES
+     ═══════════════════════════════ */
+  .releases {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 12px;
   }
-  @media (max-width: 560px) { .release-grid { grid-template-columns: 1fr; } }
-  .release-card {
-    background: var(--white);
-    border-radius: 14px;
+  @media (max-width: 600px) { .releases { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 400px) { .releases { grid-template-columns: 1fr; } }
+  .rel {
+    background: var(--surface);
+    border-radius: 12px;
     box-shadow: var(--shadow-sm);
-    padding: 22px 24px;
-    transition: box-shadow 0.2s;
+    padding: 18px 18px 16px;
+    border: 1px solid var(--border-light);
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .release-card:hover { box-shadow: var(--shadow-md); }
-  .release-card h4 {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 6px;
-  }
-  .release-card p {
+  .rel:hover { border-color: var(--accent); box-shadow: var(--shadow-md); }
+  .rel h4 {
     font-size: 13px;
-    color: var(--text-3);
-    line-height: 1.55;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
   }
-  .release-card a {
+  .rel p {
+    font-size: 11.5px;
+    color: var(--ink-3);
+    line-height: 1.5;
+  }
+  .rel a {
     display: inline-block;
-    margin-top: 10px;
-    font-size: 13px;
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: 500;
-  }
-  .release-card a:hover { text-decoration: underline; }
-
-  /* ── SPOTLIGHTS ── */
-  .spotlight-card {
-    background: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-sm);
-    padding: 24px 28px;
-    margin-bottom: 12px;
-    transition: box-shadow 0.2s;
-  }
-  .spotlight-card:hover { box-shadow: var(--shadow-md); }
-  .spotlight-card h3 {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 8px;
-  }
-  .spotlight-card p {
-    font-size: 14px;
-    color: var(--text-2);
-    line-height: 1.65;
-  }
-  .spotlight-card .links {
-    margin-top: 10px;
-    font-size: 13px;
-  }
-  .spotlight-card .links a {
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: 500;
-    margin-right: 16px;
-  }
-
-  /* ── TRY THIS ── */
-  .try-card {
-    background: var(--white);
-    border-radius: var(--radius);
-    border-left: 3px solid var(--accent);
-    box-shadow: var(--shadow-sm);
-    padding: 24px 28px;
-    margin-bottom: 14px;
-  }
-  .try-card .try-label {
+    margin-top: 8px;
     font-size: 11px;
+    color: var(--accent);
     font-weight: 600;
+    text-decoration: none;
+  }
+  .rel a:hover { text-decoration: underline; }
+
+  /* ═══════════════════════════════
+     BUILDERS
+     ═══════════════════════════════ */
+  .builders-row {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 4px 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .builders-row::-webkit-scrollbar { display: none; }
+
+  .builder {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 22px 20px 18px;
+    min-width: 200px;
+    max-width: 220px;
+    flex-shrink: 0;
+    text-align: center;
+    transition: box-shadow 0.2s, transform 0.15s;
+  }
+  .builder:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .builder-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 22px;
+    color: #fff;
+    margin: 0 auto 12px;
+  }
+  .builder h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .builder p {
+    font-size: 12px;
+    color: var(--ink-3);
+    line-height: 1.5;
+  }
+  .builder a {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  /* ═══════════════════════════════
+     PLAYBOOK
+     ═══════════════════════════════ */
+  .play {
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    padding: 28px 28px 24px;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .play::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--grad-accent);
+  }
+  .play-step {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--accent);
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 8px;
-  }
-  .try-card h3 {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--text);
     margin-bottom: 10px;
   }
-  .try-card p {
+  .play h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 10px;
+    letter-spacing: -0.2px;
+  }
+  .play p {
     font-size: 14px;
-    color: var(--text-2);
+    color: var(--ink-2);
     line-height: 1.7;
   }
-  .try-card code {
+  .play code {
     font-family: 'JetBrains Mono', monospace;
     font-size: 12.5px;
     background: var(--border-light);
     padding: 2px 7px;
     border-radius: 4px;
-    color: var(--text);
+    font-weight: 500;
   }
-  .try-card pre {
+  .play pre {
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
-    background: var(--text);
-    color: #e8e8ed;
+    background: #0f172a;
+    color: #e2e8f0;
     padding: 18px 20px;
-    border-radius: 12px;
-    margin: 14px 0 6px;
+    border-radius: 10px;
+    margin: 14px 0 4px;
     overflow-x: auto;
-    line-height: 1.6;
+    line-height: 1.65;
   }
+  .play pre .cm { color: #64748b; }
+  .play pre .k { color: #93c5fd; }
+  .play pre .v { color: #86efac; }
 
-  /* ── BIG IDEA ── */
-  .big-idea-card {
-    background: var(--white);
+  /* ═══════════════════════════════
+     BIG IDEA
+     ═══════════════════════════════ */
+  .big-idea {
     border-radius: 20px;
-    box-shadow: var(--shadow-md);
-    padding: 44px 40px;
-    margin-top: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
   }
-  .big-idea-card .big-idea-label {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1px;
+  .big-idea-header {
+    background: var(--grad-hero);
+    padding: 36px 36px 0;
+    position: relative;
+  }
+  .big-idea-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top right, rgba(37,99,235,0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .big-idea-header .bi-label {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--purple);
-    margin-bottom: 16px;
+    color: #fbbf24;
+    position: relative;
+    margin-bottom: 14px;
   }
-  .big-idea-card h3 {
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: -0.8px;
-    color: var(--text);
-    line-height: 1.25;
-    margin-bottom: 20px;
+  .big-idea-header h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 34px;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    padding-bottom: 32px;
+    position: relative;
   }
-  .big-idea-card p {
-    font-size: 16px;
-    color: var(--text-2);
+  .big-idea-body {
+    background: #0f172a;
+    padding: 32px 36px 36px;
+  }
+  .big-idea-body p {
+    font-size: 15px;
+    color: #cbd5e1;
     line-height: 1.8;
     margin-bottom: 16px;
   }
-  .big-idea-card strong { color: var(--text); }
-  .big-idea-card .pullquote {
-    margin: 24px 0;
+  .big-idea-body strong { color: #f1f5f9; }
+  .big-idea-body .pullquote {
+    margin: 28px 0;
     padding: 20px 24px;
-    background: linear-gradient(135deg, #f5f5f7, #fafafa);
-    border-radius: 14px;
-    font-size: 17px;
-    font-weight: 500;
-    color: var(--text);
-    line-height: 1.6;
-    letter-spacing: -0.2px;
+    background: rgba(255,255,255,0.03);
+    border-left: 3px solid #3b82f6;
+    border-radius: 0 10px 10px 0;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 20px;
+    color: #e2e8f0;
+    line-height: 1.45;
+    font-style: italic;
   }
 
-  /* ── FOOTER ── */
-  .footer {
+  /* ═══════════════════════════════
+     SHARE CTA
+     ═══════════════════════════════ */
+  .share-cta {
+    margin-top: 48px;
+    background: var(--surface);
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
     text-align: center;
-    padding-top: 64px;
+  }
+  .share-cta h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .share-cta p {
+    font-size: 14px;
+    color: var(--ink-3);
+    margin-bottom: 18px;
+  }
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--ink);
+    border: none;
+    padding: 12px 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    font-family: inherit;
+  }
+  .share-btn:hover { background: #333; transform: translateY(-1px); }
+  .share-btn:active { transform: translateY(0); }
+  .share-btn.copied { background: var(--emerald); }
+
+  /* ═══════════════════════════════
+     FOOTER
+     ═══════════════════════════════ */
+  .footer {
+    margin-top: 48px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .footer p {
     font-size: 13px;
-    color: var(--text-4);
+    color: var(--ink-4);
+    margin-bottom: 4px;
   }
-  .footer .next {
+  .footer .next-pill {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 700;
     color: var(--accent);
-    font-weight: 500;
-    margin-top: 6px;
+    background: var(--accent-soft);
+    padding: 8px 22px;
+    border-radius: 100px;
   }
+  .footer .credit {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--ink-5);
+  }
+  .footer .credit a { color: var(--ink-4); text-decoration: none; }
 </style>
 </head>
 <body>
-<div class="container">
 
-  <div class="hero">
-    <div class="overline">AI Trends Scout</div>
-    <h1>Weekly Digest</h1>
-    <div class="meta">April 3, 2026</div>
+<div class="progress-bar" id="progressBar"></div>
+
+<nav class="sticky-nav" id="stickyNav">
+  <div class="sticky-nav-inner">
+    <div class="nav-title">AI Trends Scout</div>
+    <div class="nav-links">
+      <a href="#stories">Stories</a>
+      <a href="#signals">Signals</a>
+      <a href="#releases">Releases</a>
+      <a href="#builders">Builders</a>
+      <a href="#playbook">Playbook</a>
+      <a href="#bigidea">Big Idea</a>
+    </div>
   </div>
-  <div class="divider"></div>
+</nav>
 
-  <!-- ═══ TOP 5 ═══ -->
-  <div class="section">
-    <div class="section-title">Top 5 This Week</div>
+<div class="page">
 
-    <div class="item">
-      <div class="item-top">
-        <div class="num">1</div>
-        <div class="label">Claude Code</div>
-      </div>
-      <h3>Worktree Isolation for Parallel Agents</h3>
-      <div class="body">Claude Code shipped <code>isolation: "worktree"</code> in the Agent tool. Subagents get their own temporary git worktree &mdash; an isolated copy of the repo &mdash; so multiple agents work in parallel without clobbering each other&rsquo;s file changes. Combined with named subagents and <code>ExitWorktree</code>, this is the foundation for true parallel multi-agent coding.</div>
-      <div class="takeaway"><strong>Why it matters</strong> &mdash; Run a test fixer, feature implementor, and code reviewer simultaneously on the same codebase. No merge conflicts. No state pollution.</div>
-      <div class="source"><a href="https://code.claude.com/docs/en/changelog">Claude Code March 2026 Changelog</a></div>
+  <!-- ═══ HERO ═══ -->
+  <header class="hero" id="hero">
+    <div class="hero-eyebrow"><span class="dot"></span> Issue 01 &middot; Weekly</div>
+    <h1>AI Trends Scout</h1>
+    <div class="tagline">The sharpest AI use cases for builders.<br>No fluff. Every link verified.</div>
+    <div class="date">Friday, April 3, 2026</div>
+  </header>
+
+  <!-- ═══ TL;DR + TOC ═══ -->
+  <div class="tldr-toc">
+    <div class="tldr">
+      <div class="tldr-label">30-Second Brief</div>
+      <ul>
+        <li><strong>Parallel agents are here.</strong> Worktree isolation lets multiple Claude agents code simultaneously.</li>
+        <li><strong>Your terminal is an automation daemon.</strong> <code style="font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--border-light);padding:1px 5px;border-radius:3px;">/loop</code> runs any prompt on a schedule.</li>
+        <li><strong>OpenAI x Claude Code.</strong> Codex can red-team Claude's output as a pre-commit gate.</li>
+      </ul>
     </div>
-
-    <div class="item">
-      <div class="item-top">
-        <div class="num">2</div>
-        <div class="label">Claude Code</div>
-      </div>
-      <h3>/loop &mdash; Recurring Agents in Your Terminal</h3>
-      <div class="body">Run any prompt on a recurring interval: <code>/loop 5m check CI status</code>. Combined with hooks, you can build reactive automation pipelines entirely inside your terminal session. A persistent Claude Code session <em>is</em> your automation daemon.</div>
-      <div class="takeaway"><strong>Why it matters</strong> &mdash; Replaces janky <code>watch</code> commands and side-terminal cron jobs. Especially powerful for monitoring builds and auto-drafting PRs.</div>
-      <div class="source"><a href="https://code.claude.com/docs/en/changelog">Claude Code March 2026 Changelog</a></div>
-    </div>
-
-    <div class="item">
-      <div class="item-top">
-        <div class="num">3</div>
-        <div class="label">Vibe Coding</div>
-      </div>
-      <h3>Complete Native Apps: SwiftUI in 880 Lines</h3>
-      <div class="body">Simon Willison built two production-quality macOS menu bar apps &mdash; <em>Bandwidther</em> and <em>Gpuer</em> &mdash; using Claude Opus 4.6 and GPT-5.4. Each is a single SwiftUI file. He pointed Claude to app&nbsp;#1 when building app&nbsp;#2, and it reused UI patterns intelligently.</div>
-      <div class="takeaway"><strong>Why it matters</strong> &mdash; The &ldquo;single file = complete app&rdquo; pattern means the entire context fits in one window. Reproducible in under an hour. SwiftUI is a validated vibe coding target.</div>
-      <div class="source"><a href="https://simonwillison.net/2026/Mar/27/vibe-coding-swiftui/">Simon Willison &mdash; Mar 27, 2026</a></div>
-    </div>
-
-    <div class="item">
-      <div class="item-top">
-        <div class="num">4</div>
-        <div class="label">Multi-Agent</div>
-      </div>
-      <h3>OpenAI Codex Plugin for Claude Code</h3>
-      <div class="body">OpenAI shipped <code>codex-plugin-cc</code> &mdash; delegate from Claude Code to Codex for standard review, adversarial review, or full task delegation. Reuses your local auth, MCP config, and environment.</div>
-      <div class="takeaway"><strong>Why it matters</strong> &mdash; First cross-company AI tool integration. Two reasoning engines red-teaming each other&rsquo;s code is the pattern production-quality workflows need.</div>
-      <div class="source"><a href="https://community.openai.com/t/introducing-codex-plugin-for-claude-code/1378186">OpenAI Community</a> &nbsp;&middot;&nbsp; <a href="https://github.com/openai/codex-plugin-cc">GitHub</a></div>
-    </div>
-
-    <div class="item">
-      <div class="item-top">
-        <div class="num">5</div>
-        <div class="label">Design + Code</div>
-      </div>
-      <h3>Figma MCP Gets Write Access</h3>
-      <div class="body">The Figma MCP server shipped write access &mdash; agents can now create, modify, and update Figma files. Builders are wiring Claude Code into design-to-code loops where the agent updates Figma, exports assets, and updates code in one pass.</div>
-      <div class="takeaway"><strong>Why it matters</strong> &mdash; &ldquo;Describe a UI change in prose &rarr; agent updates Figma + code simultaneously&rdquo; is now a one-shot prompt.</div>
-      <div class="source"><a href="https://www.figma.com/blog/mcp-write-access">Figma Developer Blog</a></div>
+    <div class="toc">
+      <div class="toc-label">In This Issue</div>
+      <ul>
+        <li><a href="#stories"><span class="toc-icon">&#9733;</span> Top Stories <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#signals"><span class="toc-icon">&#128225;</span> Signals &amp; Buzz <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#releases"><span class="toc-icon">&#128230;</span> New Releases <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#builders"><span class="toc-icon">&#128736;</span> Builder Spotlights <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#playbook"><span class="toc-icon">&#9889;</span> Try This Week <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#bigidea"><span class="toc-icon">&#128161;</span> The Big Idea <span class="toc-arrow">&rarr;</span></a></li>
+      </ul>
     </div>
   </div>
 
-  <div class="divider"></div>
+  <!-- ═══ TOP STORIES ═══ -->
+  <div class="sec" id="stories">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--rose);">Top Stories</div>
+      <h2>What Happened This Week</h2>
+      <div class="sec-rule" style="background:var(--rose);"></div>
+    </div>
 
-  <!-- ═══ TRENDING ═══ -->
-  <div class="section">
-    <div class="section-title">Trending in the Community</div>
+    <!-- LEAD STORY -->
+    <div class="lead-story">
+      <div class="lead-num">01</div>
+      <span class="badge badge-rose">Game Changer</span>
+      <h3>Worktree Isolation Unlocks True Parallel Agents</h3>
+      <p class="lede">Claude Code shipped <code>isolation: "worktree"</code> in the Agent tool. Each subagent gets its own git worktree &mdash; an isolated copy of the repo &mdash; so multiple agents can code in parallel without clobbering each other's changes. The worktree auto-cleans if nothing lands; the branch is preserved if changes are made.</p>
+      <div class="why-box">
+        <div class="why-label">Why This Matters</div>
+        <p>Run a test fixer, feature implementor, and code reviewer simultaneously on the same codebase. No merge conflicts. This is the architecture pattern that makes autonomous coding economical.</p>
+      </div>
+      <div class="cite"><a href="https://code.claude.com/docs/en/changelog">Claude Code March 2026 Changelog</a></div>
+    </div>
 
-    <div class="trend-list">
-      <div class="trend-item">
-        <h3>Claude Code Source Code Leaked</h3>
-        <p>Anthropic shipped a source map in their npm package. Discoveries: anti-distillation fake tools, regex frustration detection, cryptographic attestation, and KAIROS &mdash; an unreleased fully autonomous agent mode.</p>
-        <div class="trend-meta">
-          <a href="https://alex000kim.com/posts/2026-03-31-claude-code-source-leak/">Analysis</a>
+    <!-- STORIES 2-5 GRID -->
+    <div class="stories-grid">
+      <div class="story c-blue">
+        <div class="story-num">02</div>
+        <span class="badge badge-blue">New Feature</span>
+        <h3>/loop Turns Your Terminal into an Automation Daemon</h3>
+        <p class="lede">Run any prompt on a recurring interval: <code>/loop 5m check CI</code>. Combined with file/task hooks, your terminal session <em>is</em> the automation layer now.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>Replaces watch commands and cron jobs. Perfect for monitoring builds and auto-drafting PRs.</p>
+        </div>
+        <div class="cite"><a href="https://code.claude.com/docs/en/changelog">Changelog</a></div>
+      </div>
+
+      <div class="story c-green">
+        <div class="story-num">03</div>
+        <span class="badge badge-green">Vibe Coding</span>
+        <h3>Complete macOS Apps in Single SwiftUI Files</h3>
+        <p class="lede">Simon Willison built two production menu bar apps (~880 lines each) with Claude + GPT. Pointed Claude to app #1 when building #2 &mdash; it reused patterns.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>Single file = entire context in one window. Trivially resumable. Reproducible in under an hour.</p>
+        </div>
+        <div class="cite"><a href="https://simonwillison.net/2026/Mar/27/vibe-coding-swiftui/">Simon Willison</a></div>
+      </div>
+
+      <div class="story c-amber">
+        <div class="story-num">04</div>
+        <span class="badge badge-amber">Industry First</span>
+        <h3>OpenAI Ships a Codex Plugin for Claude Code</h3>
+        <p class="lede">Delegate to Codex for code review, adversarial red-teaming, or full task handoff. Reuses your local auth and MCP config &mdash; feels native.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>First cross-company AI integration. Two reasoning engines catching each other's blind spots.</p>
+        </div>
+        <div class="cite"><a href="https://github.com/openai/codex-plugin-cc">GitHub</a></div>
+      </div>
+
+      <div class="story c-violet">
+        <div class="story-num">05</div>
+        <span class="badge badge-violet">Design + Code</span>
+        <h3>Figma MCP Gets Write Access</h3>
+        <p class="lede">Agents can now create, modify, and update Figma files. Describe a UI change in prose &rarr; agent updates Figma + code in one pass.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>Design-to-code in one prompt. Previously impossible. Huge for PMs building prototypes.</p>
+        </div>
+        <div class="cite"><a href="https://www.figma.com/blog/mcp-write-access">Figma Blog</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SIGNALS ═══ -->
+  <div class="sec" id="signals">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--amber);">Signals &amp; Buzz</div>
+      <h2>What People Are Talking About</h2>
+      <div class="sec-rule" style="background:var(--amber);"></div>
+    </div>
+
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--rose-soft);">&#128274;</div>
+      <div class="signal-body">
+        <h3>Claude Code's Source Code Accidentally Leaked</h3>
+        <p>Anthropic shipped a source map in their npm package. Community found: anti-distillation fake tools, regex frustration detection, cryptographic HTTP attestation, and KAIROS &mdash; an unreleased fully autonomous agent mode.</p>
+        <div class="signal-meta">
+          <a href="https://alex000kim.com/posts/2026-03-31-claude-code-source-leak/">Full Analysis</a>
           <a href="https://news.ycombinator.com/item?id=43523841">HackerNews</a>
-          <span class="score">&uarr; 847</span>
+          <div class="hn-bar">
+            <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+            847 pts
+          </div>
         </div>
       </div>
+    </div>
 
-      <div class="trend-item">
-        <h3>&ldquo;Slopsquatting&rdquo; &mdash; AI Agents&rsquo; Security Blindspot</h3>
-        <p>a16z: AI agents select vulnerable dependencies 50% more often than humans. Attackers register fake packages with names LLMs hallucinate &mdash; one researcher saw 30K agent-driven installs in weeks.</p>
-        <div class="trend-meta">
-          <a href="https://a16z.com/et-tu-agent-did-you-install-the-backdoor/">a16z &mdash; Apr 1, 2026</a>
-        </div>
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--amber-soft);">&#9888;&#65039;</div>
+      <div class="signal-body">
+        <h3>"Slopsquatting" &mdash; AI's Biggest Supply Chain Threat</h3>
+        <p>a16z: AI agents select vulnerable dependencies 50% more often than humans. Attackers register packages with hallucinated names &mdash; one dummy hit 30K agent-driven installs in weeks.</p>
+        <div class="signal-meta"><a href="https://a16z.com/et-tu-agent-did-you-install-the-backdoor/">a16z &mdash; April 1, 2026</a></div>
       </div>
+    </div>
 
-      <div class="trend-item">
-        <h3>&ldquo;ultrathink&rdquo; Is Back</h3>
-        <p>Typing <code style="font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--border-light);padding:2px 6px;border-radius:4px;">ultrathink</code> re-enables high-effort reasoning for that turn. Community reports 3&ndash;5x speed gains using low effort for scaffolding, ultrathink for hard decisions only.</p>
-        <div class="trend-meta">
-          <a href="https://code.claude.com/docs/en/changelog">Changelog</a>
-        </div>
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--violet-soft);">&#129504;</div>
+      <div class="signal-body">
+        <h3>"ultrathink" Is Back &mdash; Dynamic Effort Control</h3>
+        <p>Type <code style="font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--border-light);padding:2px 6px;border-radius:4px;">ultrathink</code> for high-effort reasoning on one turn. Builders report 3&ndash;5x speed gains by reserving it for the hard decisions only.</p>
+        <div class="signal-meta"><a href="https://code.claude.com/docs/en/changelog">Changelog</a></div>
       </div>
+    </div>
 
-      <div class="trend-item">
-        <h3>Computer Use &mdash; No Setup Required</h3>
-        <p>Anthropic enabled zero-setup screen control for Pro and Max subscribers. Navigate IDEs, fill forms, run builds autonomously &mdash; all out of the box.</p>
-        <div class="trend-meta">
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--accent-soft);">&#128433;</div>
+      <div class="signal-body">
+        <h3>Computer Use Ships to All Pro &amp; Max Subscribers</h3>
+        <p>Zero-setup screen control via Cowork and Claude Code. Navigate IDEs, fill forms, run builds &mdash; no sandboxing required.</p>
+        <div class="signal-meta">
           <a href="https://support.claude.com/en/articles/12138966-release-notes">Release Notes</a>
           <a href="https://news.ycombinator.com/item?id=43511224">HackerNews</a>
-          <span class="score">&uarr; 612</span>
+          <div class="hn-bar">
+            <div class="bar-track"><div class="bar-fill" style="width:72%"></div></div>
+            612 pts
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="divider"></div>
-
   <!-- ═══ RELEASES ═══ -->
-  <div class="section">
-    <div class="section-title">New Releases</div>
+  <div class="sec" id="releases">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--emerald);">New Releases</div>
+      <h2>What Shipped</h2>
+      <div class="sec-rule" style="background:var(--emerald);"></div>
+    </div>
 
-    <div class="release-grid">
-      <div class="release-card">
-        <h4>Claude Code March Drop</h4>
-        <p>/loop, worktree agents, MCP elicitation, managed-settings, ultrathink.</p>
-        <a href="https://code.claude.com/docs/en/changelog">Read more &rarr;</a>
+    <div class="releases">
+      <div class="rel">
+        <h4>Claude Code March</h4>
+        <p>/loop, worktree agents, MCP elicitation, ultrathink.</p>
+        <a href="https://code.claude.com/docs/en/changelog">Read &rarr;</a>
       </div>
-      <div class="release-card">
-        <h4>Claude Mobile Apps</h4>
-        <p>Interactive apps in-conversation. Live charts, diagrams, shareable assets.</p>
-        <a href="https://support.claude.com/en/articles/12138966-release-notes">Read more &rarr;</a>
+      <div class="rel">
+        <h4>Claude Mobile</h4>
+        <p>Interactive apps in-conversation. Charts, diagrams, shareable.</p>
+        <a href="https://support.claude.com/en/articles/12138966-release-notes">Read &rarr;</a>
       </div>
-      <div class="release-card">
-        <h4>MCP OAuth Overhaul</h4>
-        <p>RFC 9728 discovery, step-up auth. Enterprise MCP gets proper OAuth flows.</p>
-        <a href="https://code.claude.com/docs/en/changelog">Read more &rarr;</a>
+      <div class="rel">
+        <h4>MCP OAuth</h4>
+        <p>RFC 9728 discovery, step-up auth for enterprise MCP.</p>
+        <a href="https://code.claude.com/docs/en/changelog">Read &rarr;</a>
       </div>
-      <div class="release-card">
+      <div class="rel">
         <h4>MCP Elicitation</h4>
-        <p>Servers can request structured user input mid-task via interactive dialog.</p>
-        <a href="https://code.claude.com/docs/en/changelog">Read more &rarr;</a>
+        <p>Servers request structured user input mid-task.</p>
+        <a href="https://code.claude.com/docs/en/changelog">Read &rarr;</a>
       </div>
-      <div class="release-card">
-        <h4>pgEdge Postgres MCP</h4>
-        <p>Distributed Postgres with cross-node schema inspection and query analysis.</p>
+      <div class="rel">
+        <h4>pgEdge MCP</h4>
+        <p>Distributed Postgres: cross-node schema and queries.</p>
         <a href="https://github.com/pgEdge/mcp-server-pgedge">GitHub &rarr;</a>
       </div>
-      <div class="release-card">
-        <h4>PowerShell (Windows)</h4>
-        <p>Native PowerShell alongside Bash with dangerous command detection.</p>
-        <a href="https://code.claude.com/docs/en/changelog">Read more &rarr;</a>
+      <div class="rel">
+        <h4>PowerShell</h4>
+        <p>Native PowerShell on Windows with command safety.</p>
+        <a href="https://code.claude.com/docs/en/changelog">Read &rarr;</a>
       </div>
     </div>
   </div>
 
-  <div class="divider"></div>
-
-  <!-- ═══ SPOTLIGHTS ═══ -->
-  <div class="section">
-    <div class="section-title">Builder Spotlights</div>
-
-    <div class="spotlight-card">
-      <h3>Simon Willison &mdash; SwiftUI App Factory</h3>
-      <p>Two macOS menu bar apps built entirely with AI. Replicable pattern: pick a terminal utility, wrap it in SwiftUI, point Claude at app&nbsp;#1 when building&nbsp;#2. Both repos public.</p>
-      <div class="links"><a href="https://github.com/simonw/bandwidther">Bandwidther</a> <a href="https://github.com/simonw/gpuer">Gpuer</a></div>
+  <!-- ═══ BUILDERS ═══ -->
+  <div class="sec" id="builders">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--violet);">Builder Spotlights</div>
+      <h2>Who's Building What</h2>
+      <div class="sec-rule" style="background:var(--violet);"></div>
     </div>
 
-    <div class="spotlight-card">
-      <h3>Claude Code Source Archaeology</h3>
-      <p>Within 48 hours of the npm leak, a developer cataloged 23 bash security checks, fake tool injection, and feature flags for unreleased products.</p>
-      <div class="links"><a href="https://alex000kim.com/posts/2026-03-31-claude-code-source-leak/">Full analysis</a></div>
-    </div>
-
-    <div class="spotlight-card">
-      <h3>Solo Founder &mdash; Full SaaS in 11 Days</h3>
-      <p>B2B SaaS shipped with only Claude Code. Next.js, Supabase, Stripe. Memory for context, worktrees for parallel features, Codex plugin for security reviews. MRR at posting: $840.</p>
-      <div class="links"><a href="https://reddit.com/r/ClaudeAI">r/ClaudeAI</a></div>
-    </div>
-
-    <div class="spotlight-card">
-      <h3>pgEdge &mdash; MCP for Distributed Postgres</h3>
-      <p>First MCP server purpose-built for distributed SQL. Node topology as a first-class resource so Claude reasons about data locality.</p>
-      <div class="links"><a href="https://github.com/pgEdge/mcp-server-pgedge">GitHub</a></div>
-    </div>
-
-    <div class="spotlight-card">
-      <h3>OpenAI &mdash; Cross-Company Agent Delegation</h3>
-      <p>First official mechanism to delegate from one AI agent to a competitor. Adversarial review as pre-commit gate. MIT-licensed, 200 lines.</p>
-      <div class="links"><a href="https://github.com/openai/codex-plugin-cc">GitHub</a></div>
+    <div class="builders-row">
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#3b82f6,#6366f1);">S</div>
+        <h3>Simon Willison</h3>
+        <p>Two macOS menu bar apps via vibe coding. Both repos public.</p>
+        <a href="https://github.com/simonw/bandwidther">GitHub &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#e11d48,#be123c);">A</div>
+        <h3>Alex Kim</h3>
+        <p>Reverse-engineered Claude Code internals in 48 hours.</p>
+        <a href="https://alex000kim.com/posts/2026-03-31-claude-code-source-leak/">Analysis &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#059669,#047857);">F</div>
+        <h3>Solo Founder</h3>
+        <p>B2B SaaS in 11 days. Claude Code only. $840 MRR.</p>
+        <a href="https://reddit.com/r/ClaudeAI">r/ClaudeAI &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#d97706,#b45309);">P</div>
+        <h3>pgEdge Team</h3>
+        <p>First MCP server for distributed SQL.</p>
+        <a href="https://github.com/pgEdge/mcp-server-pgedge">GitHub &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#6366f1,#4f46e5);">O</div>
+        <h3>OpenAI Eng</h3>
+        <p>Cross-company agent delegation. MIT, 200 lines.</p>
+        <a href="https://github.com/openai/codex-plugin-cc">GitHub &rarr;</a>
+      </div>
     </div>
   </div>
 
-  <div class="divider"></div>
-
-  <!-- ═══ TRY THIS ═══ -->
-  <div class="section">
-    <div class="section-title">Try This</div>
-
-    <div class="try-card">
-      <div class="try-label">Technique 01</div>
-      <h3>Parallel Feature Dev with Worktree Agents</h3>
-      <p>Spawn two agents with <code>isolation: "worktree"</code> to work on your feature and its tests simultaneously. Isolated git branches, no state collisions.</p>
-      <pre>// Feature agent:
-{ "isolation": "worktree",
-  "prompt": "Implement billing endpoint per spec" }
-
-// Test agent (simultaneous):
-{ "isolation": "worktree",
-  "prompt": "Write unit tests for billing spec" }</pre>
+  <!-- ═══ PLAYBOOK ═══ -->
+  <div class="sec" id="playbook">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--accent);">Try This Week</div>
+      <h2>Actionable Techniques</h2>
+      <div class="sec-rule" style="background:var(--accent);"></div>
     </div>
 
-    <div class="try-card">
-      <div class="try-label">Technique 02</div>
-      <h3>Effort-Tiered Sessions</h3>
-      <p>Start every session with <code>/effort low</code> for scaffolding and boilerplate. When you hit the hard part, prefix with <code>ultrathink</code>. 3&ndash;5x speed improvement on routine tasks.</p>
+    <div class="play">
+      <div class="play-step">Technique 01</div>
+      <h3>Parallel Feature Dev with Worktrees</h3>
+      <p>Spawn two agents with <code>isolation: "worktree"</code> to build your feature and its tests simultaneously. Isolated branches, no collisions.</p>
+      <pre><span class="cm">// Feature agent:</span>
+{ <span class="k">"isolation"</span>: <span class="v">"worktree"</span>,
+  <span class="k">"prompt"</span>: <span class="v">"Implement billing endpoint per spec"</span> }
+
+<span class="cm">// Test agent (simultaneous):</span>
+{ <span class="k">"isolation"</span>: <span class="v">"worktree"</span>,
+  <span class="k">"prompt"</span>: <span class="v">"Write unit tests for billing spec"</span> }</pre>
     </div>
 
-    <div class="try-card">
-      <div class="try-label">Technique 03</div>
+    <div class="play">
+      <div class="play-step">Technique 02</div>
+      <h3>Effort-Tiered Sessions for 3&ndash;5x Speed</h3>
+      <p>Start with <code>/effort low</code> for scaffolding. When you hit the hard part, prefix with <code>ultrathink</code>. Watch the spinner &mdash; effort level is visible.</p>
+    </div>
+
+    <div class="play">
+      <div class="play-step">Technique 03</div>
       <h3>Adversarial Pre-Commit Review</h3>
-      <p>Install the Codex plugin, then run before any push:</p>
+      <p>Install the Codex plugin, then before any push:</p>
       <pre>/codex-review adversarial</pre>
-      <p>Different model, different reasoning, different failure modes.</p>
+      <p>Different model, different reasoning, different failure modes. Especially valuable for auth, payments, and data access.</p>
     </div>
   </div>
-
-  <div class="divider"></div>
 
   <!-- ═══ BIG IDEA ═══ -->
-  <div class="section">
-    <div class="section-title">One Big Idea</div>
+  <div class="sec" id="bigidea">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--amber);">The Big Idea</div>
+      <h2>Connecting the Dots</h2>
+      <div class="sec-rule" style="background:var(--grad-warm);"></div>
+    </div>
 
-    <div class="big-idea-card">
-      <div class="big-idea-label">Editorial</div>
-      <h3>The Trust Layer Is the New Moat</h3>
-      <p>The Claude Code source leak revealed something bigger than headlines: Anthropic is building <strong>cryptographic attestation</strong> into the HTTP transport layer. Every API request carries a proof of origin.</p>
-      <p>Every major AI coding tool is quietly building the same trust infrastructure. The competition isn&rsquo;t about model capability anymore &mdash; it&rsquo;s about who controls the verified pipeline between a developer and an AI.</p>
-      <div class="pullquote">When agents run autonomously for hours, &ldquo;did this code come from a verified, policy-compliant source?&rdquo; becomes a compliance requirement, not a nice-to-have.</div>
-      <p>For solo founders: the window to build on raw AI APIs without trust controls is closing. Build workflows that demonstrate <strong>provenance</strong> &mdash; who prompted what, which model generated it, when it was reviewed &mdash; because that&rsquo;s the audit trail enterprise customers will demand.</p>
+    <div class="big-idea">
+      <div class="big-idea-header">
+        <div class="bi-label">Editorial</div>
+        <h3>The Trust Layer Is the New Moat</h3>
+      </div>
+      <div class="big-idea-body">
+        <p>The Claude Code source leak revealed something bigger than "fake tools" headlines: Anthropic is building <strong>cryptographic attestation</strong> into the HTTP transport layer. Every API request from a legitimate binary carries a proof of origin.</p>
+        <p>Every major AI coding tool is quietly building the same trust infrastructure. The competition isn't about model capability anymore &mdash; it's about who controls the <strong>verified pipeline</strong> between a developer and an AI.</p>
+        <div class="pullquote">When agents run autonomously for hours, provenance becomes a compliance requirement, not a nice-to-have.</div>
+        <p>The KAIROS feature flag &mdash; an unreleased "fully autonomous agent mode" &mdash; is the tell. Anthropic wants binary attestation. OpenAI bets on open delegation. Different strategies, same conclusion: <strong>trust infrastructure is what enterprise buyers will pay for.</strong></p>
+        <p>For solo founders: the window to build on raw APIs without trust controls is closing. Start building provenance into your workflows now &mdash; who prompted what, which model generated it, when it was reviewed. That's the audit trail your future customers will demand.</p>
+      </div>
     </div>
   </div>
 
+  <!-- ═══ SHARE CTA ═══ -->
+  <div class="share-cta">
+    <h3>Found this useful?</h3>
+    <p>Share with a builder who should see this.</p>
+    <button class="share-btn" onclick="copyLink(this)">&#128279; Copy Link</button>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
   <div class="footer">
-    <p>AI Trends Scout &middot; April 3, 2026</p>
-    <p>Sources verified via live search.</p>
-    <p class="next">Next issue: Monday, April 7</p>
+    <p>AI Trends Scout &middot; Issue 01 &middot; April 3, 2026</p>
+    <p>Curated by Claude Code. Every source verified via live search.</p>
+    <div class="next-pill">Next issue: Monday, April 7 &rarr;</div>
+    <p class="credit">Built with <a href="https://claude.ai/code">Claude Code</a></p>
   </div>
 
 </div>
+
+<script>
+// Reading progress bar
+const progressBar = document.getElementById('progressBar');
+const stickyNav = document.getElementById('stickyNav');
+const hero = document.getElementById('hero');
+
+function updateProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = Math.min((scrollTop / docHeight) * 100, 100);
+  progressBar.style.width = progress + '%';
+
+  // Show/hide sticky nav
+  const heroBottom = hero.offsetTop + hero.offsetHeight;
+  if (scrollTop > heroBottom) {
+    stickyNav.classList.add('visible');
+  } else {
+    stickyNav.classList.remove('visible');
+  }
+}
+
+window.addEventListener('scroll', updateProgress, { passive: true });
+updateProgress();
+
+// Copy link
+function copyLink(btn) {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    btn.classList.add('copied');
+    btn.innerHTML = '&#10003; Copied!';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = '&#128279; Copy Link';
+    }, 2000);
+  });
+}
+</script>
 </body>
 </html>
