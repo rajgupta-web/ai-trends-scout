@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Trends Scout — April 6, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --ink: #111111;
+    --ink-2: #333333;
+    --ink-3: #666666;
+    --ink-4: #999999;
+    --ink-5: #cccccc;
+    --border: #e5e5e5;
+    --border-light: #f0f0f0;
+    --accent: #2563eb;
+    --accent-soft: #eff6ff;
+    --rose: #e11d48;
+    --rose-soft: #fff1f2;
+    --amber: #d97706;
+    --amber-soft: #fffbeb;
+    --emerald: #059669;
+    --emerald-soft: #ecfdf5;
+    --violet: #7c3aed;
+    --violet-soft: #f5f3ff;
+    --radius: 16px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.03);
+    --shadow-lg: 0 12px 32px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.04);
+    --grad-hero: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #0f172a 100%);
+    --grad-accent: linear-gradient(135deg, #2563eb, #7c3aed);
+    --grad-warm: linear-gradient(135deg, #f59e0b, #ef4444);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #171923; --surface: #1e2133; --ink: #eef0f6; --ink-2: #c9cdd8;
+      --ink-3: #8b90a0; --ink-4: #5c6178; --ink-5: #363b50;
+      --border: #2a2e42; --border-light: #222538;
+      --accent-soft: #1a2450; --rose-soft: #35182a; --amber-soft: #30250e;
+      --emerald-soft: #0e2a20; --violet-soft: #231840;
+    }
+    .hero { background: linear-gradient(135deg, #0d0f1a 0%, #1a1f35 50%, #0d0f1a 100%); }
+    .sticky-nav { background: rgba(23,25,35,0.92); }
+    .why-box { background: var(--border); }
+    .play { border-color: var(--border); }
+    .rel { border-top-color: var(--border); }
+    .rel:hover { border-top-color: var(--accent); }
+    .story code, .play code { background: var(--border); }
+    .lead-story .why-box { background: var(--border); }
+    .lead-story code { background: var(--border); }
+    .big-idea-body { background: #131525; }
+    .big-idea-header { background: linear-gradient(135deg, #0d0f1a, #1a1f35); }
+    .share-cta { border-color: var(--border); }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; line-height: 1.6; }
+  .progress-bar { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: var(--grad-accent); z-index: 1000; transition: width 0.1s linear; }
+  .sticky-nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 999; transform: translateY(-100%); transition: transform 0.3s ease; padding: 0 24px; }
+  .sticky-nav.visible { transform: translateY(0); }
+  .sticky-nav-inner { max-width: 720px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 48px; }
+  .sticky-nav .nav-title { font-size: 14px; font-weight: 800; color: var(--ink); letter-spacing: -0.3px; }
+  .sticky-nav .nav-links { display: flex; gap: 6px; }
+  .sticky-nav .nav-links a { font-size: 11px; font-weight: 600; color: var(--ink-3); text-decoration: none; padding: 4px 10px; border-radius: 6px; transition: all 0.2s; letter-spacing: 0.2px; }
+  .sticky-nav .nav-links a:hover { color: var(--accent); background: var(--accent-soft); }
+  @media (max-width: 600px) { .sticky-nav .nav-links { display: none; } }
+  .page { max-width: 720px; margin: 0 auto; padding: 0 24px 100px; }
+  .hero { background: var(--grad-hero); margin: 0 -24px; padding: 64px 48px 56px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 25% 40%, rgba(37,99,235,0.15) 0%, transparent 50%), radial-gradient(ellipse at 75% 60%, rgba(124,58,237,0.1) 0%, transparent 45%); pointer-events: none; }
+  .hero::after { content: ''; position: absolute; inset: 0; opacity: 0.4; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #60a5fa; margin-bottom: 24px; position: relative; }
+  .hero-eyebrow .dot { width: 6px; height: 6px; background: #60a5fa; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
+  .hero h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: 52px; font-weight: 400; color: #ffffff; letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 14px; position: relative; }
+  .hero .tagline { font-size: 16px; color: #94a3b8; font-weight: 400; line-height: 1.5; position: relative; }
+  .hero .date { margin-top: 28px; font-size: 13px; font-weight: 500; color: #64748b; position: relative; }
+  .tldr-toc { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: -32px; position: relative; z-index: 1; }
+  @media (max-width: 600px) { .tldr-toc { grid-template-columns: 1fr; } }
+  .tldr { background: var(--surface); border: 2px solid var(--accent); border-radius: var(--radius); padding: 24px 24px 20px; box-shadow: var(--shadow-lg); }
+  .tldr-label { font-size: 10px; font-weight: 800; letter-spacing: 1.8px; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  .tldr ul { list-style: none; }
+  .tldr li { font-size: 13px; color: var(--ink-2); line-height: 1.55; padding: 7px 0; padding-left: 20px; position: relative; border-bottom: 1px solid var(--border-light); }
+  .tldr li:last-child { border-bottom: none; padding-bottom: 0; }
+  .tldr li:first-child { padding-top: 0; }
+  .tldr li::before { content: ''; position: absolute; left: 0; top: 14px; width: 8px; height: 8px; border-radius: 50%; }
+  .tldr li:first-child::before { top: 7px; }
+  .tldr li:nth-child(1)::before { background: var(--rose); }
+  .tldr li:nth-child(2)::before { background: var(--accent); }
+  .tldr li:nth-child(3)::before { background: var(--amber); }
+  .tldr li strong { color: var(--ink); font-weight: 700; }
+  .toc { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 24px 20px; box-shadow: var(--shadow-lg); }
+  .toc-label { font-size: 10px; font-weight: 800; letter-spacing: 1.8px; text-transform: uppercase; color: var(--ink-4); margin-bottom: 14px; }
+  .toc ul { list-style: none; }
+  .toc li { border-bottom: 1px solid var(--border-light); }
+  .toc li:last-child { border-bottom: none; }
+  .toc a { display: flex; align-items: center; gap: 10px; padding: 9px 0; text-decoration: none; font-size: 13px; font-weight: 500; color: var(--ink-2); transition: color 0.2s; }
+  .toc a:hover { color: var(--accent); }
+  .toc .toc-icon { font-size: 14px; width: 20px; text-align: center; flex-shrink: 0; }
+  .toc .toc-arrow { margin-left: auto; font-size: 12px; color: var(--ink-5); transition: color 0.2s, transform 0.2s; }
+  .toc a:hover .toc-arrow { color: var(--accent); transform: translateX(2px); }
+  .band { margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); padding-left: calc(50vw - 50%); padding-right: calc(50vw - 50%); padding-top: 16px; padding-bottom: 24px; }
+  .band-cool { background: #f5f7fb; }
+  .band-warm { background: #faf8f5; }
+  @media (prefers-color-scheme: dark) { .band-cool { background: #161829; } .band-warm { background: #1c1a1e; } }
+  .sec { margin-top: 64px; }
+  .sec-header { margin-bottom: 32px; }
+  .sec-header .sec-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+  .sec-header h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: 36px; font-weight: 400; color: var(--ink); letter-spacing: -0.8px; line-height: 1.15; margin-bottom: 8px; }
+  .sec-header .sec-rule { width: 48px; height: 3px; border-radius: 2px; }
+  .lead-story { background: var(--surface); border-radius: 20px; padding: 36px 36px 32px; margin-bottom: 20px; position: relative; overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--border-light); border-left: 5px solid var(--rose); }
+  .lead-story .lead-badge { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #fff; background: var(--rose); padding: 5px 12px; border-radius: 6px; margin-bottom: 16px; }
+  .lead-story .lead-num { font-family: 'DM Serif Display', Georgia, serif; font-size: 96px; font-weight: 400; position: absolute; right: 28px; top: 12px; color: rgba(225,29,72,0.07); line-height: 1; pointer-events: none; }
+  @media (prefers-color-scheme: dark) { .lead-story .lead-num { color: rgba(225,29,72,0.12); } }
+  .lead-story h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 30px; font-weight: 400; color: var(--ink); letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 16px; max-width: 85%; }
+  .lead-story .lede { font-size: 15px; color: var(--ink-2); line-height: 1.75; }
+  .lead-story code { font-family: 'JetBrains Mono', monospace; font-size: 13px; background: var(--border-light); padding: 2px 7px; border-radius: 4px; font-weight: 500; }
+  .lead-story .why-box { margin-top: 20px; background: var(--border-light); border-radius: 12px; padding: 18px 20px; }
+  .lead-story .cite { margin-top: 16px; font-size: 12px; color: var(--ink-4); }
+  .lead-story .cite a { color: var(--accent); text-decoration: none; font-weight: 600; }
+  .stories-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 600px) { .stories-grid { grid-template-columns: 1fr; } }
+  .story { background: var(--surface); border-radius: var(--radius); padding: 24px 24px 20px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-light); position: relative; overflow: hidden; transition: box-shadow 0.25s, transform 0.15s; }
+  .story:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .story.c-blue::before { background: var(--accent); }
+  .story.c-green::before { background: var(--emerald); }
+  .story.c-amber::before { background: var(--amber); }
+  .story.c-violet::before { background: var(--violet); }
+  .story .story-num { font-family: 'DM Serif Display', Georgia, serif; font-size: 48px; font-weight: 400; color: var(--border); line-height: 1; letter-spacing: -2px; margin-bottom: 4px; }
+  .story .badge { display: inline-block; font-size: 9px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; padding: 3px 8px; border-radius: 5px; margin-bottom: 8px; }
+  .badge-blue { color: #1e40af; background: var(--accent-soft); }
+  .badge-green { color: #065f46; background: var(--emerald-soft); }
+  .badge-amber { color: #92400e; background: var(--amber-soft); }
+  .badge-violet { color: #5b21b6; background: var(--violet-soft); }
+  .badge-rose { color: #9f1239; background: var(--rose-soft); }
+  .story h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 20px; font-weight: 400; color: var(--ink); letter-spacing: -0.2px; line-height: 1.3; margin-bottom: 8px; }
+  .story .lede { font-size: 13px; color: var(--ink-3); line-height: 1.65; }
+  .story code { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; background: var(--border-light); padding: 1px 5px; border-radius: 3px; }
+  .story .cite { margin-top: 12px; font-size: 11px; color: var(--ink-4); }
+  .story .cite a { color: var(--accent); text-decoration: none; font-weight: 600; }
+  .story .cite a:hover { text-decoration: underline; }
+  .why-box { margin-top: 12px; background: var(--border-light); border-radius: 10px; padding: 14px 16px; }
+  .why-box .why-label { font-size: 9px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--ink-4); margin-bottom: 4px; }
+  .why-box p { font-size: 12.5px; color: var(--ink-2); line-height: 1.6; }
+  .signal { display: flex; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--border-light); align-items: flex-start; }
+  .signal:last-child { border-bottom: none; }
+  .signal-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .signal-body { flex: 1; }
+  .signal-body h3 { font-size: 16px; font-weight: 700; color: var(--ink); line-height: 1.35; margin-bottom: 4px; }
+  .signal-body p { font-size: 13px; color: var(--ink-3); line-height: 1.6; }
+  .signal-meta { display: flex; align-items: center; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
+  .signal-meta a { font-size: 12px; color: var(--accent); text-decoration: none; font-weight: 600; }
+  .signal-meta a:hover { text-decoration: underline; }
+  .hn-bar { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; color: var(--amber); }
+  .hn-bar .bar-track { width: 48px; height: 4px; background: var(--amber-soft); border-radius: 2px; overflow: hidden; }
+  .hn-bar .bar-fill { height: 100%; background: var(--amber); border-radius: 2px; }
+  .releases { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  @media (max-width: 600px) { .releases { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 400px) { .releases { grid-template-columns: 1fr; } }
+  .rel { background: var(--surface); border-radius: 12px; box-shadow: var(--shadow-sm); padding: 18px 18px 16px; border: 1px solid var(--border-light); transition: border-color 0.2s, box-shadow 0.2s; }
+  .rel:hover { border-color: var(--accent); box-shadow: var(--shadow-md); }
+  .rel h4 { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+  .rel p { font-size: 11.5px; color: var(--ink-3); line-height: 1.5; }
+  .rel a { display: inline-block; margin-top: 8px; font-size: 11px; color: var(--accent); font-weight: 600; text-decoration: none; }
+  .rel a:hover { text-decoration: underline; }
+  .builders-row { display: flex; gap: 12px; overflow-x: auto; padding: 4px 0; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .builders-row::-webkit-scrollbar { display: none; }
+  .builder { background: var(--surface); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 22px 20px 18px; min-width: 200px; max-width: 220px; flex-shrink: 0; text-align: center; transition: box-shadow 0.2s, transform 0.15s; }
+  .builder:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .builder-avatar { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', Georgia, serif; font-size: 22px; color: #fff; margin: 0 auto 12px; }
+  .builder h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+  .builder p { font-size: 12px; color: var(--ink-3); line-height: 1.5; }
+  .builder a { display: inline-block; margin-top: 8px; font-size: 11px; color: var(--accent); font-weight: 600; text-decoration: none; }
+  .play { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-light); padding: 28px 28px 24px; margin-bottom: 14px; position: relative; overflow: hidden; }
+  .play::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad-accent); }
+  .play-step { display: inline-block; font-size: 10px; font-weight: 800; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+  .play h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 22px; font-weight: 400; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.2px; }
+  .play p { font-size: 14px; color: var(--ink-2); line-height: 1.7; }
+  .play code { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; background: var(--border-light); padding: 2px 7px; border-radius: 4px; font-weight: 500; }
+  .play pre { font-family: 'JetBrains Mono', monospace; font-size: 13px; background: #0f172a; color: #e2e8f0; padding: 18px 20px; border-radius: 10px; margin: 14px 0 4px; overflow-x: auto; line-height: 1.65; }
+  .play pre .cm { color: #64748b; }
+  .play pre .k { color: #93c5fd; }
+  .play pre .v { color: #86efac; }
+  .big-idea { border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-lg); }
+  .big-idea-header { background: var(--grad-hero); padding: 36px 36px 0; position: relative; }
+  .big-idea-header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at top right, rgba(37,99,235,0.12) 0%, transparent 60%); pointer-events: none; }
+  .big-idea-header .bi-label { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #fbbf24; position: relative; margin-bottom: 14px; }
+  .big-idea-header h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 34px; font-weight: 400; color: #ffffff; line-height: 1.2; letter-spacing: -0.5px; padding-bottom: 32px; position: relative; }
+  .big-idea-body { background: #0f172a; padding: 32px 36px 36px; }
+  .big-idea-body p { font-size: 15px; color: #cbd5e1; line-height: 1.8; margin-bottom: 16px; }
+  .big-idea-body strong { color: #f1f5f9; }
+  .big-idea-body .pullquote { margin: 28px 0; padding: 20px 24px; background: rgba(255,255,255,0.03); border-left: 3px solid #3b82f6; border-radius: 0 10px 10px 0; font-family: 'DM Serif Display', Georgia, serif; font-size: 20px; color: #e2e8f0; line-height: 1.45; font-style: italic; }
+  .share-cta { margin-top: 48px; background: var(--surface); border: 2px dashed var(--border); border-radius: var(--radius); padding: 32px; text-align: center; }
+  .share-cta h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 24px; font-weight: 400; color: var(--ink); margin-bottom: 8px; }
+  .share-cta p { font-size: 14px; color: var(--ink-3); margin-bottom: 18px; }
+  .share-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #fff; background: var(--accent); border: none; padding: 12px 28px; border-radius: 10px; cursor: pointer; transition: background 0.2s, transform 0.1s; font-family: inherit; }
+  .share-btn:hover { background: #1d4ed8; transform: translateY(-1px); }
+  .share-btn:active { transform: translateY(0); }
+  .share-btn.copied { background: var(--emerald); }
+  .footer { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--border); text-align: center; }
+  .footer p { font-size: 13px; color: var(--ink-4); margin-bottom: 4px; }
+  .footer .next-pill { display: inline-block; margin-top: 12px; font-size: 13px; font-weight: 700; color: var(--accent); background: var(--accent-soft); padding: 8px 22px; border-radius: 100px; }
+  .footer .credit { margin-top: 16px; font-size: 12px; color: var(--ink-5); }
+  .footer .credit a { color: var(--ink-4); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav class="sticky-nav" id="stickyNav">
+  <div class="sticky-nav-inner">
+    <div class="nav-title">AI Trends Scout</div>
+    <div class="nav-links">
+      <a href="#stories">Stories</a>
+      <a href="#signals">Signals</a>
+      <a href="#releases">Releases</a>
+      <a href="#builders">Builders</a>
+      <a href="#playbook">Playbook</a>
+      <a href="#bigidea">Big Idea</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+
+  <header class="hero" id="hero">
+    <div class="hero-eyebrow"><span class="dot"></span> Issue 02 &middot; Weekly</div>
+    <h1>AI Trends Scout</h1>
+    <div class="tagline">The sharpest AI use cases for builders.<br>No fluff. Every link verified.</div>
+    <div class="date">Monday, April 6, 2026</div>
+  </header>
+
+  <div class="tldr-toc">
+    <div class="tldr">
+      <div class="tldr-label">30-Second Brief</div>
+      <ul>
+        <li><strong>Computer use hits the CLI.</strong> Claude Code can now open native apps, click through UI, and visually verify your changes.</li>
+        <li><strong>Cursor 3 bets on agent fleets.</strong> <code style="font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--border-light);padding:1px 5px;border-radius:3px;">/best-of-n</code> runs one prompt across multiple models simultaneously.</li>
+        <li><strong>Gemma 4 goes Apache 2.0.</strong> Open-weight multimodal models up to 256K context, commercially deployable.</li>
+      </ul>
+    </div>
+    <div class="toc">
+      <div class="toc-label">In This Issue</div>
+      <ul>
+        <li><a href="#stories"><span class="toc-icon">&#9733;</span> Top Stories <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#signals"><span class="toc-icon">&#128225;</span> Signals &amp; Buzz <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#releases"><span class="toc-icon">&#128230;</span> New Releases <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#builders"><span class="toc-icon">&#128736;</span> Builder Spotlights <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#playbook"><span class="toc-icon">&#9889;</span> Try This Week <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#bigidea"><span class="toc-icon">&#128161;</span> The Big Idea <span class="toc-arrow">&rarr;</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TOP STORIES -->
+  <div class="sec" id="stories">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--rose);">Top Stories</div>
+      <h2>What Happened This Week</h2>
+      <div class="sec-rule" style="background:var(--rose);"></div>
+    </div>
+
+    <div class="lead-story">
+      <div class="lead-num">01</div>
+      <span class="badge badge-rose">Game Changer</span>
+      <h3>Computer Use Lands in the Claude Code CLI</h3>
+      <p class="lede">Claude Code v2.1.86 shipped computer use directly in the terminal. Claude can now open native apps, click through UI, test its own changes end to end, and fix what breaks &mdash; all from your terminal session. The key unlock: GUI-only apps like iOS simulators, macOS utilities, and desktop tools now have verification loops. Enable it via <code>/mcp</code>, find the <code>computer-use</code> tool, and toggle it on.</p>
+      <div class="why-box">
+        <div class="why-label">Why This Matters</div>
+        <p>This closes the last "last mile" gap in autonomous coding. Agents could already write and run code &mdash; now they can visually verify the result. The pattern of "implement &rarr; open simulator &rarr; tap through &rarr; screenshot &rarr; fix regressions" is fully automatable.</p>
+      </div>
+      <div class="cite"><a href="https://code.claude.com/docs/en/whats-new/2026-w14">Claude Code Week 14 &mdash; What's New</a></div>
+    </div>
+
+    <div class="stories-grid">
+      <div class="story c-blue">
+        <div class="story-num">02</div>
+        <span class="badge badge-blue">New Feature</span>
+        <h3>/powerup &mdash; Interactive Feature Tutorials</h3>
+        <p class="lede">Claude Code's <code>/powerup</code> is an interactive lesson system: animated demos of new features, runnable examples, and quick walkthroughs &mdash; all without leaving your session. Features that would save you hours routinely slip by unnoticed in changelogs. This fixes that.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>Claude Code is complex enough that knowing what exists is a competitive advantage. A template worth stealing for complex internal tools.</p>
+        </div>
+        <div class="cite"><a href="https://code.claude.com/docs/en/whats-new/2026-w14">Week 14 digest</a></div>
+      </div>
+
+      <div class="story c-green">
+        <div class="story-num">03</div>
+        <span class="badge badge-green">Industry Shift</span>
+        <h3>Cursor 3.0 &mdash; Agent Orchestration Layer</h3>
+        <p class="lede">Cursor 3.0 ships an "Agents Window" for managing parallel agents across worktrees, cloud VMs, and SSH. <code>/best-of-n</code> runs one prompt across multiple models. Design Mode clicks UI elements for component context.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>From "AI helps you write code" to "you manage the agents." The <code>/best-of-n</code> pattern is immediately useful for hard refactoring tasks.</p>
+        </div>
+        <div class="cite"><a href="https://cursor.com/changelog/3-0">Cursor 3.0 Changelog</a></div>
+      </div>
+
+      <div class="story c-amber">
+        <div class="story-num">04</div>
+        <span class="badge badge-amber">Open Source</span>
+        <h3>Gemma 4 &mdash; Apache 2.0, 256K Context</h3>
+        <p class="lede">Google released Gemma 4 with four model sizes (2B&ndash;31B), Apache 2.0 licensing, native multimodality across video, images, and audio in 140+ languages. The 31B Dense ranks third on Arena AI &mdash; above models 20x its size.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>Apache 2.0 removes enterprise deployment restrictions. Serious on-prem option now competitive with hosted APIs. Available on HuggingFace, Kaggle, and Ollama.</p>
+        </div>
+        <div class="cite"><a href="https://thenextweb.com/news/google-gemma-4-open-models-apache-2-launch">The Next Web</a></div>
+      </div>
+
+      <div class="story c-violet">
+        <div class="story-num">05</div>
+        <span class="badge badge-violet">Architecture</span>
+        <h3>Multi-Agent Coordination: AutoDream + Dispatch + Channels</h3>
+        <p class="lede">MindStudio surfaced a complete multi-agent stack in Claude Code: AutoDream generates planning artifacts, Dispatch routes tasks by capability with retries, and Channels provides typed pub/sub messaging between agents.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>This is the architecture to study before rolling your own multi-agent system. Production-grade orchestration, not ad hoc.</p>
+        </div>
+        <div class="cite"><a href="https://www.mindstudio.ai/blog/claude-code-q1-2026-update-roundup-2/">MindStudio Q1 Roundup</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIGNALS -->
+  <div class="band band-cool">
+  <div class="sec" id="signals">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--amber);">Signals &amp; Buzz</div>
+      <h2>What People Are Talking About</h2>
+      <div class="sec-rule" style="background:var(--amber);"></div>
+    </div>
+
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--rose-soft);">&#128274;</div>
+      <div class="signal-body">
+        <h3>Anthropic Blocks Third-Party Harnesses</h3>
+        <p>Claude Code subscribers can no longer use plan limits with third-party tools like OpenClaw. Users must enable separate "extra usage." Sharp HN debate: defenders cite 6&ndash;8x bandwidth consumption; critics call it Apple-style walled garden tactics.</p>
+        <div class="signal-meta">
+          <a href="https://news.ycombinator.com/item?id=47633396">HackerNews</a>
+          <div class="hn-bar">
+            <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+            1,083 pts
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--accent-soft);">&#127908;</div>
+      <div class="signal-body">
+        <h3>Simon Willison on "Agentic Engineering" &mdash; 1.1M Views</h3>
+        <p>A 48-second clip from Lenny's Podcast: README-driven development + red/green TDD with Claude Code. "You provide the taste, the agent provides the execution." Resonating hard with PMs and entrepreneurs.</p>
+        <div class="signal-meta"><a href="https://simonwillison.net/">Simon Willison</a></div>
+      </div>
+    </div>
+
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--amber-soft);">&#9888;&#65039;</div>
+      <div class="signal-body">
+        <h3>Slopsquatting: 30K Agent-Driven Downloads on a Fake Package</h3>
+        <p>a16z's follow-up: 43% of hallucinated package names appear consistently across queries. One researcher registered a hallucinated name and watched 30K agent-driven downloads accumulate. Defense: behavioral analysis at the dependency entry point, not blocklists.</p>
+        <div class="signal-meta"><a href="https://a16z.com/et-tu-agent-did-you-install-the-backdoor/">a16z &mdash; Et Tu, Agent?</a></div>
+      </div>
+    </div>
+
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--violet-soft);">&#128187;</div>
+      <div class="signal-body">
+        <h3>"Cursor 3 Is Not an IDE Update, It's a Bet"</h3>
+        <p>Medium take went viral: the Agents Window signals developers will manage agent fleets, not write code directly. One user: "I still want to code, not vibe my way through tickets." The debate maps onto "tools for developers vs. replacing the developer role."</p>
+        <div class="signal-meta"><a href="https://medium.com/@han.heloir/cursor-3-is-not-an-ide-update-its-a-bet">Medium</a></div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- RELEASES -->
+  <div class="sec" id="releases">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--emerald);">New Releases</div>
+      <h2>What Shipped</h2>
+      <div class="sec-rule" style="background:var(--emerald);"></div>
+    </div>
+
+    <div class="releases">
+      <div class="rel">
+        <h4>Claude Code v2.1.92</h4>
+        <p>Interactive Bedrock setup, per-model cost in /cost, 60% faster Write on large files.</p>
+        <a href="https://code.claude.com/docs/en/changelog">Read &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Computer Use CLI</h4>
+        <p>Native app screen control from the terminal. Research preview.</p>
+        <a href="https://code.claude.com/docs/en/whats-new/2026-w14">Read &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>PermissionDenied Hook</h4>
+        <p>New hook on Auto Mode denials. Return retry: true for alternatives.</p>
+        <a href="https://code.claude.com/docs/en/changelog">Read &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Cursor 3.0</h4>
+        <p>Agents Window, Design Mode, /best-of-n, /worktree, Await tool.</p>
+        <a href="https://cursor.com/changelog/3-0">Read &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Gemma 4</h4>
+        <p>2B&ndash;31B, Apache 2.0, 256K context, multimodal, 140+ languages.</p>
+        <a href="https://thenextweb.com/news/google-gemma-4-open-models-apache-2-launch">Read &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>MCP Result-Size Override</h4>
+        <p>Per-tool maxResultSizeChars annotation up to 500K.</p>
+        <a href="https://code.claude.com/docs/en/whats-new/2026-w14">Read &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUILDERS -->
+  <div class="band band-warm">
+  <div class="sec" id="builders">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--violet);">Builder Spotlights</div>
+      <h2>Who's Building What</h2>
+      <div class="sec-rule" style="background:var(--violet);"></div>
+    </div>
+
+    <div class="builders-row">
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#3b82f6,#6366f1);">S</div>
+        <h3>Simon Willison</h3>
+        <p>README-first agentic engineering. TDD as the agent's objective function.</p>
+        <a href="https://simonwillison.net/">Blog &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#e11d48,#be123c);">C</div>
+        <h3>Cloudflare</h3>
+        <p>AI Labyrinth: decoy pages that trap and fingerprint unauthorized scrapers.</p>
+        <a href="https://www.deeplearning.ai/the-batch/issue-295/">deeplearning.ai &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#059669,#047857);">F</div>
+        <h3>Solo Founder</h3>
+        <p>3-agent "team" system: PM, Dev, Reviewer. Dramatic reduction in scope creep.</p>
+        <a href="https://www.reddit.com/r/ClaudeAI/">r/ClaudeAI &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#d97706,#b45309);">P</div>
+        <h3>pgEdge Team</h3>
+        <p>MCP server with cross-region query cost estimation and node topology.</p>
+        <a href="https://github.com/pgEdge/mcp-server-pgedge">GitHub &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#6366f1,#4f46e5);">K</div>
+        <h3>Kyutai / MoshiVis</h3>
+        <p>50ms multimodal voice+vision. Open weights. First sub-100ms latency model.</p>
+        <a href="https://www.deeplearning.ai/the-batch/issue-295/">deeplearning.ai &rarr;</a>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- PLAYBOOK -->
+  <div class="sec" id="playbook">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--accent);">Try This Week</div>
+      <h2>Actionable Techniques</h2>
+      <div class="sec-rule" style="background:var(--accent);"></div>
+    </div>
+
+    <div class="play">
+      <div class="play-step">Technique 01</div>
+      <h3>Close the Loop with Computer Use</h3>
+      <p>If you ship mobile or desktop apps, enable CLI computer use. Give Claude a specific navigation path:</p>
+      <pre><span class="cm"># Enable in /mcp &rarr; computer-use toggle</span>
+
+<span class="v">Implement [your change]. Then open the iOS simulator,</span>
+<span class="v">run the app, navigate to Settings &rarr; Account,</span>
+<span class="v">and confirm the new avatar picker appears.</span>
+<span class="v">Screenshot each step and report regressions.</span></pre>
+    </div>
+
+    <div class="play">
+      <div class="play-step">Technique 02</div>
+      <h3>README-Driven Development (The Willison Pattern)</h3>
+      <p>Before opening Claude Code for a new feature, spend 10 minutes writing a tight README section: what it does (1 sentence), exact inputs/outputs, edge cases, and how you'd verify it. Then: <code>"Implement [feature] per the spec in README.md. Write tests first."</code> The README becomes both your spec and Claude's constraint set.</p>
+    </div>
+
+    <div class="play">
+      <div class="play-step">Technique 03</div>
+      <h3>Run /best-of-n Before Hard Refactoring (Cursor 3)</h3>
+      <p>If you use Cursor 3, run your hardest refactoring task on three models simultaneously in isolated worktrees. Review the diffs side by side, accept the cleanest. Takes 2&ndash;3x longer but produces meaningfully better results on ambiguous problems.</p>
+      <pre><span class="k">/best-of-n 3</span>
+<span class="v">Refactor the authentication middleware to support</span>
+<span class="v">both JWT and API key validation, handling token</span>
+<span class="v">expiry gracefully.</span></pre>
+    </div>
+  </div>
+
+  <!-- BIG IDEA -->
+  <div class="sec" id="bigidea">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--amber);">The Big Idea</div>
+      <h2>Connecting the Dots</h2>
+      <div class="sec-rule" style="background:var(--grad-warm);"></div>
+    </div>
+
+    <div class="big-idea">
+      <div class="big-idea-header">
+        <div class="bi-label">Editorial</div>
+        <h3>The Specialization Gap: Why "One Claude" Will Stop Being Enough</h3>
+      </div>
+      <div class="big-idea-body">
+        <p>Three things happening this week point in the same direction. Cursor 3 ships <code style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#93c5fd;">/best-of-n</code> &mdash; explicitly acknowledging that different models make different tradeoffs and you should run them in parallel. The 3-agent "team" pattern on r/ClaudeAI divides cognitive labor between roles rather than relying on a single agent. And the AutoDream + Dispatch + Channels stack formalizes inter-agent communication as a first-class primitive.</p>
+        <p>The underlying shift: we are leaving the era of "one smart agent does everything" and entering the era of <strong>specialized agent roles with explicit handoffs</strong>. This is exactly how high-functioning human teams are organized &mdash; and for the same reason.</p>
+        <div class="pullquote">The models that win won't be the biggest or the cheapest &mdash; they'll be the ones best-optimized for their role in a pipeline.</div>
+        <p>For builders today, the actionable implication is to stop trying to make one Claude Code session handle everything. Break your workflows into stages: a "planning agent" outputs a spec, a "build agent" consumes only that document, a "review agent" checks output against spec. You don't need Dispatch to start &mdash; <strong>a shared Markdown file between sessions is enough.</strong></p>
+        <p>Gemma 4's 2B edge model running your reviewer loop locally while Claude handles implementation is already technically feasible. The era of specialized model fleets is earlier than most people think.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="share-cta">
+    <h3>Found this useful?</h3>
+    <p>Share with a builder who should see this.</p>
+    <button class="share-btn" onclick="copyLink(this)">&#128279; Copy Link</button>
+  </div>
+
+  <div class="footer">
+    <p>AI Trends Scout &middot; Issue 02 &middot; April 6, 2026</p>
+    <p>Curated by Claude Code. Every source verified via live search.</p>
+    <div class="next-pill">Next issue: Monday, April 13 &rarr;</div>
+    <p style="margin-top:12px;"><img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Frajgupta-web.github.io%2Fai-trends-scout%2Fdigest-2026-04-06&label=readers&countColor=%232563eb" alt="reader count"></p>
+    <p class="credit">Built by Raj Gupta with <a href="https://claude.ai/code">Claude Code</a></p>
+  </div>
+
+</div>
+
+<script>
+const progressBar = document.getElementById('progressBar');
+const stickyNav = document.getElementById('stickyNav');
+const hero = document.getElementById('hero');
+
+function updateProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = Math.min((scrollTop / docHeight) * 100, 100);
+  progressBar.style.width = progress + '%';
+  const heroBottom = hero.offsetTop + hero.offsetHeight;
+  if (scrollTop > heroBottom) { stickyNav.classList.add('visible'); }
+  else { stickyNav.classList.remove('visible'); }
+}
+
+window.addEventListener('scroll', updateProgress, { passive: true });
+updateProgress();
+
+function copyLink(btn) {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    btn.classList.add('copied');
+    btn.innerHTML = '&#10003; Copied!';
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = '&#128279; Copy Link'; }, 2000);
+  });
+}
+</script>
+</body>
+</html>
