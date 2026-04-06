@@ -206,6 +206,13 @@
   .footer .next-pill { display: inline-block; margin-top: 12px; font-size: 13px; font-weight: 700; color: var(--accent); background: var(--accent-soft); padding: 8px 22px; border-radius: 100px; }
   .footer .credit { margin-top: 16px; font-size: 12px; color: var(--ink-5); }
   .footer .credit a { color: var(--ink-4); text-decoration: none; }
+  .issue-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 48px; gap: 12px; }
+  .issue-nav a { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; padding: 10px 18px; border: 1px solid var(--border); border-radius: 10px; transition: all 0.2s; }
+  .issue-nav a:hover { background: var(--accent-soft); border-color: var(--accent); }
+  .issue-nav .all-issues { font-weight: 700; }
+  .issue-nav .nav-prev { margin-right: auto; }
+  .issue-nav .nav-next { margin-left: auto; }
+  .issue-nav .nav-disabled { color: var(--ink-5); border-color: var(--border-light); pointer-events: none; }
 </style>
 </head>
 <body>
@@ -525,6 +532,12 @@
         <p>Gemma 4's 2B edge model running your reviewer loop locally while Claude handles implementation is already technically feasible. The era of specialized model fleets is earlier than most people think.</p>
       </div>
     </div>
+  </div>
+
+  <div class="issue-nav">
+    <a href="digest-2026-04-03.html" class="nav-prev">&larr; April 3</a>
+    <a href="index.html" class="all-issues">All Issues</a>
+    <span class="issue-nav nav-disabled" style="padding:10px 18px;font-size:13px;color:var(--ink-5);">April 13 &rarr;</span>
   </div>
 
   <div class="share-cta">

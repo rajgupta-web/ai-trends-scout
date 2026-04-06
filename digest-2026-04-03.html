@@ -959,6 +959,13 @@
     color: var(--ink-5);
   }
   .footer .credit a { color: var(--ink-4); text-decoration: none; }
+  .issue-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 48px; gap: 12px; }
+  .issue-nav a { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; padding: 10px 18px; border: 1px solid var(--border); border-radius: 10px; transition: all 0.2s; }
+  .issue-nav a:hover { background: var(--accent-soft); border-color: var(--accent); }
+  .issue-nav .all-issues { font-weight: 700; }
+  .issue-nav .nav-prev { margin-right: auto; }
+  .issue-nav .nav-next { margin-left: auto; }
+  .issue-nav .nav-disabled { color: var(--ink-5); border-color: var(--border-light); pointer-events: none; }
 </style>
 </head>
 <body>
@@ -1293,6 +1300,12 @@
     </div>
   </div>
 
+  <div class="issue-nav">
+    <span class="issue-nav nav-disabled" style="padding:10px 18px;font-size:13px;color:var(--ink-5);">&larr; Previous</span>
+    <a href="index.html" class="all-issues">All Issues</a>
+    <a href="digest-2026-04-06.html" class="nav-next">April 6 &rarr;</a>
+  </div>
+
   <!-- ═══ SHARE CTA ═══ -->
   <div class="share-cta">
     <h3>Found this useful?</h3>
@@ -1304,7 +1317,7 @@
   <div class="footer">
     <p>AI Trends Scout &middot; Issue 01 &middot; April 3, 2026</p>
     <p>Curated by Claude Code. Every source verified via live search.</p>
-    <div class="next-pill">Next issue: Monday, April 7 &rarr;</div>
+    <div class="next-pill">Next issue: Monday, April 6 &rarr;</div>
     <p style="margin-top:12px;"><img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Frajgupta-web.github.io%2Fai-trends-scout%2Fdigest-2026-04-03&label=readers&countColor=%232563eb" alt="reader count"></p>
     <p class="credit">Built by Raj Gupta with <a href="https://claude.ai/code">Claude Code</a></p>
   </div>
