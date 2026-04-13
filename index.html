@@ -5,183 +5,167 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Trends Scout</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #fafafa;
-    --surface: #ffffff;
-    --ink: #111111;
-    --ink-2: #333333;
-    --ink-3: #666666;
-    --ink-4: #999999;
-    --border: #e5e5e5;
-    --border-light: #f0f0f0;
-    --accent: #2563eb;
-    --accent-soft: #eff6ff;
-    --emerald: #059669;
-    --emerald-soft: #ecfdf5;
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
-    --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.03);
-    --shadow-lg: 0 12px 32px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.04);
-    --grad-hero: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #0f172a 100%);
+    --bg: #FAFAFA;
+    --surface: #FFFFFF;
+    --ink: #09090B;
+    --ink-2: #18181B;
+    --ink-3: #52525B;
+    --ink-4: #A1A1AA;
+    --ink-5: #D4D4D8;
+    --border: #E4E4E7;
+    --border-light: #F4F4F5;
+    --accent: #EC4899;
+    --accent-soft: #FDF2F8;
+    --accent-dark: #DB2777;
+    --emerald: #10B981;
+    --emerald-soft: #ECFDF5;
+    --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #171923;
-      --surface: #1e2133;
-      --ink: #eef0f6;
-      --ink-2: #c9cdd8;
-      --ink-3: #8b90a0;
-      --ink-4: #5c6178;
-      --border: #2a2e42;
-      --border-light: #222538;
-      --accent-soft: #1a2450;
-      --emerald-soft: #0e2a20;
+      --bg: #000000;
+      --surface: #0A0A0A;
+      --ink: #FAFAFA;
+      --ink-2: #E4E4E7;
+      --ink-3: #A1A1AA;
+      --ink-4: #71717A;
+      --ink-5: #3F3F46;
+      --border: #27272A;
+      --border-light: #18181B;
+      --accent-soft: #1C0A14;
+      --emerald-soft: #062016;
     }
-    .hero { background: linear-gradient(135deg, #0d0f1a 0%, #1a1f35 50%, #0d0f1a 100%); }
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--font-sans);
     background: var(--bg);
     color: var(--ink);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   .page {
     max-width: 560px;
     margin: 0 auto;
-    padding: 0 24px 100px;
+    padding: 0 24px 120px;
   }
 
   .hero {
-    background: var(--grad-hero);
-    margin: 0 -24px;
-    padding: 72px 48px 64px;
+    padding: 120px 0 80px;
     text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 25% 40%, rgba(37,99,235,0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 75% 60%, rgba(124,58,237,0.1) 0%, transparent 45%);
-    pointer-events: none;
+    border-bottom: 1px solid var(--border);
   }
   .hero-eyebrow {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #60a5fa;
-    margin-bottom: 24px;
-    position: relative;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 32px;
   }
   .hero h1 {
-    font-family: 'DM Serif Display', Georgia, serif;
-    font-size: 48px;
-    font-weight: 400;
-    color: #ffffff;
-    letter-spacing: -1px;
-    line-height: 1.1;
-    margin-bottom: 14px;
-    position: relative;
+    font-family: var(--font-serif);
+    font-size: clamp(3.5rem, 10vw, 5.5rem);
+    font-weight: 400; color: var(--ink);
+    letter-spacing: -0.04em; line-height: 0.95;
+    margin-bottom: 24px;
   }
   .hero .tagline {
-    font-size: 16px;
-    color: #94a3b8;
-    font-weight: 400;
-    line-height: 1.5;
-    position: relative;
+    font-family: var(--font-serif);
+    font-size: 18px; font-weight: 400;
+    color: var(--ink-3); line-height: 1.6;
+    font-style: italic;
   }
 
   .issues {
     list-style: none;
-    margin-top: -24px;
-    position: relative;
-    z-index: 1;
+    margin-top: 0;
   }
 
   .issue {
-    background: var(--surface);
-    border-radius: 14px;
-    box-shadow: var(--shadow-sm);
-    margin-bottom: 10px;
-    border: 1px solid var(--border-light);
-    transition: box-shadow 0.25s, transform 0.15s;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
   }
   .issue:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
+    background: var(--surface);
   }
   .issue a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 22px 26px;
+    padding: 28px 16px;
     text-decoration: none;
     color: var(--ink);
   }
   .issue .info {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
   }
   .issue .issue-date {
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
   }
   .issue .issue-preview {
     font-size: 13px;
-    color: var(--ink-3);
+    color: var(--ink-4);
     font-weight: 400;
+    line-height: 1.5;
   }
   .issue .arrow {
     font-size: 18px;
-    color: var(--ink-4);
+    color: var(--ink-5);
     transition: color 0.2s, transform 0.2s;
   }
-  .issue:hover .arrow { color: var(--accent); transform: translateX(3px); }
+  .issue:hover .arrow { color: var(--accent); transform: translateX(4px); }
   .issue.latest .badge {
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 800;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    color: #065f46;
-    background: var(--emerald-soft);
-    padding: 4px 10px;
-    border-radius: 6px;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    padding: 3px 12px;
+    border-radius: 100px;
+    white-space: nowrap;
   }
 
   .footer-note {
     text-align: center;
-    margin-top: 48px;
+    margin-top: 56px;
   }
   .footer-note p {
-    font-size: 14px;
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-style: italic;
     color: var(--ink-3);
   }
   .footer-note .sub {
+    font-family: var(--font-sans);
     font-size: 13px;
+    font-style: normal;
     color: var(--ink-4);
-    margin-top: 4px;
+    margin-top: 8px;
   }
 
   .footer {
     text-align: center;
-    margin-top: 56px;
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
     font-size: 12px;
-    color: var(--ink-4);
+    color: var(--ink-5);
   }
   .footer a {
-    color: var(--accent);
+    color: var(--ink-4);
     text-decoration: none;
   }
 </style>
@@ -191,7 +175,7 @@
 
   <div class="hero">
     <div class="hero-eyebrow">Weekly Newsletter</div>
-    <h1>AI Trends Scout</h1>
+    <h1>AI Trends<br>Scout</h1>
     <div class="tagline">Curated AI use cases and techniques<br>for entrepreneurs and builders.</div>
   </div>
 
@@ -229,7 +213,7 @@
   </div>
 
   <div class="footer">
-    <p><img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Frajgupta-web.github.io%2Fai-trends-scout&label=visitors&countColor=%232563eb" alt="visitor count" style="margin-bottom:8px;"></p>
+    <p><img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Frajgupta-web.github.io%2Fai-trends-scout&label=visitors&countColor=%23EC4899" alt="visitor count" style="margin-bottom:8px;"></p>
     <p>Built by Raj Gupta with <a href="https://claude.ai/code">Claude Code</a></p>
   </div>
 
