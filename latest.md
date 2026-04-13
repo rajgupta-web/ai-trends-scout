@@ -173,4 +173,4 @@ The deeper pattern: **the AI tools that win in enterprise are not the most impre
 
 ---
 
-*Digest compiled Monday, April 13, 2026. All features verified against the Claude Code changelog at code.claude.com. Items without verifiable links excluded. Next issue: Thursday, April 16, 2026.*
+*Digest compiled Monday, April 13, 2026. All features verified against the Claude Code changelog at code.claude.com. Items without verifiable links excluded. Next issue: Monday, April 20, 2026.*
