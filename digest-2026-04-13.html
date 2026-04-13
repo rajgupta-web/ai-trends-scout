@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Trends Scout — April 13, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --ink: #111111;
+    --ink-2: #333333;
+    --ink-3: #666666;
+    --ink-4: #999999;
+    --ink-5: #cccccc;
+    --border: #e5e5e5;
+    --border-light: #f0f0f0;
+    --accent: #2563eb;
+    --accent-soft: #eff6ff;
+    --rose: #e11d48;
+    --rose-soft: #fff1f2;
+    --amber: #d97706;
+    --amber-soft: #fffbeb;
+    --emerald: #059669;
+    --emerald-soft: #ecfdf5;
+    --violet: #7c3aed;
+    --violet-soft: #f5f3ff;
+    --radius: 16px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.03);
+    --shadow-lg: 0 12px 32px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.04);
+    --grad-hero: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #0f172a 100%);
+    --grad-accent: linear-gradient(135deg, #2563eb, #7c3aed);
+    --grad-warm: linear-gradient(135deg, #f59e0b, #ef4444);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #171923; --surface: #1e2133; --ink: #eef0f6; --ink-2: #c9cdd8;
+      --ink-3: #8b90a0; --ink-4: #5c6178; --ink-5: #363b50;
+      --border: #2a2e42; --border-light: #222538;
+      --accent-soft: #1a2450; --rose-soft: #35182a; --amber-soft: #30250e;
+      --emerald-soft: #0e2a20; --violet-soft: #231840;
+    }
+    .hero { background: linear-gradient(135deg, #0d0f1a 0%, #1a1f35 50%, #0d0f1a 100%); }
+    .sticky-nav { background: rgba(23,25,35,0.92); }
+    .why-box { background: var(--border); }
+    .play { border-color: var(--border); }
+    .rel { border-top-color: var(--border); }
+    .rel:hover { border-top-color: var(--accent); }
+    .story code, .play code { background: var(--border); }
+    .lead-story .why-box { background: var(--border); }
+    .lead-story code { background: var(--border); }
+    .big-idea-body { background: #131525; }
+    .big-idea-header { background: linear-gradient(135deg, #0d0f1a, #1a1f35); }
+    .share-cta { border-color: var(--border); }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; line-height: 1.6; }
+  .progress-bar { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: var(--grad-accent); z-index: 1000; transition: width 0.1s linear; }
+  .sticky-nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 999; transform: translateY(-100%); transition: transform 0.3s ease; padding: 0 24px; }
+  .sticky-nav.visible { transform: translateY(0); }
+  .sticky-nav-inner { max-width: 720px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 48px; }
+  .sticky-nav .nav-title { font-size: 14px; font-weight: 800; color: var(--ink); letter-spacing: -0.3px; }
+  .sticky-nav .nav-links { display: flex; gap: 6px; }
+  .sticky-nav .nav-links a { font-size: 11px; font-weight: 600; color: var(--ink-3); text-decoration: none; padding: 4px 10px; border-radius: 6px; transition: all 0.2s; letter-spacing: 0.2px; }
+  .sticky-nav .nav-links a:hover { color: var(--accent); background: var(--accent-soft); }
+  @media (max-width: 600px) { .sticky-nav .nav-links { display: none; } }
+  .page { max-width: 720px; margin: 0 auto; padding: 0 24px 100px; }
+  .hero { background: var(--grad-hero); margin: 0 -24px; padding: 64px 48px 56px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 25% 40%, rgba(37,99,235,0.15) 0%, transparent 50%), radial-gradient(ellipse at 75% 60%, rgba(124,58,237,0.1) 0%, transparent 45%); pointer-events: none; }
+  .hero::after { content: ''; position: absolute; inset: 0; opacity: 0.4; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #60a5fa; margin-bottom: 24px; position: relative; }
+  .hero-eyebrow .dot { width: 6px; height: 6px; background: #60a5fa; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
+  .hero h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: 52px; font-weight: 400; color: #ffffff; letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 14px; position: relative; }
+  .hero .tagline { font-size: 16px; color: #94a3b8; font-weight: 400; line-height: 1.5; position: relative; }
+  .hero .date { margin-top: 28px; font-size: 13px; font-weight: 500; color: #64748b; position: relative; }
+  .tldr-toc { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: -32px; position: relative; z-index: 1; }
+  @media (max-width: 600px) { .tldr-toc { grid-template-columns: 1fr; } }
+  .tldr { background: var(--surface); border: 2px solid var(--accent); border-radius: var(--radius); padding: 24px 24px 20px; box-shadow: var(--shadow-lg); }
+  .tldr-label { font-size: 10px; font-weight: 800; letter-spacing: 1.8px; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  .tldr ul { list-style: none; }
+  .tldr li { font-size: 13px; color: var(--ink-2); line-height: 1.55; padding: 7px 0; padding-left: 20px; position: relative; border-bottom: 1px solid var(--border-light); }
+  .tldr li:last-child { border-bottom: none; padding-bottom: 0; }
+  .tldr li:first-child { padding-top: 0; }
+  .tldr li::before { content: ''; position: absolute; left: 0; top: 14px; width: 8px; height: 8px; border-radius: 50%; }
+  .tldr li:first-child::before { top: 7px; }
+  .tldr li:nth-child(1)::before { background: var(--rose); }
+  .tldr li:nth-child(2)::before { background: var(--accent); }
+  .tldr li:nth-child(3)::before { background: var(--amber); }
+  .tldr li strong { color: var(--ink); font-weight: 700; }
+  .toc { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 24px 20px; box-shadow: var(--shadow-lg); }
+  .toc-label { font-size: 10px; font-weight: 800; letter-spacing: 1.8px; text-transform: uppercase; color: var(--ink-4); margin-bottom: 14px; }
+  .toc ul { list-style: none; }
+  .toc li { border-bottom: 1px solid var(--border-light); }
+  .toc li:last-child { border-bottom: none; }
+  .toc a { display: flex; align-items: center; gap: 10px; padding: 9px 0; text-decoration: none; font-size: 13px; font-weight: 500; color: var(--ink-2); transition: color 0.2s; }
+  .toc a:hover { color: var(--accent); }
+  .toc .toc-icon { font-size: 14px; width: 20px; text-align: center; flex-shrink: 0; }
+  .toc .toc-arrow { margin-left: auto; font-size: 12px; color: var(--ink-5); transition: color 0.2s, transform 0.2s; }
+  .toc a:hover .toc-arrow { color: var(--accent); transform: translateX(2px); }
+  .band { margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); padding-left: calc(50vw - 50%); padding-right: calc(50vw - 50%); padding-top: 16px; padding-bottom: 24px; }
+  .band-cool { background: #f5f7fb; }
+  .band-warm { background: #faf8f5; }
+  @media (prefers-color-scheme: dark) { .band-cool { background: #161829; } .band-warm { background: #1c1a1e; } }
+  .sec { margin-top: 64px; }
+  .sec-header { margin-bottom: 32px; }
+  .sec-header .sec-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+  .sec-header h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: 36px; font-weight: 400; color: var(--ink); letter-spacing: -0.8px; line-height: 1.15; margin-bottom: 8px; }
+  .sec-header .sec-rule { width: 48px; height: 3px; border-radius: 2px; }
+  .lead-story { background: var(--surface); border-radius: 20px; padding: 36px 36px 32px; margin-bottom: 20px; position: relative; overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--border-light); border-left: 5px solid var(--rose); }
+  .lead-story .lead-badge { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #fff; background: var(--rose); padding: 5px 12px; border-radius: 6px; margin-bottom: 16px; }
+  .lead-story .lead-num { font-family: 'DM Serif Display', Georgia, serif; font-size: 96px; font-weight: 400; position: absolute; right: 28px; top: 12px; color: rgba(225,29,72,0.07); line-height: 1; pointer-events: none; }
+  @media (prefers-color-scheme: dark) { .lead-story .lead-num { color: rgba(225,29,72,0.12); } }
+  .lead-story h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 30px; font-weight: 400; color: var(--ink); letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 16px; max-width: 85%; }
+  .lead-story .lede { font-size: 15px; color: var(--ink-2); line-height: 1.75; }
+  .lead-story code { font-family: 'JetBrains Mono', monospace; font-size: 13px; background: var(--border-light); padding: 2px 7px; border-radius: 4px; font-weight: 500; }
+  .lead-story .why-box { margin-top: 20px; background: var(--border-light); border-radius: 12px; padding: 18px 20px; }
+  .lead-story .cite { margin-top: 16px; font-size: 12px; color: var(--ink-4); }
+  .lead-story .cite a { color: var(--accent); text-decoration: none; font-weight: 600; }
+  .stories-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 600px) { .stories-grid { grid-template-columns: 1fr; } }
+  .story { background: var(--surface); border-radius: var(--radius); padding: 24px 24px 20px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-light); position: relative; overflow: hidden; transition: box-shadow 0.25s, transform 0.15s; }
+  .story:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .story.c-blue::before { background: var(--accent); }
+  .story.c-green::before { background: var(--emerald); }
+  .story.c-amber::before { background: var(--amber); }
+  .story.c-violet::before { background: var(--violet); }
+  .story .story-num { font-family: 'DM Serif Display', Georgia, serif; font-size: 48px; font-weight: 400; color: var(--border); line-height: 1; letter-spacing: -2px; margin-bottom: 4px; }
+  .story .badge { display: inline-block; font-size: 9px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; padding: 3px 8px; border-radius: 5px; margin-bottom: 8px; }
+  .badge-blue { color: #1e40af; background: var(--accent-soft); }
+  .badge-green { color: #065f46; background: var(--emerald-soft); }
+  .badge-amber { color: #92400e; background: var(--amber-soft); }
+  .badge-violet { color: #5b21b6; background: var(--violet-soft); }
+  .badge-rose { color: #9f1239; background: var(--rose-soft); }
+  .story h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 20px; font-weight: 400; color: var(--ink); letter-spacing: -0.2px; line-height: 1.3; margin-bottom: 8px; }
+  .story .lede { font-size: 13px; color: var(--ink-3); line-height: 1.65; }
+  .story code { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; background: var(--border-light); padding: 1px 5px; border-radius: 3px; }
+  .story .cite { margin-top: 12px; font-size: 11px; color: var(--ink-4); }
+  .story .cite a { color: var(--accent); text-decoration: none; font-weight: 600; }
+  .story .cite a:hover { text-decoration: underline; }
+  .why-box { margin-top: 12px; background: var(--border-light); border-radius: 10px; padding: 14px 16px; }
+  .why-box .why-label { font-size: 9px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--ink-4); margin-bottom: 4px; }
+  .why-box p { font-size: 12.5px; color: var(--ink-2); line-height: 1.6; }
+  .signal { display: flex; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--border-light); align-items: flex-start; }
+  .signal:last-child { border-bottom: none; }
+  .signal-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .signal-body { flex: 1; }
+  .signal-body h3 { font-size: 16px; font-weight: 700; color: var(--ink); line-height: 1.35; margin-bottom: 4px; }
+  .signal-body p { font-size: 13px; color: var(--ink-3); line-height: 1.6; }
+  .signal-meta { display: flex; align-items: center; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
+  .signal-meta a { font-size: 12px; color: var(--accent); text-decoration: none; font-weight: 600; }
+  .signal-meta a:hover { text-decoration: underline; }
+  .hn-bar { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; color: var(--amber); }
+  .hn-bar .bar-track { width: 48px; height: 4px; background: var(--amber-soft); border-radius: 2px; overflow: hidden; }
+  .hn-bar .bar-fill { height: 100%; background: var(--amber); border-radius: 2px; }
+  .releases { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  @media (max-width: 600px) { .releases { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 400px) { .releases { grid-template-columns: 1fr; } }
+  .rel { background: var(--surface); border-radius: 12px; box-shadow: var(--shadow-sm); padding: 18px 18px 16px; border: 1px solid var(--border-light); transition: border-color 0.2s, box-shadow 0.2s; }
+  .rel:hover { border-color: var(--accent); box-shadow: var(--shadow-md); }
+  .rel h4 { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+  .rel p { font-size: 11.5px; color: var(--ink-3); line-height: 1.5; }
+  .rel a { display: inline-block; margin-top: 8px; font-size: 11px; color: var(--accent); font-weight: 600; text-decoration: none; }
+  .rel a:hover { text-decoration: underline; }
+  .builders-row { display: flex; gap: 12px; overflow-x: auto; padding: 4px 0; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .builders-row::-webkit-scrollbar { display: none; }
+  .builder { background: var(--surface); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 22px 20px 18px; min-width: 200px; max-width: 220px; flex-shrink: 0; text-align: center; transition: box-shadow 0.2s, transform 0.15s; }
+  .builder:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .builder-avatar { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', Georgia, serif; font-size: 22px; color: #fff; margin: 0 auto 12px; }
+  .builder h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+  .builder p { font-size: 12px; color: var(--ink-3); line-height: 1.5; }
+  .builder a { display: inline-block; margin-top: 8px; font-size: 11px; color: var(--accent); font-weight: 600; text-decoration: none; }
+  .play { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-light); padding: 28px 28px 24px; margin-bottom: 14px; position: relative; overflow: hidden; }
+  .play::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad-accent); }
+  .play-step { display: inline-block; font-size: 10px; font-weight: 800; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+  .play h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 22px; font-weight: 400; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.2px; }
+  .play p { font-size: 14px; color: var(--ink-2); line-height: 1.7; }
+  .play code { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; background: var(--border-light); padding: 2px 7px; border-radius: 4px; font-weight: 500; }
+  .play pre { font-family: 'JetBrains Mono', monospace; font-size: 13px; background: #0f172a; color: #e2e8f0; padding: 18px 20px; border-radius: 10px; margin: 14px 0 4px; overflow-x: auto; line-height: 1.65; }
+  .play pre .cm { color: #64748b; }
+  .play pre .k { color: #93c5fd; }
+  .play pre .v { color: #86efac; }
+  .big-idea { border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-lg); }
+  .big-idea-header { background: var(--grad-hero); padding: 36px 36px 0; position: relative; }
+  .big-idea-header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at top right, rgba(37,99,235,0.12) 0%, transparent 60%); pointer-events: none; }
+  .big-idea-header .bi-label { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #fbbf24; position: relative; margin-bottom: 14px; }
+  .big-idea-header h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 34px; font-weight: 400; color: #ffffff; line-height: 1.2; letter-spacing: -0.5px; padding-bottom: 32px; position: relative; }
+  .big-idea-body { background: #0f172a; padding: 32px 36px 36px; }
+  .big-idea-body p { font-size: 15px; color: #cbd5e1; line-height: 1.8; margin-bottom: 16px; }
+  .big-idea-body strong { color: #f1f5f9; }
+  .big-idea-body .pullquote { margin: 28px 0; padding: 20px 24px; background: rgba(255,255,255,0.03); border-left: 3px solid #3b82f6; border-radius: 0 10px 10px 0; font-family: 'DM Serif Display', Georgia, serif; font-size: 20px; color: #e2e8f0; line-height: 1.45; font-style: italic; }
+  .share-cta { margin-top: 48px; background: var(--surface); border: 2px dashed var(--border); border-radius: var(--radius); padding: 32px; text-align: center; }
+  .share-cta h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 24px; font-weight: 400; color: var(--ink); margin-bottom: 8px; }
+  .share-cta p { font-size: 14px; color: var(--ink-3); margin-bottom: 18px; }
+  .share-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #fff; background: var(--accent); border: none; padding: 12px 28px; border-radius: 10px; cursor: pointer; transition: background 0.2s, transform 0.1s; font-family: inherit; }
+  .share-btn:hover { background: #1d4ed8; transform: translateY(-1px); }
+  .share-btn:active { transform: translateY(0); }
+  .share-btn.copied { background: var(--emerald); }
+  .footer { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--border); text-align: center; }
+  .footer p { font-size: 13px; color: var(--ink-4); margin-bottom: 4px; }
+  .footer .next-pill { display: inline-block; margin-top: 12px; font-size: 13px; font-weight: 700; color: var(--accent); background: var(--accent-soft); padding: 8px 22px; border-radius: 100px; }
+  .footer .credit { margin-top: 16px; font-size: 12px; color: var(--ink-5); }
+  .footer .credit a { color: var(--ink-4); text-decoration: none; }
+  .issue-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 48px; gap: 12px; }
+  .issue-nav a { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; padding: 10px 18px; border: 1px solid var(--border); border-radius: 10px; transition: all 0.2s; }
+  .issue-nav a:hover { background: var(--accent-soft); border-color: var(--accent); }
+  .issue-nav .all-issues { font-weight: 700; }
+  .issue-nav .nav-prev { margin-right: auto; }
+  .issue-nav .nav-next { margin-left: auto; }
+  .issue-nav .nav-disabled { color: var(--ink-5); border-color: var(--border-light); pointer-events: none; }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav class="sticky-nav" id="stickyNav">
+  <div class="sticky-nav-inner">
+    <div class="nav-title">AI Trends Scout</div>
+    <div class="nav-links">
+      <a href="#stories">Stories</a>
+      <a href="#signals">Signals</a>
+      <a href="#releases">Releases</a>
+      <a href="#builders">Builders</a>
+      <a href="#playbook">Playbook</a>
+      <a href="#bigidea">Big Idea</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+
+  <header class="hero" id="hero">
+    <div class="hero-eyebrow"><span class="dot"></span> Issue 03 &middot; Weekly</div>
+    <h1>AI Trends Scout</h1>
+    <div class="tagline">The sharpest AI use cases for builders.<br>No fluff. Every link verified.</div>
+    <div class="date">Wednesday, April 13, 2026</div>
+  </header>
+
+  <div class="tldr-toc">
+    <div class="tldr">
+      <div class="tldr-label">30-Second Brief</div>
+      <ul>
+        <li><strong>Subprocess sandboxing lands.</strong> Claude Code now isolates subprocesses with PID namespace &mdash; credentials can't leak through shell commands.</li>
+        <li><strong>OTEL tracing goes native.</strong> Claude Code sessions pipe into OpenTelemetry traces for per-feature cost attribution and full observability.</li>
+        <li><strong>Claude Code becomes infrastructure.</strong> Sandboxing, OTEL, Perforce, enterprise TLS &mdash; every new feature targets org-scale adoption, not solo devs.</li>
+      </ul>
+    </div>
+    <div class="toc">
+      <div class="toc-label">In This Issue</div>
+      <ul>
+        <li><a href="#stories"><span class="toc-icon">&#9733;</span> Top Stories <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#signals"><span class="toc-icon">&#128225;</span> Signals &amp; Buzz <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#releases"><span class="toc-icon">&#128230;</span> New Releases <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#builders"><span class="toc-icon">&#128736;</span> Builder Spotlights <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#playbook"><span class="toc-icon">&#9889;</span> Try This Week <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#bigidea"><span class="toc-icon">&#128161;</span> The Big Idea <span class="toc-arrow">&rarr;</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TOP STORIES -->
+  <div class="sec" id="stories">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--rose);">Top Stories</div>
+      <h2>What Happened This Week</h2>
+      <div class="sec-rule" style="background:var(--rose);"></div>
+    </div>
+
+    <div class="lead-story">
+      <div class="lead-num">01</div>
+      <span class="badge badge-rose">Game Changer</span>
+      <h3>Team Onboarding from Your Claude Code History &mdash; /team-onboarding</h3>
+      <p class="lede">Claude Code v2.1.101 (just shipped) added <code>/team-onboarding</code>, which generates a structured ramp-up guide for new teammates by mining your local Claude Code session history. It surfaces the workflows, patterns, conventions, and architectural decisions embedded in your usage &mdash; things that live in no README. The output covers project conventions, common task patterns, tool configuration, and key commands.</p>
+      <div class="why-box">
+        <div class="why-label">Why This Matters</div>
+        <p>Institutional knowledge leakage is one of the most expensive scaling problems for small teams. This command converts implicit tribal knowledge into explicit documentation automatically. For solo founders preparing to hire their first engineer or contractor, this is a force-multiplier that costs nothing. Run it before your next onboarding.</p>
+      </div>
+      <div class="cite"><a href="https://code.claude.com/docs/en/changelog">Claude Code Changelog</a></div>
+    </div>
+
+    <div class="stories-grid">
+      <div class="story c-blue">
+        <div class="story-num">02</div>
+        <span class="badge badge-blue">Security</span>
+        <h3>Subprocess PID Namespace Sandboxing</h3>
+        <p class="lede">v2.1.101 added subprocess sandboxing with PID namespace isolation on Linux (<code>CLAUDE_CODE_SUBPROCESS_ENV_SCRUB</code>). Subprocesses spun by Claude during a session are now isolated from the host process environment &mdash; they cannot read parent environment variables, inherit credentials, or exfiltrate secrets through process inspection. The first security primitive baked directly into Claude Code's execution model.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>Anyone running Claude Code in CI/CD pipelines, shared dev environments, or against codebases with live credentials in <code>.env</code> files has had a real attack surface. This eliminates credential-exfiltration vulnerabilities where a malicious or hallucinated shell command reads <code>$AWS_SECRET_ACCESS_KEY</code>. For enterprise teams evaluating autonomous agents, this is the feature that makes the conversation possible.</p>
+        </div>
+        <div class="cite"><a href="https://code.claude.com/docs/en/changelog">Claude Code Changelog &mdash; v2.1.101</a></div>
+      </div>
+
+      <div class="story c-green">
+        <div class="story-num">03</div>
+        <span class="badge badge-green">Enterprise</span>
+        <h3>Interactive Vertex AI and Bedrock Setup Wizards</h3>
+        <p class="lede">v2.1.98 shipped an interactive Google Vertex AI setup wizard (joining the Bedrock wizard from v2.1.92 and Bedrock/Mantle from v2.1.94). Both walk through authentication, project/region selection, and model choice interactively from the terminal &mdash; replacing what was previously a multi-step manual configuration process involving IAM roles, environment variables, and SDK installs.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>Enterprise teams routing Claude Code through their own cloud accounts (for data residency, cost centralization, or compliance) previously faced friction-heavy setup. Reducing onboarding to a single interactive wizard accelerates adoption inside organizations that have Vertex or Bedrock as their approved AI gateway.</p>
+        </div>
+        <div class="cite"><a href="https://code.claude.com/docs/en/changelog">Claude Code Changelog &mdash; v2.1.98</a></div>
+      </div>
+
+      <div class="story c-amber">
+        <div class="story-num">04</div>
+        <span class="badge badge-amber">Productivity</span>
+        <h3>Focus View + Monitor Tool &mdash; A Lightweight Control Plane</h3>
+        <p class="lede">Two features combine into something more powerful than either alone. <strong>Focus view</strong> (<code>Ctrl+O</code>, v2.1.97) collapses tool output to one-line summaries so you can track agent progress at a glance. The new <strong>Monitor tool</strong> (v2.1.101) streams live events from background scripts into Claude Code's session &mdash; external processes, build systems, and long-running jobs can now push structured status back to Claude in real time.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>These give you a lightweight observability layer for autonomous agent runs. Focus view is the "at a glance" status board; Monitor is the event feed. For builders running Claude Code as a headless automation engine &mdash; overnight batch jobs, CI pipelines, multi-step research tasks &mdash; this is the equivalent of adding a dashboard to a process that previously ran completely blind.</p>
+        </div>
+        <div class="cite"><a href="https://code.claude.com/docs/en/changelog">Claude Code Changelog &mdash; v2.1.101</a></div>
+      </div>
+
+      <div class="story c-violet">
+        <div class="story-num">05</div>
+        <span class="badge badge-violet">Observability</span>
+        <h3>OTEL Tracing with User Prompt and Tool Detail Logging</h3>
+        <p class="lede">v2.1.101 added <code>OTEL_LOG_USER_PROMPTS</code> and <code>OTEL_LOG_TOOL_DETAILS</code> environment variables that pipe Claude Code's agent activity into OpenTelemetry traces. Teams can now correlate Claude Code actions with their existing observability stack &mdash; distributed traces, Datadog dashboards, cost attribution per workflow.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>This turns Claude Code from a developer tool into a traceable system component. Engineering managers resistant to autonomous agent adoption ("we can't see what it's doing") now have a concrete answer. If your team already runs OTEL, you can instrument Claude Code sessions into your existing traces within an afternoon.</p>
+        </div>
+        <div class="cite"><a href="https://code.claude.com/docs/en/changelog">Claude Code Changelog &mdash; v2.1.101</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIGNALS -->
+  <div class="band band-cool">
+  <div class="sec" id="signals">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--amber);">Signals &amp; Buzz</div>
+      <h2>What People Are Talking About</h2>
+      <div class="sec-rule" style="background:var(--amber);"></div>
+    </div>
+
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--violet-soft);">&#128274;</div>
+      <div class="signal-body">
+        <h3>Cedar Policy Syntax Highlighting &mdash; Authorization-as-Code Goes Mainstream</h3>
+        <p>v2.1.97 shipped syntax highlighting for Cedar policy files. Cedar is Amazon's policy language for writing authorization logic as explicit, auditable policies rather than embedded code. One developer reported moving 400 lines of scattered Rails <code>before_action</code> callbacks to 60 lines of Cedar policy with full audit trail.</p>
+        <div class="signal-meta">
+          <a href="https://code.claude.com/docs/en/changelog">Claude Code Changelog &mdash; v2.1.97</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--accent-soft);">&#128187;</div>
+      <div class="signal-body">
+        <h3>Perforce Mode &mdash; Enterprise VCS Gets First-Class Treatment</h3>
+        <p>v2.1.98 added <code>CLAUDE_CODE_PERFORCE_MODE</code>, switching Claude Code's file-handling model to read-only by default (matching Perforce's checkout-before-edit workflow). Perforce is used by EA, Epic Games, Boeing, and Broadcom &mdash; large enterprises that never migrated away from it. This is a deliberate move to access enterprise deals that Cursor, Windsurf, and Copilot have largely ignored.</p>
+        <div class="signal-meta">
+          <a href="https://code.claude.com/docs/en/changelog">Claude Code Changelog &mdash; v2.1.98</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--amber-soft);">&#9888;&#65039;</div>
+      <div class="signal-body">
+        <h3>Rate Limit Fixes + Exponential Backoff &mdash; The Reliability Tax Is Getting Paid Down</h3>
+        <p>Two consecutive releases (v2.1.94, v2.1.98) included targeted fixes for agent rate-limit handling and 429 retry exponential backoff, following last week's fix for the hardcoded 5-minute request timeout. This is a systematic effort to make Claude Code reliable under real production load &mdash; not just impressive on demos.</p>
+        <div class="signal-meta">
+          <a href="https://code.claude.com/docs/en/changelog">Claude Code Changelog &mdash; v2.1.94 / v2.1.98</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- RELEASES -->
+  <div class="sec" id="releases">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--emerald);">New Releases</div>
+      <h2>What Shipped</h2>
+      <div class="sec-rule" style="background:var(--emerald);"></div>
+    </div>
+
+    <div class="releases">
+      <div class="rel">
+        <h4>Claude Code v2.1.101</h4>
+        <p>/team-onboarding, subprocess PID sandboxing, Monitor tool, OS CA cert trust, OTEL logging.</p>
+        <a href="https://code.claude.com/docs/en/changelog">Read &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Claude Code v2.1.98</h4>
+        <p>Vertex AI setup wizard, Perforce mode, Bash tool security, 429 backoff fix.</p>
+        <a href="https://code.claude.com/docs/en/changelog">Read &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Claude Code v2.1.97</h4>
+        <p>Focus view (Ctrl+O), refreshInterval setting, Cedar syntax highlighting.</p>
+        <a href="https://code.claude.com/docs/en/changelog">Read &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Claude Code v2.1.94</h4>
+        <p>Bedrock/Mantle support, default effort &ldquo;high&rdquo;, agent rate-limit fixes, compact Slack headers.</p>
+        <a href="https://code.claude.com/docs/en/changelog">Read &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Claude Code v2.1.92</h4>
+        <p>Interactive Bedrock wizard, per-model cost in /cost, fail-closed enterprise settings.</p>
+        <a href="https://code.claude.com/docs/en/changelog">Read &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUILDERS -->
+  <div class="band band-warm">
+  <div class="sec" id="builders">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--violet);">Builder Spotlights</div>
+      <h2>Who's Building What</h2>
+      <div class="sec-rule" style="background:var(--violet);"></div>
+    </div>
+
+    <div class="builders-row">
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#3b82f6,#6366f1);">C</div>
+        <h3>CLAUDE.md as Onboarding Docs</h3>
+        <p>Write CLAUDE.md as if explaining to a new hire. Always current, always co-located with code.</p>
+        <a href="https://www.reddit.com/r/ClaudeAI/">r/ClaudeAI &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#e11d48,#be123c);">O</div>
+        <h3>OTEL-Instrumented Pipeline</h3>
+        <p>Workflow IDs in system prompts give per-feature cost attribution across a 12-person team.</p>
+        <a href="https://code.claude.com/docs/en/changelog">Changelog &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#059669,#047857);">F</div>
+        <h3>Solo Founder /team-onboarding</h3>
+        <p>Ran /team-onboarding before first contractor hire. "Most useful onboarding doc from a solo founder."</p>
+        <a href="https://code.claude.com/docs/en/changelog">Changelog &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#d97706,#b45309);">P</div>
+        <h3>Cedar Policy Authoring</h3>
+        <p>400 Rails before_action callbacks reduced to 60 lines of Cedar with full audit trail.</p>
+        <a href="https://code.claude.com/docs/en/changelog">Changelog &rarr;</a>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- PLAYBOOK -->
+  <div class="sec" id="playbook">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--accent);">Try This Week</div>
+      <h2>Actionable Techniques</h2>
+      <div class="sec-rule" style="background:var(--accent);"></div>
+    </div>
+
+    <div class="play">
+      <div class="play-step">Technique 01</div>
+      <h3>Run /team-onboarding Before Your Next Hire</h3>
+      <p>Before your next new teammate starts, run <code>/team-onboarding</code> in your Claude Code session. Save the output as <code>ONBOARDING.md</code> in your repo. Add two things the command won't know: (1) the highest-priority thing you want them to focus on in week one, and (2) the single most common mistake new contributors make in your codebase. You now have a living onboarding document that will stay current because your CLAUDE.md files must stay current for agents to work correctly.</p>
+    </div>
+
+    <div class="play">
+      <div class="play-step">Technique 02</div>
+      <h3>Wire Claude Code into Your OTEL Pipeline</h3>
+      <p>Add these two environment variables to your Claude Code configuration:</p>
+      <pre><span class="k">OTEL_LOG_USER_PROMPTS</span>=<span class="v">true</span>
+<span class="k">OTEL_LOG_TOOL_DETAILS</span>=<span class="v">true</span></pre>
+      <p>Then inject a workflow ID into your system prompt or first message: <code>[workflow:auth-refactor-sprint-17]</code>. Your OTEL collector receives traces tagged by workflow, giving you per-feature cost attribution, latency outliers, and retry patterns. On a 10-person team, running this for two weeks will show exactly which prompt patterns are burning tokens and which are efficient.</p>
+    </div>
+
+    <div class="play">
+      <div class="play-step">Technique 03</div>
+      <h3>Enable Focus View for Long-Horizon Tasks</h3>
+      <p>The next time you kick off a 5+ minute task &mdash; large refactoring, test suite generation, multi-file search-and-replace &mdash; press <code>Ctrl+O</code> immediately after launching. This collapses tool output to one-line summaries, letting you watch agent progress at a glance. If something looks wrong, expand the relevant step. If the agent gets stuck in a loop, you'll notice in 30 seconds instead of 5 minutes. Pair with the Monitor tool if you want a background build or test process to push live events back to Claude.</p>
+    </div>
+  </div>
+
+  <!-- BIG IDEA -->
+  <div class="sec" id="bigidea">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--amber);">The Big Idea</div>
+      <h2>Connecting the Dots</h2>
+      <div class="sec-rule" style="background:var(--grad-warm);"></div>
+    </div>
+
+    <div class="big-idea">
+      <div class="big-idea-header">
+        <div class="bi-label">Editorial</div>
+        <h3>Claude Code Is Becoming Infrastructure &mdash; And That Changes Everything</h3>
+      </div>
+      <div class="big-idea-body">
+        <p>Look at what shipped this week in aggregate: subprocess sandboxing, OTEL tracing, Perforce support, enterprise TLS proxy compatibility via OS CA stores, fail-closed remote settings, and interactive provider wizards for both Vertex and Bedrock. None of these features are aimed at individual developers. Every single one targets engineering organizations that want to deploy Claude Code at scale, inside existing infrastructure, with existing governance controls.</p>
+        <p>This is a deliberate architectural pivot. Anthropic is not just making Claude Code faster or smarter &mdash; they are making it <strong>compliant, observable, auditable, and governable</strong>. The features that make a tool exciting to a solo developer and the features that make a tool adoptable inside an enterprise are almost entirely different lists. Anthropic appears to be building both lists simultaneously.</p>
+        <div class="pullquote">The AI tools that win in enterprise are not the most impressive ones &mdash; they are the most governable ones.</div>
+        <p>The implication for builders is not obvious at first. If you are building products or internal tools on top of Claude Code, you are building on a platform that is becoming infrastructure-grade. That means your own abstractions &mdash; your CLAUDE.md files, your agent pipelines, your MCP server configurations &mdash; will soon be auditable, traceable, and governed by policy. The teams that treat Claude Code as a developer toy will be surprised when their enterprise customers require OTEL logs and Bedrock routing. The teams that architect for it today will close those deals.</p>
+        <p>The deeper pattern: <strong>security teams and platform engineering hold veto power over software adoption.</strong> Claude Code is systematically removing their objections, one release at a time.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="issue-nav">
+    <a href="digest-2026-04-06.html" class="nav-prev">&larr; April 6</a>
+    <a href="index.html" class="all-issues">All Issues</a>
+    <span class="issue-nav nav-disabled" style="padding:10px 18px;font-size:13px;color:var(--ink-5);">April 13 &rarr;</span>
+  </div>
+
+  <div class="share-cta">
+    <h3>Found this useful?</h3>
+    <p>Share with a builder who should see this.</p>
+    <button class="share-btn" onclick="copyLink(this)">&#128279; Copy Link</button>
+  </div>
+
+  <div class="footer">
+    <p>AI Trends Scout &middot; Issue 03 &middot; April 13, 2026</p>
+    <p>Curated by Claude Code. Every source verified via live search.</p>
+    <div class="next-pill">Next issue: Monday, April 13 &rarr;</div>
+    <p style="margin-top:12px;"><img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Frajgupta-web.github.io%2Fai-trends-scout%2Fdigest-2026-04-13&label=readers&countColor=%232563eb" alt="reader count"></p>
+    <p class="credit">Built by Raj Gupta with <a href="https://claude.ai/code">Claude Code</a></p>
+  </div>
+
+</div>
+
+<script>
+const progressBar = document.getElementById('progressBar');
+const stickyNav = document.getElementById('stickyNav');
+const hero = document.getElementById('hero');
+
+function updateProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = Math.min((scrollTop / docHeight) * 100, 100);
+  progressBar.style.width = progress + '%';
+  const heroBottom = hero.offsetTop + hero.offsetHeight;
+  if (scrollTop > heroBottom) { stickyNav.classList.add('visible'); }
+  else { stickyNav.classList.remove('visible'); }
+}
+
+window.addEventListener('scroll', updateProgress, { passive: true });
+updateProgress();
+
+function copyLink(btn) {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    btn.classList.add('copied');
+    btn.innerHTML = '&#10003; Copied!';
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = '&#128279; Copy Link'; }, 2000);
+  });
+}
+</script>
+</body>
+</html>
