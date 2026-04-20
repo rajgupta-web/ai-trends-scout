@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Trends Scout — April 20, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ═══════════════════════════════
+     DESIGN SYSTEM
+     ═══════════════════════════════ */
+  :root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --ink: #111111;
+    --ink-2: #333333;
+    --ink-3: #666666;
+    --ink-4: #999999;
+    --ink-5: #cccccc;
+    --border: #e5e5e5;
+    --border-light: #f0f0f0;
+
+    --accent: #2563eb;
+    --accent-soft: #eff6ff;
+    --rose: #e11d48;
+    --rose-soft: #fff1f2;
+    --amber: #d97706;
+    --amber-soft: #fffbeb;
+    --emerald: #059669;
+    --emerald-soft: #ecfdf5;
+    --violet: #7c3aed;
+    --violet-soft: #f5f3ff;
+
+    --radius: 16px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.03);
+    --shadow-lg: 0 12px 32px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.04);
+
+    --grad-hero: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #0f172a 100%);
+    --grad-accent: linear-gradient(135deg, #2563eb, #7c3aed);
+    --grad-warm: linear-gradient(135deg, #f59e0b, #ef4444);
+  }
+
+  /* ── Dark mode — warm slate, not black ── */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #171923;
+      --surface: #1e2133;
+      --ink: #eef0f6;
+      --ink-2: #c9cdd8;
+      --ink-3: #8b90a0;
+      --ink-4: #5c6178;
+      --ink-5: #363b50;
+      --border: #2a2e42;
+      --border-light: #222538;
+      --accent-soft: #1a2450;
+      --rose-soft: #35182a;
+      --amber-soft: #30250e;
+      --emerald-soft: #0e2a20;
+      --violet-soft: #231840;
+    }
+    .hero { background: linear-gradient(135deg, #0d0f1a 0%, #1a1f35 50%, #0d0f1a 100%); }
+    .sticky-nav { background: rgba(23,25,35,0.92); }
+    .why-box { background: var(--border); }
+    .play { border-color: var(--border); }
+    .rel { border-top-color: var(--border); }
+    .rel:hover { border-top-color: var(--accent); }
+    .story code, .play code { background: var(--border); }
+    .lead-story .why-box { background: var(--border); }
+    .lead-story code { background: var(--border); }
+    .big-idea-body { background: #131525; }
+    .big-idea-header { background: linear-gradient(135deg, #0d0f1a, #1a1f35); }
+    .share-cta { border-color: var(--border); }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+
+  /* ── READING PROGRESS BAR ── */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--grad-accent);
+    z-index: 1000;
+    transition: width 0.1s linear;
+  }
+
+  /* ── STICKY NAV ── */
+  .sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 999;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    padding: 0 24px;
+  }
+  .sticky-nav.visible { transform: translateY(0); }
+  @media (prefers-color-scheme: dark) {
+    .sticky-nav { background: rgba(23,25,35,0.92); }
+  }
+  .sticky-nav-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+  }
+  .sticky-nav .nav-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.3px;
+  }
+  .sticky-nav .nav-links {
+    display: flex;
+    gap: 6px;
+  }
+  .sticky-nav .nav-links a {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-3);
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    letter-spacing: 0.2px;
+  }
+  .sticky-nav .nav-links a:hover {
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+  @media (max-width: 600px) {
+    .sticky-nav .nav-links { display: none; }
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px 100px;
+  }
+
+  /* ═══════════════════════════════
+     HERO
+     ═══════════════════════════════ */
+  .hero {
+    background: var(--grad-hero);
+    margin: 0 -24px;
+    padding: 64px 48px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 25% 40%, rgba(37,99,235,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 75% 60%, rgba(124,58,237,0.1) 0%, transparent 45%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #60a5fa;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero-eyebrow .dot {
+    width: 6px;
+    height: 6px;
+    background: #60a5fa;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 52px;
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: -1.5px;
+    line-height: 1.05;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .hero .tagline {
+    font-size: 16px;
+    color: #94a3b8;
+    font-weight: 400;
+    line-height: 1.5;
+    position: relative;
+  }
+  .hero .date {
+    margin-top: 28px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #64748b;
+    position: relative;
+  }
+
+  /* ═══════════════════════════════
+     TL;DR + TOC
+     ═══════════════════════════════ */
+  .tldr-toc {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: -32px;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 600px) {
+    .tldr-toc { grid-template-columns: 1fr; }
+  }
+
+  .tldr {
+    background: var(--surface);
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 24px 24px 20px;
+    box-shadow: var(--shadow-lg);
+  }
+  .tldr-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .tldr ul {
+    list-style: none;
+  }
+  .tldr li {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.55;
+    padding: 7px 0;
+    padding-left: 20px;
+    position: relative;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .tldr li:last-child { border-bottom: none; padding-bottom: 0; }
+  .tldr li:first-child { padding-top: 0; }
+  .tldr li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .tldr li:first-child::before { top: 7px; }
+  .tldr li:nth-child(1)::before { background: var(--rose); }
+  .tldr li:nth-child(2)::before { background: var(--accent); }
+  .tldr li:nth-child(3)::before { background: var(--amber); }
+  .tldr li strong { color: var(--ink); font-weight: 700; }
+
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 24px 20px;
+    box-shadow: var(--shadow-lg);
+  }
+  .toc-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    margin-bottom: 14px;
+  }
+  .toc ul { list-style: none; }
+  .toc li { border-bottom: 1px solid var(--border-light); }
+  .toc li:last-child { border-bottom: none; }
+  .toc a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 0;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-2);
+    transition: color 0.2s;
+  }
+  .toc a:hover { color: var(--accent); }
+  .toc .toc-icon {
+    font-size: 14px;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .toc .toc-arrow {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--ink-5);
+    transition: color 0.2s, transform 0.2s;
+  }
+  .toc a:hover .toc-arrow { color: var(--accent); transform: translateX(2px); }
+
+  /* ═══════════════════════════════
+     FULL-BLEED TINTED BANDS
+     ═══════════════════════════════ */
+  .band {
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    padding-left: calc(50vw - 50%);
+    padding-right: calc(50vw - 50%);
+    padding-top: 16px;
+    padding-bottom: 24px;
+  }
+  .band-cool {
+    background: #f5f7fb;
+  }
+  .band-warm {
+    background: #faf8f5;
+  }
+  @media (prefers-color-scheme: dark) {
+    .band-cool { background: #161829; }
+    .band-warm { background: #1c1a1e; }
+  }
+
+  /* ═══════════════════════════════
+     SECTION HEADERS
+     ═══════════════════════════════ */
+  .sec {
+    margin-top: 64px;
+  }
+  .sec-header {
+    margin-bottom: 32px;
+  }
+  .sec-header .sec-eyebrow {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .sec-header h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.8px;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .sec-header .sec-rule {
+    width: 48px;
+    height: 3px;
+    border-radius: 2px;
+  }
+
+  /* ═══════════════════════════════
+     LEAD STORY (hero card)
+     ═══════════════════════════════ */
+  .lead-story {
+    background: var(--surface);
+    border-radius: 20px;
+    padding: 36px 36px 32px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-light);
+    border-left: 5px solid var(--rose);
+  }
+  .lead-story .lead-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--rose);
+    padding: 5px 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+  }
+  .lead-story .lead-num {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 96px;
+    font-weight: 400;
+    position: absolute;
+    right: 28px;
+    top: 12px;
+    color: rgba(225,29,72,0.07);
+    line-height: 1;
+    pointer-events: none;
+  }
+  @media (prefers-color-scheme: dark) {
+    .lead-story .lead-num { color: rgba(225,29,72,0.12); }
+  }
+  .lead-story h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    max-width: 85%;
+  }
+  .lead-story .lede {
+    font-size: 15px;
+    color: var(--ink-2);
+    line-height: 1.75;
+  }
+  .lead-story code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    background: var(--border-light);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .lead-story .why-box {
+    margin-top: 20px;
+    background: var(--border-light);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .lead-story .cite {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--ink-4);
+  }
+  .lead-story .cite a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  /* ═══════════════════════════════
+     STORY CARDS (2-5)
+     ═══════════════════════════════ */
+  .stories-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 600px) {
+    .stories-grid { grid-template-columns: 1fr; }
+  }
+
+  .story {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 24px 24px 20px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.25s, transform 0.15s;
+  }
+  .story:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .story::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+  }
+  .story.c-blue::before { background: var(--accent); }
+  .story.c-green::before { background: var(--emerald); }
+  .story.c-amber::before { background: var(--amber); }
+  .story.c-violet::before { background: var(--violet); }
+
+  .story .story-num {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--border);
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 4px;
+  }
+  .story .badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+  }
+  .badge-blue { color: #1e40af; background: var(--accent-soft); }
+  .badge-green { color: #065f46; background: var(--emerald-soft); }
+  .badge-amber { color: #92400e; background: var(--amber-soft); }
+  .badge-violet { color: #5b21b6; background: var(--violet-soft); }
+  .badge-rose { color: #9f1239; background: var(--rose-soft); }
+
+  .story h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.2px;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .story .lede {
+    font-size: 13px;
+    color: var(--ink-3);
+    line-height: 1.65;
+  }
+  .story code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    background: var(--border-light);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+  .story .cite {
+    margin-top: 12px;
+    font-size: 11px;
+    color: var(--ink-4);
+  }
+  .story .cite a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .story .cite a:hover { text-decoration: underline; }
+
+  .why-box {
+    margin-top: 12px;
+    background: var(--border-light);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .why-box .why-label {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    margin-bottom: 4px;
+  }
+  .why-box p {
+    font-size: 12.5px;
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+
+  /* ═══════════════════════════════
+     SIGNALS
+     ═══════════════════════════════ */
+  .signal {
+    display: flex;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-light);
+    align-items: flex-start;
+  }
+  .signal:last-child { border-bottom: none; }
+  .signal-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .signal-body { flex: 1; }
+  .signal-body h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 4px;
+  }
+  .signal-body p {
+    font-size: 13px;
+    color: var(--ink-3);
+    line-height: 1.6;
+  }
+  .signal-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .signal-meta a {
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .signal-meta a:hover { text-decoration: underline; }
+
+  /* HN Points Bar */
+  .hn-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--amber);
+  }
+  .hn-bar .bar-track {
+    width: 48px;
+    height: 4px;
+    background: var(--amber-soft);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .hn-bar .bar-fill {
+    height: 100%;
+    background: var(--amber);
+    border-radius: 2px;
+  }
+
+  /* ═══════════════════════════════
+     RELEASES
+     ═══════════════════════════════ */
+  .releases {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 600px) { .releases { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 400px) { .releases { grid-template-columns: 1fr; } }
+  .rel {
+    background: var(--surface);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    padding: 18px 18px 16px;
+    border: 1px solid var(--border-light);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .rel:hover { border-color: var(--accent); box-shadow: var(--shadow-md); }
+  .rel h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .rel p {
+    font-size: 11.5px;
+    color: var(--ink-3);
+    line-height: 1.5;
+  }
+  .rel a {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .rel a:hover { text-decoration: underline; }
+
+  /* ═══════════════════════════════
+     BUILDERS
+     ═══════════════════════════════ */
+  .builders-row {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 4px 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .builders-row::-webkit-scrollbar { display: none; }
+
+  .builder {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 22px 20px 18px;
+    min-width: 200px;
+    max-width: 220px;
+    flex-shrink: 0;
+    text-align: center;
+    transition: box-shadow 0.2s, transform 0.15s;
+  }
+  .builder:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .builder-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 22px;
+    color: #fff;
+    margin: 0 auto 12px;
+  }
+  .builder h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .builder p {
+    font-size: 12px;
+    color: var(--ink-3);
+    line-height: 1.5;
+  }
+  .builder a {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  /* ═══════════════════════════════
+     PLAYBOOK
+     ═══════════════════════════════ */
+  .play {
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    padding: 28px 28px 24px;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .play::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--grad-accent);
+  }
+  .play-step {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .play h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 10px;
+    letter-spacing: -0.2px;
+  }
+  .play p {
+    font-size: 14px;
+    color: var(--ink-2);
+    line-height: 1.7;
+  }
+  .play code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    background: var(--border-light);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .play pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin: 14px 0 4px;
+    overflow-x: auto;
+    line-height: 1.65;
+  }
+  .play pre .cm { color: #64748b; }
+  .play pre .k { color: #93c5fd; }
+  .play pre .v { color: #86efac; }
+
+  /* ═══════════════════════════════
+     BIG IDEA
+     ═══════════════════════════════ */
+  .big-idea {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  .big-idea-header {
+    background: var(--grad-hero);
+    padding: 36px 36px 0;
+    position: relative;
+  }
+  .big-idea-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top right, rgba(37,99,235,0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .big-idea-header .bi-label {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fbbf24;
+    position: relative;
+    margin-bottom: 14px;
+  }
+  .big-idea-header h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 34px;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    padding-bottom: 32px;
+    position: relative;
+  }
+  .big-idea-body {
+    background: #0f172a;
+    padding: 32px 36px 36px;
+  }
+  .big-idea-body p {
+    font-size: 15px;
+    color: #cbd5e1;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .big-idea-body strong { color: #f1f5f9; }
+  .big-idea-body .pullquote {
+    margin: 28px 0;
+    padding: 20px 24px;
+    background: rgba(255,255,255,0.03);
+    border-left: 3px solid #3b82f6;
+    border-radius: 0 10px 10px 0;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 20px;
+    color: #e2e8f0;
+    line-height: 1.45;
+    font-style: italic;
+  }
+
+  /* ═══════════════════════════════
+     SHARE CTA
+     ═══════════════════════════════ */
+  .share-cta {
+    margin-top: 48px;
+    background: var(--surface);
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    text-align: center;
+  }
+  .share-cta h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .share-cta p {
+    font-size: 14px;
+    color: var(--ink-3);
+    margin-bottom: 18px;
+  }
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--accent);
+    border: none;
+    padding: 12px 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    font-family: inherit;
+  }
+  .share-btn:hover { background: #1d4ed8; transform: translateY(-1px); }
+  .share-btn:active { transform: translateY(0); }
+  .share-btn.copied { background: var(--emerald); }
+
+  /* ═══════════════════════════════
+     FOOTER
+     ═══════════════════════════════ */
+  .footer {
+    margin-top: 48px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .footer p {
+    font-size: 13px;
+    color: var(--ink-4);
+    margin-bottom: 4px;
+  }
+  .footer .next-pill {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 8px 22px;
+    border-radius: 100px;
+  }
+  .footer .credit {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--ink-5);
+  }
+  .footer .credit a { color: var(--ink-4); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav class="sticky-nav" id="stickyNav">
+  <div class="sticky-nav-inner">
+    <div class="nav-title">AI Trends Scout</div>
+    <div class="nav-links">
+      <a href="#stories">Stories</a>
+      <a href="#signals">Signals</a>
+      <a href="#releases">Releases</a>
+      <a href="#builders">Builders</a>
+      <a href="#playbook">Playbook</a>
+      <a href="#bigidea">Big Idea</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- ═══ HERO ═══ -->
+  <header class="hero" id="hero">
+    <div class="hero-eyebrow"><span class="dot"></span> Issue 04 &middot; Weekly</div>
+    <h1>AI Trends Scout</h1>
+    <div class="tagline">The sharpest AI use cases for builders.<br>No fluff. Every link verified.</div>
+    <div class="date">Monday, April 20, 2026</div>
+  </header>
+
+  <!-- ═══ TL;DR + TOC ═══ -->
+  <div class="tldr-toc">
+    <div class="tldr">
+      <div class="tldr-label">30-Second Brief</div>
+      <ul>
+        <li><strong>/ultrareview ships.</strong> Parallel subagents now audit your PR from five angles simultaneously &mdash; in one command.</li>
+        <li><strong>Opus 4.7 lands.</strong> Vision tripled, Task Budgets for cost control &mdash; but the tokenizer hides a 40% cost hike.</li>
+        <li><strong>Codex goes desktop-native.</strong> Background agent controls your entire OS with 111 new integrations.</li>
+      </ul>
+    </div>
+    <div class="toc">
+      <div class="toc-label">In This Issue</div>
+      <ul>
+        <li><a href="#stories"><span class="toc-icon">&#9733;</span> Top Stories <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#signals"><span class="toc-icon">&#128225;</span> Signals &amp; Buzz <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#releases"><span class="toc-icon">&#128230;</span> New Releases <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#builders"><span class="toc-icon">&#128736;</span> Builder Spotlights <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#playbook"><span class="toc-icon">&#9889;</span> Try This Week <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#bigidea"><span class="toc-icon">&#128161;</span> The Big Idea <span class="toc-arrow">&rarr;</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ TOP STORIES ═══ -->
+  <div class="sec" id="stories">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--rose);">Top Stories</div>
+      <h2>What Happened This Week</h2>
+      <div class="sec-rule" style="background:var(--rose);"></div>
+    </div>
+
+    <!-- LEAD STORY -->
+    <div class="lead-story">
+      <div class="lead-num">01</div>
+      <span class="lead-badge">New Feature</span>
+      <h3>/ultrareview — One Command Launches a Parallel Multi-Agent Code Review Pipeline</h3>
+      <p class="lede">Claude Code v2.1.111 shipped <code>/ultrareview</code> &mdash; a command that spawns a coordinated team of parallel subagents, each auditing a different dimension of your diff simultaneously: security, logic, test coverage, performance, and style. Previously, &ldquo;AI code review&rdquo; meant one agent sequentially scanning a file. Now it&rsquo;s a parallelized pipeline that completes in roughly the same wall-clock time as a single-agent review, with dramatically broader coverage.</p>
+      <div class="why-box">
+        <div class="why-label">Why This Matters</div>
+        <p>For solo founders and small teams without dedicated reviewers, this is a force-multiplier. A PR that got one pair of AI eyes now gets five, each optimized for a different failure mode. For teams using Claude Code in CI, <code>/ultrareview</code> is a drop-in replacement for the &ldquo;review before merge&rdquo; step that doesn&rsquo;t require a senior engineer to block on.</p>
+      </div>
+      <div class="cite"><a href="https://code.claude.com/docs/en/changelog">Claude Code Changelog &mdash; v2.1.111</a></div>
+    </div>
+
+    <!-- STORIES 2-5 GRID -->
+    <div class="stories-grid">
+      <div class="story c-blue">
+        <div class="story-num">02</div>
+        <span class="badge badge-blue">Flagship Release</span>
+        <h3>Opus 4.7 Task Budgets &mdash; Native Cost Control for Agents</h3>
+        <p class="lede">Claude Opus 4.7 ships with Task Budgets (public beta): tell Claude your token ceiling, it checkpoints at 25/50/75% and surfaces status before continuing. Also: new <code>xhigh</code> effort level and tripled vision resolution. Watch the tokenizer &mdash; 1.35&times; more tokens than 4.6 for text.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>Runaway cost kills agent experiments. Task Budgets solve it at the model layer without custom orchestration code.</p>
+        </div>
+        <div class="cite"><a href="https://www.anthropic.com/news/claude-opus-4-7">Anthropic</a></div>
+      </div>
+
+      <div class="story c-green">
+        <div class="story-num">03</div>
+        <span class="badge badge-green">Cost Lever</span>
+        <h3>1-Hour Prompt Cache TTL &mdash; 30&ndash;50% Cost Drop on Batch Pipelines</h3>
+        <p class="lede">Set <code>ENABLE_PROMPT_CACHING_1H=true</code> and Claude stops re-encoding the same large context on every turn. A pipeline running 50 tasks against the same context now pays encoding once. Game-changer for overnight jobs.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>Any automation pipeline with a large, repeated system prompt just got 30&ndash;50% cheaper to run. One env var.</p>
+        </div>
+        <div class="cite"><a href="https://code.claude.com/docs/en/changelog">Changelog &mdash; v2.1.108</a></div>
+      </div>
+
+      <div class="story c-amber">
+        <div class="story-num">04</div>
+        <span class="badge badge-amber">New Product</span>
+        <h3>Claude Design &mdash; Founders Ship Polished Visuals Without a Designer</h3>
+        <p class="lede">Anthropic Labs launched a conversational tool for pitch decks, one-pagers, and prototypes. It reads your codebase to apply your design language automatically. Exports to Canva, PDF, PPTX &mdash; or hands off to Claude Code. Anthropic&rsquo;s CPO left Figma&rsquo;s board this week. Not a coincidence.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>The design-to-code pipeline inside Anthropic is now closed. For PMs and pre-seed founders, it removes the designer dependency entirely.</p>
+        </div>
+        <div class="cite"><a href="https://www.anthropic.com/news/claude-design-anthropic-labs">Anthropic</a> &middot; <a href="https://techcrunch.com/2026/04/17/anthropic-launches-claude-design-a-new-product-for-creating-quick-visuals/">TechCrunch</a></div>
+      </div>
+
+      <div class="story c-violet">
+        <div class="story-num">05</div>
+        <span class="badge badge-violet">Competition</span>
+        <h3>OpenAI Codex Desktop Agent &mdash; Background OS Control with 111 Integrations</h3>
+        <p class="lede">OpenAI overhauled Codex with a background desktop agent that controls any app while you work. Memory learns your patterns across sessions. 111 integrations including Slack, CodeRabbit, and GitLab Issues auto-pull context. This is OpenAI&rsquo;s clearest shot at Claude Code yet.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>Two tools, now genuinely differentiated: Codex for desktop automation, Claude Code for large codebase refactors. Don&rsquo;t use just one.</p>
+        </div>
+        <div class="cite"><a href="https://techcrunch.com/2026/04/16/openai-takes-aim-at-anthropic-with-beefed-up-codex-that-gives-it-more-power-over-your-desktop/">TechCrunch</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SIGNALS ═══ -->
+  <div class="band band-cool">
+  <div class="sec" id="signals">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--amber);">Signals &amp; Buzz</div>
+      <h2>What People Are Talking About</h2>
+      <div class="sec-rule" style="background:var(--amber);"></div>
+    </div>
+
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--rose-soft);">&#128202;</div>
+      <div class="signal-body">
+        <h3>"Tokenmaxxing Is Making Developers Less Productive Than They Think"</h3>
+        <p>GitClear: AI-heavy devs have 9.4&times; higher code churn than non-AI counterparts. Waydev: real acceptance rates are 10&ndash;30% after revisions, not the 80&ndash;90% that initial acceptance suggests. Jellyfish: high-token engineers achieved 2&times; throughput at 10&times; the cost. The measurement trap of 2026 has a name now.</p>
+        <div class="signal-meta">
+          <a href="https://techcrunch.com/2026/04/17/tokenmaxxing-is-making-developers-less-productive-than-they-think/">TechCrunch</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--amber-soft);">&#128274;</div>
+      <div class="signal-body">
+        <h3>NSA Using Anthropic&rsquo;s Classified &ldquo;Mythos&rdquo; Despite Pentagon Blacklist</h3>
+        <p>Axios reported the NSA has deployed Anthropic&rsquo;s &ldquo;Mythos&rdquo; &mdash; an unreleased/classified model variant &mdash; despite an active Pentagon blacklist of commercial AI models. The HN thread erupted around government procurement, dual-use AI policy, and what classified deployments actually look like in practice. For enterprise builders: your CIO&rsquo;s &ldquo;we can&rsquo;t put data in external AI&rdquo; objection just got a different baseline.</p>
+        <div class="signal-meta">
+          <a href="https://www.axios.com/2026/04/19/nsa-anthropic-mythos-pentagon">Axios</a>
+          <a href="https://news.ycombinator.com">HackerNews</a>
+          <div class="hn-bar">
+            <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+            243 pts
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--violet-soft);">&#128176;</div>
+      <div class="signal-body">
+        <h3>Cursor Raises $2B at $50 Billion &mdash; AI Coding Is Now a Mega-Category</h3>
+        <p>Cursor&rsquo;s $50B valuation (up from $29.3B six months ago), led by a16z and Thrive with Nvidia as strategic investor, forecasting $6B+ ARR by end of 2026. The margin detail is the real story: profitable on enterprise, losing money on individual developer subscriptions. Pricing pressure is coming for solo developer plans.</p>
+        <div class="signal-meta">
+          <a href="https://techcrunch.com/2026/04/17/sources-cursor-in-talks-to-raise-2b-at-50b-valuation-as-enterprise-growth-surges/">TechCrunch</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--emerald-soft);">&#128241;</div>
+      <div class="signal-body">
+        <h3>App Store Up 80% on iOS &mdash; AI Democratization Is Hitting the Market</h3>
+        <p>Q1 2026: 80% YoY growth on iOS, 104% in April. Apple cites Claude Code and Replit specifically as lowering the barrier to app creation. Fastest-growing categories: Utilities, Lifestyle, Health &amp; Fitness &mdash; exactly what solo founders build. More customers for good apps; more AI-assisted competition. Differentiation matters more, not less.</p>
+        <div class="signal-meta">
+          <a href="https://techcrunch.com/2026/04/18/the-app-store-is-booming-again-and-ai-may-be-why/">TechCrunch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div><!-- /band-cool -->
+
+  <!-- ═══ RELEASES ═══ -->
+  <div class="sec" id="releases">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--emerald);">New Releases</div>
+      <h2>What Shipped</h2>
+      <div class="sec-rule" style="background:var(--emerald);"></div>
+    </div>
+
+    <div class="releases">
+      <div class="rel">
+        <h4>Claude Opus 4.7</h4>
+        <p>Vision &times;3, xhigh effort, Task Budgets beta, 13% better code review. Tokenizer update: 1.35&times; tokens.</p>
+        <a href="https://www.anthropic.com/news/claude-opus-4-7">Read &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Claude Design</h4>
+        <p>Conversational visual creation for decks, prototypes, one-pagers. Research preview, Pro/Max/Team/Enterprise.</p>
+        <a href="https://www.anthropic.com/news/claude-design-anthropic-labs">Read &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Claude Code v2.1.111</h4>
+        <p>/ultrareview, /less-permission-prompts, xhigh effort slider, Auto mode on by default for Max, PowerShell.</p>
+        <a href="https://code.claude.com/docs/en/changelog">Read &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>CC v2.1.110</h4>
+        <p>Push notifications for headless sessions, /tui fullscreen mode, autoScrollEnabled config.</p>
+        <a href="https://code.claude.com/docs/en/changelog">Read &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>CC v2.1.108</h4>
+        <p>/recap session summary, 1-hour prompt cache TTL (ENABLE_PROMPT_CACHING_1H).</p>
+        <a href="https://code.claude.com/docs/en/changelog">Read &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>CC v2.1.113 Security</h4>
+        <p>Bash deny wraps env/sudo/watch; find -exec no longer auto-approved; deniedDomains sandbox setting.</p>
+        <a href="https://code.claude.com/docs/en/changelog">Read &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Codex Desktop Agent</h4>
+        <p>Background OS control, 111 integrations, session memory, image gen. Enterprise/Business.</p>
+        <a href="https://techcrunch.com/2026/04/16/openai-takes-aim-at-anthropic-with-beefed-up-codex-that-gives-it-more-power-over-your-desktop/">Read &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Cursor Canvas</h4>
+        <p>Agents generate interactive dashboards, PR review UIs, and charts inside Cursor. React-based.</p>
+        <a href="https://www.cursor.com/blog/canvas">Read &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Factory $150M / $1.5B</h4>
+        <p>Enterprise AI coding, model-agnostic routing (Claude + DeepSeek). Morgan Stanley, EY customers.</p>
+        <a href="https://techcrunch.com/2026/04/16/factory-hits-1-5b-valuation-to-build-ai-coding-for-enterprises/">Read &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BUILDERS ═══ -->
+  <div class="band band-warm">
+  <div class="sec" id="builders">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--violet);">Builder Spotlights</div>
+      <h2>Who&rsquo;s Building What</h2>
+      <div class="sec-rule" style="background:var(--violet);"></div>
+    </div>
+
+    <div class="builders-row">
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#e11d48,#be123c);">F</div>
+        <h3>Factory</h3>
+        <p>Model-agnostic enterprise AI coding. Routes tasks to best available model. $150M at $1.5B.</p>
+        <a href="https://techcrunch.com/2026/04/16/factory-hits-1-5b-valuation-to-build-ai-coding-for-enterprises/">TechCrunch &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#3b82f6,#6366f1);">S</div>
+        <h3>Simon Willison</h3>
+        <p>Caught Opus 4.7&rsquo;s hidden 40% cost hike. Built a public token counter so every builder can audit.</p>
+        <a href="https://simonwillison.net">Blog &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#059669,#047857);">I</div>
+        <h3>IBM Research</h3>
+        <p>VAKRA benchmark maps AI agent failure modes: error propagation, tool selection, implicit assumptions.</p>
+        <a href="https://huggingface.co/blog/ibm-research/vakra-benchmark-analysis">HuggingFace &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#d97706,#b45309);">A</div>
+        <h3>Amplitude</h3>
+        <p>3&times; production code output with Cursor Canvas. Treats AI code review as a UI problem.</p>
+        <a href="https://www.cursor.com/blog/amplitude">Cursor Blog &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#6366f1,#4f46e5);">R</div>
+        <h3>Roblox</h3>
+        <p>Agentic game dev: Planning Mode asks clarifying questions before building, then runs automated playtests.</p>
+        <a href="https://techcrunch.com/2026/04/16/robloxs-ai-assistant-gets-new-agentic-tools-to-plan-build-and-test-games/">TechCrunch &rarr;</a>
+      </div>
+    </div>
+  </div>
+  </div><!-- /band-warm -->
+
+  <!-- ═══ PLAYBOOK ═══ -->
+  <div class="sec" id="playbook">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--accent);">Try This Week</div>
+      <h2>Actionable Techniques</h2>
+      <div class="sec-rule" style="background:var(--accent);"></div>
+    </div>
+
+    <div class="play">
+      <div class="play-step">Technique 01</div>
+      <h3>Audit Your Opus 4.7 Migration Cost Before You Switch</h3>
+      <p>Before updating to <code>claude-opus-4-7</code>, run your five most common prompt templates through Simon Willison&rsquo;s token counter at <code>tools.simonwillison.net/claude-token-counter</code>. Text-heavy prompts: 35&ndash;46% more tokens. Code-heavy: 5&ndash;10% more. Set your Task Budget ceiling accordingly and recalibrate any billing alerts. Don&rsquo;t get surprised mid-sprint.</p>
+    </div>
+
+    <div class="play">
+      <div class="play-step">Technique 02</div>
+      <h3>Enable 1-Hour Prompt Caching for Batch Pipelines</h3>
+      <p>If you run Claude in any pipeline where the same large system prompt or context reappears across multiple turns, add this to your environment:</p>
+      <pre><span class="k">ENABLE_PROMPT_CACHING_1H</span>=<span class="v">true</span></pre>
+      <p>Then check your API dashboard. Any pipeline where context is reused for &gt;5 minutes of wall-clock time is now cheaper. For overnight batch jobs with dozens of turns against the same context, expect 30&ndash;50% reduction on context encoding costs.</p>
+    </div>
+
+    <div class="play">
+      <div class="play-step">Technique 03</div>
+      <h3>Add the &ldquo;Clarifying Questions First&rdquo; Pattern to Your CLAUDE.md</h3>
+      <p>Borrow Roblox&rsquo;s planning-mode pattern. Add this directive to your <code>CLAUDE.md</code>:</p>
+      <pre><span class="cm"># Assumption surfacing</span>
+<span class="v">Before beginning any task that would modify</span>
+<span class="v">more than 5 files, surface your key assumptions</span>
+<span class="v">and ask one clarifying question per assumption.</span>
+<span class="v">Proceed only after confirmation.</span></pre>
+      <p>Adds ~30 seconds of upfront conversation, eliminates the expensive &ldquo;I built the wrong thing&rdquo; rebuild loop &mdash; IBM&rsquo;s VAKRA benchmark confirmed this is the most common agent failure type.</p>
+    </div>
+  </div>
+
+  <!-- ═══ BIG IDEA ═══ -->
+  <div class="sec" id="bigidea">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--amber);">The Big Idea</div>
+      <h2>Connecting the Dots</h2>
+      <div class="sec-rule" style="background:var(--grad-warm);"></div>
+    </div>
+
+    <div class="big-idea">
+      <div class="big-idea-header">
+        <div class="bi-label">Editorial</div>
+        <h3>The Agentic Middleware Layer Is the Real Battleground</h3>
+      </div>
+      <div class="big-idea-body">
+        <p>Look at what shipped this week in aggregate: OpenAI Codex adds desktop agent control and 111 integrations. Cursor launches Canvas to make AI output visually navigable. Factory raises $150M on a model-agnostic routing architecture. Roblox builds a full planning-to-playtest pipeline. Claude Code ships <strong>/ultrareview</strong>, push notifications, and session recap for headless runs.</p>
+        <p>Every major player is building the same thing: <strong>an orchestration layer that sits between a human&rsquo;s intent and multiple specialized AI tools.</strong> The underlying models are becoming commodities faster than anyone predicted &mdash; Qwen3.6-35B, a 3B active parameter model, beat Opus 4.7 on an image benchmark this week while running on a laptop.</p>
+        <div class="pullquote">The differentiation is not in the model &mdash; it&rsquo;s in the workflow intelligence that decides which model to call, when to surface assumptions, how to present output, and when to ask the human.</div>
+        <p>This is why Factory&rsquo;s model-agnostic architecture is the right enterprise bet. This is why Cursor Canvas exists &mdash; it&rsquo;s not about better code generation, it&rsquo;s about better human-AI collaboration UI. This is why <strong>/ultrareview</strong> matters &mdash; it&rsquo;s not smarter code review, it&rsquo;s parallel specialization a human can verify.</p>
+        <p>The builders who win the next two years are not the ones who find the best model &mdash; they&rsquo;re the ones who build the best routing, presentation, and human-in-the-loop architecture on top of increasingly commoditized models. <strong>The moat is the workflow, not the weights.</strong></p>
+        <p>For you specifically: the next time you evaluate an AI tool, stop asking &ldquo;which model does it use?&rdquo; and start asking &ldquo;how does it decide what to do, when to ask me, and how to show me the results?&rdquo;</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SHARE CTA ═══ -->
+  <div class="share-cta">
+    <h3>Found this useful?</h3>
+    <p>Share with a builder who should see this.</p>
+    <button class="share-btn" onclick="copyLink(this)">&#128279; Copy Link</button>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="footer">
+    <p>AI Trends Scout &middot; Issue 04 &middot; April 20, 2026</p>
+    <p>Curated by Claude Code. Every source verified via live search.</p>
+    <div class="next-pill">Next issue: Monday, April 27 &rarr;</div>
+    <p style="margin-top:12px;"><img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Frajgupta-web.github.io%2Fai-trends-scout%2Fdigest-2026-04-20&label=readers&countColor=%232563eb" alt="reader count"></p>
+    <p class="credit">Built by Raj Gupta with <a href="https://claude.ai/code">Claude Code</a></p>
+  </div>
+
+</div>
+
+<script>
+// Reading progress bar
+const progressBar = document.getElementById('progressBar');
+const stickyNav = document.getElementById('stickyNav');
+const hero = document.getElementById('hero');
+
+function updateProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = Math.min((scrollTop / docHeight) * 100, 100);
+  progressBar.style.width = progress + '%';
+
+  // Show/hide sticky nav
+  const heroBottom = hero.offsetTop + hero.offsetHeight;
+  if (scrollTop > heroBottom) {
+    stickyNav.classList.add('visible');
+  } else {
+    stickyNav.classList.remove('visible');
+  }
+}
+
+window.addEventListener('scroll', updateProgress, { passive: true });
+updateProgress();
+
+// Copy link
+function copyLink(btn) {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    btn.classList.add('copied');
+    btn.innerHTML = '&#10003; Copied!';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = '&#128279; Copy Link';
+    }, 2000);
+  });
+}
+</script>
+</body>
+</html>
