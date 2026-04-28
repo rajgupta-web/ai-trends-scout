@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Trends Scout — April 27, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ═══════════════════════════════
+     DESIGN SYSTEM
+     ═══════════════════════════════ */
+  :root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --ink: #111111;
+    --ink-2: #333333;
+    --ink-3: #666666;
+    --ink-4: #999999;
+    --ink-5: #cccccc;
+    --border: #e5e5e5;
+    --border-light: #f0f0f0;
+
+    --accent: #2563eb;
+    --accent-soft: #eff6ff;
+    --rose: #e11d48;
+    --rose-soft: #fff1f2;
+    --amber: #d97706;
+    --amber-soft: #fffbeb;
+    --emerald: #059669;
+    --emerald-soft: #ecfdf5;
+    --violet: #7c3aed;
+    --violet-soft: #f5f3ff;
+
+    --radius: 16px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.03);
+    --shadow-lg: 0 12px 32px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.04);
+
+    --grad-hero: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #0f172a 100%);
+    --grad-accent: linear-gradient(135deg, #2563eb, #7c3aed);
+    --grad-warm: linear-gradient(135deg, #f59e0b, #ef4444);
+  }
+
+  /* -- Dark mode -- warm slate, not black -- */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #171923;
+      --surface: #1e2133;
+      --ink: #eef0f6;
+      --ink-2: #c9cdd8;
+      --ink-3: #8b90a0;
+      --ink-4: #5c6178;
+      --ink-5: #363b50;
+      --border: #2a2e42;
+      --border-light: #222538;
+      --accent-soft: #1a2450;
+      --rose-soft: #35182a;
+      --amber-soft: #30250e;
+      --emerald-soft: #0e2a20;
+      --violet-soft: #231840;
+    }
+    .hero { background: linear-gradient(135deg, #0d0f1a 0%, #1a1f35 50%, #0d0f1a 100%); }
+    .sticky-nav { background: rgba(23,25,35,0.92); }
+    .why-box { background: var(--border); }
+    .play { border-color: var(--border); }
+    .rel { border-top-color: var(--border); }
+    .rel:hover { border-top-color: var(--accent); }
+    .story code, .play code { background: var(--border); }
+    .lead-story .why-box { background: var(--border); }
+    .lead-story code { background: var(--border); }
+    .big-idea-body { background: #131525; }
+    .big-idea-header { background: linear-gradient(135deg, #0d0f1a, #1a1f35); }
+    .share-cta { border-color: var(--border); }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+
+  /* -- READING PROGRESS BAR -- */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--grad-accent);
+    z-index: 1000;
+    transition: width 0.1s linear;
+  }
+
+  /* -- STICKY NAV -- */
+  .sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 999;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    padding: 0 24px;
+  }
+  .sticky-nav.visible { transform: translateY(0); }
+  @media (prefers-color-scheme: dark) {
+    .sticky-nav { background: rgba(23,25,35,0.92); }
+  }
+  .sticky-nav-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+  }
+  .sticky-nav .nav-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.3px;
+  }
+  .sticky-nav .nav-links {
+    display: flex;
+    gap: 6px;
+  }
+  .sticky-nav .nav-links a {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-3);
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    letter-spacing: 0.2px;
+  }
+  .sticky-nav .nav-links a:hover {
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+  @media (max-width: 600px) {
+    .sticky-nav .nav-links { display: none; }
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px 100px;
+  }
+
+  /* ═══════════════════════════════
+     HERO
+     ═══════════════════════════════ */
+  .hero {
+    background: var(--grad-hero);
+    margin: 0 -24px;
+    padding: 64px 48px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 25% 40%, rgba(37,99,235,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 75% 60%, rgba(124,58,237,0.1) 0%, transparent 45%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #60a5fa;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero-eyebrow .dot {
+    width: 6px;
+    height: 6px;
+    background: #60a5fa;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 52px;
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: -1.5px;
+    line-height: 1.05;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .hero .tagline {
+    font-size: 16px;
+    color: #94a3b8;
+    font-weight: 400;
+    line-height: 1.5;
+    position: relative;
+  }
+  .hero .date {
+    margin-top: 28px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #64748b;
+    position: relative;
+  }
+
+  /* ═══════════════════════════════
+     TL;DR + TOC
+     ═══════════════════════════════ */
+  .tldr-toc {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: -32px;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 600px) {
+    .tldr-toc { grid-template-columns: 1fr; }
+  }
+
+  .tldr {
+    background: var(--surface);
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 24px 24px 20px;
+    box-shadow: var(--shadow-lg);
+  }
+  .tldr-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .tldr ul {
+    list-style: none;
+  }
+  .tldr li {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.55;
+    padding: 7px 0;
+    padding-left: 20px;
+    position: relative;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .tldr li:last-child { border-bottom: none; padding-bottom: 0; }
+  .tldr li:first-child { padding-top: 0; }
+  .tldr li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .tldr li:first-child::before { top: 7px; }
+  .tldr li:nth-child(1)::before { background: var(--rose); }
+  .tldr li:nth-child(2)::before { background: var(--accent); }
+  .tldr li:nth-child(3)::before { background: var(--amber); }
+  .tldr li strong { color: var(--ink); font-weight: 700; }
+
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 24px 20px;
+    box-shadow: var(--shadow-lg);
+  }
+  .toc-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    margin-bottom: 14px;
+  }
+  .toc ul { list-style: none; }
+  .toc li { border-bottom: 1px solid var(--border-light); }
+  .toc li:last-child { border-bottom: none; }
+  .toc a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 0;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-2);
+    transition: color 0.2s;
+  }
+  .toc a:hover { color: var(--accent); }
+  .toc .toc-icon {
+    font-size: 14px;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .toc .toc-arrow {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--ink-5);
+    transition: color 0.2s, transform 0.2s;
+  }
+  .toc a:hover .toc-arrow { color: var(--accent); transform: translateX(2px); }
+
+  /* ═══════════════════════════════
+     FULL-BLEED TINTED BANDS
+     ═══════════════════════════════ */
+  .band {
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    padding-left: calc(50vw - 50%);
+    padding-right: calc(50vw - 50%);
+    padding-top: 16px;
+    padding-bottom: 24px;
+  }
+  .band-cool {
+    background: #f5f7fb;
+  }
+  .band-warm {
+    background: #faf8f5;
+  }
+  @media (prefers-color-scheme: dark) {
+    .band-cool { background: #161829; }
+    .band-warm { background: #1c1a1e; }
+  }
+
+  /* ═══════════════════════════════
+     SECTION HEADERS
+     ═══════════════════════════════ */
+  .sec {
+    margin-top: 64px;
+  }
+  .sec-header {
+    margin-bottom: 32px;
+  }
+  .sec-header .sec-eyebrow {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .sec-header h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.8px;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .sec-header .sec-rule {
+    width: 48px;
+    height: 3px;
+    border-radius: 2px;
+  }
+
+  /* ═══════════════════════════════
+     LEAD STORY (hero card)
+     ═══════════════════════════════ */
+  .lead-story {
+    background: var(--surface);
+    border-radius: 20px;
+    padding: 36px 36px 32px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-light);
+    border-left: 5px solid var(--rose);
+  }
+  .lead-story .lead-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--rose);
+    padding: 5px 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+  }
+  .lead-story .lead-num {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 96px;
+    font-weight: 400;
+    position: absolute;
+    right: 28px;
+    top: 12px;
+    color: rgba(225,29,72,0.07);
+    line-height: 1;
+    pointer-events: none;
+  }
+  @media (prefers-color-scheme: dark) {
+    .lead-story .lead-num { color: rgba(225,29,72,0.12); }
+  }
+  .lead-story h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    max-width: 85%;
+  }
+  .lead-story .lede {
+    font-size: 15px;
+    color: var(--ink-2);
+    line-height: 1.75;
+  }
+  .lead-story code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    background: var(--border-light);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .lead-story .why-box {
+    margin-top: 20px;
+    background: var(--border-light);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .lead-story .cite {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--ink-4);
+  }
+  .lead-story .cite a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  /* ═══════════════════════════════
+     STORY CARDS (2-5)
+     ═══════════════════════════════ */
+  .stories-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 600px) {
+    .stories-grid { grid-template-columns: 1fr; }
+  }
+
+  .story {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 24px 24px 20px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.25s, transform 0.15s;
+  }
+  .story:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .story::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+  }
+  .story.c-blue::before { background: var(--accent); }
+  .story.c-green::before { background: var(--emerald); }
+  .story.c-amber::before { background: var(--amber); }
+  .story.c-violet::before { background: var(--violet); }
+
+  .story .story-num {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--border);
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 4px;
+  }
+  .story .badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+  }
+  .badge-blue { color: #1e40af; background: var(--accent-soft); }
+  .badge-green { color: #065f46; background: var(--emerald-soft); }
+  .badge-amber { color: #92400e; background: var(--amber-soft); }
+  .badge-violet { color: #5b21b6; background: var(--violet-soft); }
+  .badge-rose { color: #9f1239; background: var(--rose-soft); }
+
+  .story h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.2px;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .story .lede {
+    font-size: 13px;
+    color: var(--ink-3);
+    line-height: 1.65;
+  }
+  .story code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    background: var(--border-light);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+  .story .cite {
+    margin-top: 12px;
+    font-size: 11px;
+    color: var(--ink-4);
+  }
+  .story .cite a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .story .cite a:hover { text-decoration: underline; }
+
+  .why-box {
+    margin-top: 12px;
+    background: var(--border-light);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .why-box .why-label {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    margin-bottom: 4px;
+  }
+  .why-box p {
+    font-size: 12.5px;
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+
+  /* ═══════════════════════════════
+     SIGNALS
+     ═══════════════════════════════ */
+  .signal {
+    display: flex;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-light);
+    align-items: flex-start;
+  }
+  .signal:last-child { border-bottom: none; }
+  .signal-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .signal-body { flex: 1; }
+  .signal-body h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 4px;
+  }
+  .signal-body p {
+    font-size: 13px;
+    color: var(--ink-3);
+    line-height: 1.6;
+  }
+  .signal-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .signal-meta a {
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .signal-meta a:hover { text-decoration: underline; }
+
+  /* HN Points Bar */
+  .hn-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--amber);
+  }
+  .hn-bar .bar-track {
+    width: 48px;
+    height: 4px;
+    background: var(--amber-soft);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .hn-bar .bar-fill {
+    height: 100%;
+    background: var(--amber);
+    border-radius: 2px;
+  }
+
+  /* ═══════════════════════════════
+     RELEASES
+     ═══════════════════════════════ */
+  .releases {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 600px) { .releases { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 400px) { .releases { grid-template-columns: 1fr; } }
+  .rel {
+    background: var(--surface);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    padding: 18px 18px 16px;
+    border: 1px solid var(--border-light);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .rel:hover { border-color: var(--accent); box-shadow: var(--shadow-md); }
+  .rel h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .rel p {
+    font-size: 11.5px;
+    color: var(--ink-3);
+    line-height: 1.5;
+  }
+  .rel a {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .rel a:hover { text-decoration: underline; }
+
+  /* ═══════════════════════════════
+     BUILDERS
+     ═══════════════════════════════ */
+  .builders-row {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 4px 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .builders-row::-webkit-scrollbar { display: none; }
+
+  .builder {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 22px 20px 18px;
+    min-width: 200px;
+    max-width: 220px;
+    flex-shrink: 0;
+    text-align: center;
+    transition: box-shadow 0.2s, transform 0.15s;
+  }
+  .builder:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .builder-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 22px;
+    color: #fff;
+    margin: 0 auto 12px;
+  }
+  .builder h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .builder p {
+    font-size: 12px;
+    color: var(--ink-3);
+    line-height: 1.5;
+  }
+  .builder a {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  /* ═══════════════════════════════
+     PLAYBOOK
+     ═══════════════════════════════ */
+  .play {
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    padding: 28px 28px 24px;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .play::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--grad-accent);
+  }
+  .play-step {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .play h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 10px;
+    letter-spacing: -0.2px;
+  }
+  .play p {
+    font-size: 14px;
+    color: var(--ink-2);
+    line-height: 1.7;
+  }
+  .play code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    background: var(--border-light);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .play pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin: 14px 0 4px;
+    overflow-x: auto;
+    line-height: 1.65;
+  }
+  .play pre .cm { color: #64748b; }
+  .play pre .k { color: #93c5fd; }
+  .play pre .v { color: #86efac; }
+
+  /* ═══════════════════════════════
+     BIG IDEA
+     ═══════════════════════════════ */
+  .big-idea {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  .big-idea-header {
+    background: var(--grad-hero);
+    padding: 36px 36px 0;
+    position: relative;
+  }
+  .big-idea-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top right, rgba(37,99,235,0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .big-idea-header .bi-label {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fbbf24;
+    position: relative;
+    margin-bottom: 14px;
+  }
+  .big-idea-header h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 34px;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    padding-bottom: 32px;
+    position: relative;
+  }
+  .big-idea-body {
+    background: #0f172a;
+    padding: 32px 36px 36px;
+  }
+  .big-idea-body p {
+    font-size: 15px;
+    color: #cbd5e1;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .big-idea-body strong { color: #f1f5f9; }
+  .big-idea-body .pullquote {
+    margin: 28px 0;
+    padding: 20px 24px;
+    background: rgba(255,255,255,0.03);
+    border-left: 3px solid #3b82f6;
+    border-radius: 0 10px 10px 0;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 20px;
+    color: #e2e8f0;
+    line-height: 1.45;
+    font-style: italic;
+  }
+
+  /* ═══════════════════════════════
+     SHARE CTA
+     ═══════════════════════════════ */
+  .share-cta {
+    margin-top: 48px;
+    background: var(--surface);
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    text-align: center;
+  }
+  .share-cta h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .share-cta p {
+    font-size: 14px;
+    color: var(--ink-3);
+    margin-bottom: 18px;
+  }
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--accent);
+    border: none;
+    padding: 12px 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    font-family: inherit;
+  }
+  .share-btn:hover { background: #1d4ed8; transform: translateY(-1px); }
+  .share-btn:active { transform: translateY(0); }
+  .share-btn.copied { background: var(--emerald); }
+
+  /* ═══════════════════════════════
+     FOOTER
+     ═══════════════════════════════ */
+  .footer {
+    margin-top: 48px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .footer p {
+    font-size: 13px;
+    color: var(--ink-4);
+    margin-bottom: 4px;
+  }
+  .footer .next-pill {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 8px 22px;
+    border-radius: 100px;
+  }
+  .footer .credit {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--ink-5);
+  }
+  .footer .credit a { color: var(--ink-4); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav class="sticky-nav" id="stickyNav">
+  <div class="sticky-nav-inner">
+    <div class="nav-title">AI Trends Scout</div>
+    <div class="nav-links">
+      <a href="#stories">Stories</a>
+      <a href="#signals">Signals</a>
+      <a href="#releases">Releases</a>
+      <a href="#builders">Builders</a>
+      <a href="#playbook">Playbook</a>
+      <a href="#bigidea">Big Idea</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <header class="hero" id="hero">
+    <div class="hero-eyebrow"><span class="dot"></span> Issue 06 &middot; Weekly</div>
+    <h1>AI Trends Scout</h1>
+    <div class="tagline">The sharpest AI use cases for builders.<br>No fluff. Every link verified.</div>
+    <div class="date">Sunday, April 27, 2026</div>
+  </header>
+
+  <!-- TL;DR + TOC -->
+  <div class="tldr-toc">
+    <div class="tldr">
+      <div class="tldr-label">30-Second Brief</div>
+      <ul>
+        <li><strong>Claude Design ships.</strong> PM briefs to interactive prototypes in one conversation, no designer required.</li>
+        <li><strong>Opus 4.7 costs 35&ndash;47% more.</strong> Same sticker price, new tokenizer, bigger invoices. Audit now.</li>
+        <li><strong>SpaceX bets $60B on Cursor.</strong> The compute race for AI coding tools is now a platform war.</li>
+      </ul>
+    </div>
+    <div class="toc">
+      <div class="toc-label">In This Issue</div>
+      <ul>
+        <li><a href="#stories"><span class="toc-icon">&#9733;</span> Top Stories <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#signals"><span class="toc-icon">&#128225;</span> Signals &amp; Buzz <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#releases"><span class="toc-icon">&#128230;</span> New Releases <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#builders"><span class="toc-icon">&#128736;</span> Builder Spotlights <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#playbook"><span class="toc-icon">&#9889;</span> Try This Week <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#bigidea"><span class="toc-icon">&#128161;</span> The Big Idea <span class="toc-arrow">&rarr;</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TOP STORIES -->
+  <div class="sec" id="stories">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--rose);">Top Stories</div>
+      <h2>What Happened This Week</h2>
+      <div class="sec-rule" style="background:var(--rose);"></div>
+    </div>
+
+    <!-- LEAD STORY -->
+    <div class="lead-story">
+      <div class="lead-num">01</div>
+      <span class="lead-badge">Game Changer</span>
+      <h3>Claude Design: From PM Brief to Interactive Prototype in One Conversation</h3>
+      <p class="lede">Anthropic Labs shipped Claude Design on April 17, powered by Opus 4.7. It accepts text prompts, uploaded docs (DOCX, PPTX, XLSX), or a live website URL, then produces interactive prototypes, slide decks, and one-pagers. The interesting bit: it reads your codebase and applies your design system automatically. Output is on-brand without manual cleanup. Finished designs hand off directly to Claude Code. Export as shareable URLs, PDF, PPTX, standalone HTML, or Canva-editable files. Canva partnership is included at launch.</p>
+      <div class="why-box">
+        <div class="why-label">Why This Matters for Builders</div>
+        <p>This collapses the PM-to-designer-to-engineer handoff cycle. A PM can go from rough feature idea to interactive mockup to functional prototype without leaving the Claude ecosystem. Particularly powerful for validating ideas before committing engineering time. Also a real unlock for founders without a design background, who previously had no good fast path to polished visuals.</p>
+      </div>
+      <div class="cite"><a href="https://www.anthropic.com/news/claude-design-anthropic-labs">Anthropic &mdash; Introducing Claude Design</a> &middot; <a href="https://techcrunch.com/2026/04/17/anthropic-launches-claude-design-a-new-product-for-creating-quick-visuals/">TechCrunch</a></div>
+    </div>
+
+    <!-- STORIES 2-5 GRID -->
+    <div class="stories-grid">
+      <div class="story c-amber">
+        <div class="story-num">02</div>
+        <span class="badge badge-amber">Cost Alert</span>
+        <h3>Opus 4.7 Costs 35&ndash;47% More Than the Price Tag Suggests</h3>
+        <p class="lede">Anthropic held the headline rate at $5/$25 per million tokens, unchanged from 4.6. But a new tokenizer splits identical text into significantly more tokens. "Schedule the meeting for next Tuesday at 2pm" now tokenizes to 15 tokens vs. 11. Multiple teams report invoice spikes of 20&ndash;47% on the same workloads.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>Any agent running Opus 4.7 at scale needs a cost audit. Re-calibrate your cost controls. The old numbers are wrong for the new model.</p>
+        </div>
+        <div class="cite"><a href="https://www.finout.io/blog/claude-opus-4.7-pricing-the-real-cost-story-behind-the-unchanged-price-tag">Finout</a> &middot; <a href="https://www.agent-wars.com/news/2026-04-20-claude-token-counter-now-with-model-comparisons">Agent Wars</a></div>
+      </div>
+
+      <div class="story c-blue">
+        <div class="story-num">03</div>
+        <span class="badge badge-blue">Architecture</span>
+        <h3>Four-Agent Orchestration: Feature in 11 Hours, Not 3 Days</h3>
+        <p class="lede">The multi-agent pattern getting the most traction: Architect decomposes the task, Builder and Tester run in parallel via worktree isolation (no merge conflicts), Reviewer analyzes the merged output. A solo founder used this to ship a complete Stripe billing integration in 11 hours. Previously estimated 3 days with a 3-person team.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>Worktree isolation is the unlock. Named subagents mean you resume specific roles mid-session. This is what "one-person startup at team scale" actually looks like in practice.</p>
+        </div>
+        <div class="cite"><a href="https://lushbinary.com/blog/claude-code-agent-teams-multi-agent-development-guide/">Lushbinary Multi-Agent Guide</a></div>
+      </div>
+
+      <div class="story c-violet">
+        <div class="story-num">04</div>
+        <span class="badge badge-violet">New Command</span>
+        <h3>/powerup and /team-onboarding Land in Claude Code</h3>
+        <p class="lede">The April changelog brought <code>/powerup</code>, an interactive tutorial covering hooks, MCP protocol, context management, and subagent orchestration in your live session. Paired with <code>/team-onboarding</code>, which auto-generates a personalized quick-start guide based on your actual local usage history for new collaborators.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>The hooks module in particular unlocks automation patterns most users haven't configured. Run it before onboarding a teammate. The output is surprisingly tailored.</p>
+        </div>
+        <div class="cite"><a href="https://code.claude.com/docs/en/changelog">Claude Code Changelog</a></div>
+      </div>
+
+      <div class="story c-green">
+        <div class="story-num">05</div>
+        <span class="badge badge-green">M&amp;A</span>
+        <h3>SpaceX Has Option to Buy Cursor for $60 Billion</h3>
+        <p class="lede">April 21: SpaceX struck a deal giving it either a $10B collaborative arrangement or a full $60B acquisition option on Cursor. The deal grants Cursor access to Colossus (equivalent to 1 million Nvidia H100s) to train proprietary models. Why: Cursor depends on Claude and GPT while competing with Anthropic and OpenAI directly.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>This is the clearest signal that AI coding tools are consolidating around compute. The "use the best model available" strategy has a ceiling. Watch whether Cursor's Claude/GPT access terms change in Q3.</p>
+        </div>
+        <div class="cite"><a href="https://techcrunch.com/2026/04/21/spacex-is-working-with-cursor-and-has-an-option-to-buy-the-startup-for-60-billion/">TechCrunch</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIGNALS -->
+  <div class="band band-cool">
+  <div class="sec" id="signals">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--amber);">Signals &amp; Buzz</div>
+      <h2>What People Are Talking About</h2>
+      <div class="sec-rule" style="background:var(--amber);"></div>
+    </div>
+
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--rose-soft);">&#128274;</div>
+      <div class="signal-body">
+        <h3>Critical MCP Design Flaw Exposes 200,000 Servers to RCE</h3>
+        <p>Disclosed April 15 by OX Security: a systemic architectural vulnerability in Anthropic's official MCP SDKs (Python, TypeScript, Java, Rust) enables arbitrary remote code execution. Approximately 200,000 servers and 150M+ downloads affected. The Register called it a "design flaw" rather than a patchable bug. Architectural remediation required. CSA published a technical research note April 23 on the STDIO transport interface vector.</p>
+        <div class="signal-meta">
+          <a href="https://thehackernews.com/2026/04/anthropic-mcp-design-vulnerability.html">The Hacker News</a>
+          <a href="https://www.ox.security/blog/the-mother-of-all-ai-supply-chains-critical-systemic-vulnerability-at-the-core-of-the-mcp/">OX Security</a>
+          <div class="hn-bar">
+            <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+            Active thread
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--amber-soft);">&#128200;</div>
+      <div class="signal-body">
+        <h3>Opus 4.7 Tokenizer Controversy Generates HackerNews Heat</h3>
+        <p>The hidden cost increase in Opus 4.7 kicked off a heavy HackerNews thread around April 20. Community conclusion: effective price increase is "around 40%" at identical per-token pricing. Secondary concern: token counting tools calibrated on 4.6 will underestimate costs on 4.7, silently overflowing budgets. Several teams reported unexpected invoice spikes before identifying the tokenizer as the root cause.</p>
+        <div class="signal-meta">
+          <a href="https://www.agent-wars.com/news/2026-04-20-claude-token-counter-now-with-model-comparisons">Agent Wars Analysis</a>
+          <a href="https://www.cloudzero.com/blog/claude-opus-4-7-pricing/">CloudZero</a>
+          <div class="hn-bar">
+            <div class="bar-track"><div class="bar-fill" style="width:78%"></div></div>
+            High engagement
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--emerald-soft);">&#127881;</div>
+      <div class="signal-body">
+        <h3>95% AI-Generated Code in the Latest YC Batch</h3>
+        <p>The latest Y Combinator batch features startups where 95% of their codebase is AI-generated. Debate: what "founding engineer" means when the primary artifact is prompt engineering and agent orchestration, not handwritten code. Counter-take gaining ground: the bottleneck shifted to product judgment, which may favor founders with strong product instincts over pure engineers.</p>
+        <div class="signal-meta">
+          <a href="https://superframeworks.com/articles/vibe-coding-tipping-point-what-founders-need">Superframeworks</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--accent-soft);">&#127970;</div>
+      <div class="signal-body">
+        <h3>Anthropic's Triple Launch on April 9: Managed Agents + Cowork GA</h3>
+        <p>Three simultaneous announcements: Claude Managed Agents entered public beta (cloud-hosted agent APIs, no infrastructure to manage), Claude Cowork reached GA with RBAC, SCIM, OpenTelemetry audit logs, and Zoom MCP Connector, and Claude Code received several updates. Commentary: Anthropic is no longer a developer tool that enterprises happen to use. This is a direct play for the enterprise middleware budget.</p>
+        <div class="signal-meta">
+          <a href="https://claude.com/blog/claude-managed-agents">Anthropic Announcement</a>
+          <a href="https://open-techstack.com/blog/claude-cowork-general-availability-2026/">Open TechStack</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div><!-- /band-cool -->
+
+  <!-- RELEASES -->
+  <div class="sec" id="releases">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--emerald);">New Releases</div>
+      <h2>What Shipped</h2>
+      <div class="sec-rule" style="background:var(--emerald);"></div>
+    </div>
+
+    <div class="releases">
+      <div class="rel">
+        <h4>Claude Opus 4.7</h4>
+        <p>New flagship with improved reasoning and vision. Same sticker price, 20&ndash;47% higher effective cost via new tokenizer. Powers Claude Design.</p>
+        <a href="https://www.cnbc.com/2026/04/16/anthropic-claude-opus-4-7-model-mythos.html">CNBC &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Claude Design</h4>
+        <p>Anthropic Labs research preview. Prompts to prototypes, slides, one-pagers. Canva export. Opus 4.7 powered.</p>
+        <a href="https://www.anthropic.com/news/claude-design-anthropic-labs">Anthropic &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Managed Agents Beta</h4>
+        <p>Cloud-hosted agent deployment API. Handles infra; teams focus on logic. Composable agent definitions.</p>
+        <a href="https://claude.com/blog/claude-managed-agents">Anthropic &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Claude Cowork GA</h4>
+        <p>RBAC, SCIM, OpenTelemetry audit, Zoom MCP Connector. All paid tiers. macOS + Windows.</p>
+        <a href="https://open-techstack.com/blog/claude-cowork-general-availability-2026/">Open TechStack &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Codex Desktop Update</h4>
+        <p>Computer use (background Mac), in-app browser, image gen, 90+ plugins, memory preview. GPT-5.5 powered.</p>
+        <a href="https://smartscope.blog/en/generative-ai/chatgpt/codex-desktop-major-update-april-2026/">Smartscope &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>GPT-5.5</h4>
+        <p>OpenAI, April 23&ndash;24. Improved agentic coding, computer use, scientific research. API + ChatGPT.</p>
+        <a href="https://openai.com/index/introducing-gpt-5-5/">OpenAI &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Cursor 3</h4>
+        <p>Rebuilt around parallel agents, cloud handoff, Design Mode. $20/mo Pro. xAI compute partnership.</p>
+        <a href="https://cursor.com/blog/cursor-3">Cursor &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>NO_FLICKER Mode</h4>
+        <p>Set <code>CLAUDE_CODE_NO_FLICKER=1</code>. Ships in v2.1.89+. Was the most-upvoted open issue for over a year.</p>
+        <a href="https://piunikaweb.com/2026/04/02/anthropic-no-flicker-mode-claude-code/">Piunika Web &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Claude Code /powerup</h4>
+        <p>Interactive tutorial for hooks, MCP, context, subagents. Runs in your live session. Ships alongside /team-onboarding.</p>
+        <a href="https://code.claude.com/docs/en/changelog">Changelog &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUILDERS -->
+  <div class="band band-warm">
+  <div class="sec" id="builders">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--violet);">Builder Spotlights</div>
+      <h2>Who's Building What</h2>
+      <div class="sec-rule" style="background:var(--violet);"></div>
+    </div>
+
+    <div class="builders-row">
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#e11d48,#be123c);">B</div>
+        <h3>Billing in 11 Hours</h3>
+        <p>Solo founder: four-agent pattern (Architect, Builder, Tester, Reviewer) shipped Stripe billing integration solo. Most-upvoted Claude Code workflow share in April.</p>
+        <a href="https://www.reddit.com/r/ClaudeAI">r/ClaudeAI &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#3b82f6,#6366f1);">N</div>
+        <h3>One-Person Unicorn</h3>
+        <p>NXCode's framework for solo founders: context engineering + agent orchestration as the primary bottleneck, not code production. Templates included.</p>
+        <a href="https://www.nxcode.io/resources/news/one-person-unicorn-context-engineering-solo-founder-guide-2026">NXCode &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#059669,#047857);">G</div>
+        <h3>GetBeam Orchestration</h3>
+        <p>Practical guide for running multiple coding agents as a solo developer. Worked examples with actual Claude Code Task tool syntax. Most replicable write-up of the pattern.</p>
+        <a href="https://getbeam.dev/blog/multi-agent-orchestration-practical-guide.html">GetBeam &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#d97706,#b45309);">S</div>
+        <h3>Syncmars AI Employee</h3>
+        <p>Founder documented transitioning from trigger-action automation to goal-oriented AI delegation. Agents as ongoing autonomous roles, not one-shot tasks.</p>
+        <a href="https://www.syncmars.com/transmissions/hiring-my-first-ai-employee">Syncmars &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background:linear-gradient(135deg,#6366f1,#4f46e5);">J</div>
+        <h3>5 Vibe Coding Wins</h3>
+        <p>John Ellison profiles 5 solo founders turning Claude Code into revenue. Key insight: constrain scope, keep the app in as few files as possible to maximize context utility.</p>
+        <a href="https://iamjohnellison.substack.com/p/the-vibe-coding-wave-is-here-5-builders">Substack &rarr;</a>
+      </div>
+    </div>
+  </div>
+  </div><!-- /band-warm -->
+
+  <!-- PLAYBOOK -->
+  <div class="sec" id="playbook">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--accent);">Try This Week</div>
+      <h2>Actionable Techniques</h2>
+      <div class="sec-rule" style="background:var(--accent);"></div>
+    </div>
+
+    <div class="play">
+      <div class="play-step">Technique 01</div>
+      <h3>Run /powerup Before Your Next Session</h3>
+      <p>Type <code>/powerup</code> in a Claude Code session and work through the hooks module. The key pattern most builders miss: use a <code>PostToolUse</code> hook to auto-run tests after every file write, turning Claude Code into a continuous test-driven loop with no additional orchestration. Takes about 20 minutes to configure; pays back on the first long session. Run <code>/team-onboarding</code> before adding a collaborator. The generated guide is surprisingly personalized to your actual usage patterns.</p>
+    </div>
+
+    <div class="play">
+      <div class="play-step">Technique 02</div>
+      <h3>Audit Your Opus 4.7 Token Costs Before Next Billing Cycle</h3>
+      <p>Grab your 10 most common Claude Code prompts and run them through Anthropic's token counter with both Opus 4.6 and 4.7 settings. Calculate the ratio. If it's above 1.2x, review which tasks actually need Opus 4.7 versus Sonnet 4.6. The practical heuristic emerging from the community: use Opus 4.7 for architectural decisions and complex multi-step reasoning; route Sonnet 4.6 for file edits, test generation, and anything that runs in a loop. Set model aliases in your CLAUDE.md or switch via <code>/model</code> inline.</p>
+      <pre><span class="cm"># In CLAUDE.md -- model routing by task type</span>
+<span class="k">default_model</span>: <span class="v">claude-sonnet-4-6</span>
+<span class="k">reasoning_model</span>: <span class="v">claude-opus-4-7</span>
+
+<span class="cm"># Use reasoning model for: architecture, security review,</span>
+<span class="cm"># complex debugging. Use default for: edits, tests, docs.</span></pre>
+    </div>
+
+    <div class="play">
+      <div class="play-step">Technique 03</div>
+      <h3>Try the Four-Agent Pattern on Your Next Feature</h3>
+      <p>Instead of one long Claude Code session for your next feature, decompose into four named subagents. Define them in your CLAUDE.md: <strong>Architect</strong> (reads spec, produces plan), <strong>Builder</strong> (implements per plan, worktree isolated), <strong>Tester</strong> (writes tests against spec, separate worktree), <strong>Reviewer</strong> (security + edge case analysis on merged output). Run Architect first, then Builder and Tester in parallel, then Reviewer. Worktree isolation means Builder and Tester never conflict. Reviewer catches what neither implementer thought to test. This is the most concrete replication of the "11-hour billing feature" workflow.</p>
+      <pre><span class="cm">// Builder agent (worktree isolated):</span>
+{ <span class="k">"name"</span>: <span class="v">"builder"</span>,
+  <span class="k">"isolation"</span>: <span class="v">"worktree"</span>,
+  <span class="k">"prompt"</span>: <span class="v">"Implement per architect plan"</span> }
+
+<span class="cm">// Tester agent (simultaneous, own worktree):</span>
+{ <span class="k">"name"</span>: <span class="v">"tester"</span>,
+  <span class="k">"isolation"</span>: <span class="v">"worktree"</span>,
+  <span class="k">"prompt"</span>: <span class="v">"Write tests against spec"</span> }</pre>
+    </div>
+  </div>
+
+  <!-- BIG IDEA -->
+  <div class="sec" id="bigidea">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--amber);">The Big Idea</div>
+      <h2>Connecting the Dots</h2>
+      <div class="sec-rule" style="background:var(--grad-warm);"></div>
+    </div>
+
+    <div class="big-idea">
+      <div class="big-idea-header">
+        <div class="bi-label">Editorial</div>
+        <h3>The Agentic Middleware Market Is Forming Right Now, and It Will Be Worth More Than the Models</h3>
+      </div>
+      <div class="big-idea-body">
+        <p>Look at what happened this week in aggregate: Anthropic shipped Managed Agents (cloud-hosted agent infrastructure), Claude Cowork went GA with enterprise controls (RBAC, SCIM, audit logs), OpenAI expanded Codex with computer use and 90+ plugins, and SpaceX bet $60 billion that Cursor's distribution moat justifies independent model development.</p>
+        <p>None of these moves are about making the underlying model smarter. They are all about <strong>controlling the layer between the model and the enterprise workflow.</strong></p>
+        <div class="pullquote">The base models are the compute layer. The managed agent infrastructure (trust, audit, routing, tool registry) is where the enterprise budget will land and stay.</div>
+        <p>The pattern rhymes with cloud infrastructure circa 2012&ndash;2016. AWS, Azure, and GCP weren't winning on raw compute performance. They were winning on managed services, IAM, audit trails, and integrations. The IaaS layer commoditized; the managed services layer became the durable margin.</p>
+        <p>AI is following the same arc. The base models are increasingly commoditized and within reach of well-funded challengers. The managed agent infrastructure (the trust layer, the audit trail, RBAC, model routing, the tool registry) <strong>that is where enterprise budget will land and stay.</strong></p>
+        <p>For builders: the opportunity is not to build another coding tool. The opportunity is to build the workflow integrations that sit between Claude Managed Agents and specific enterprise contexts (the Salesforce connector, the Jira orchestrator, the compliance audit bridge) before the platform players get there. These are the middleware businesses that will be worth acquiring in 18&ndash;24 months. Managed Agents is in public beta. The enterprise integration surface is huge and mostly untouched. The window is open.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHARE CTA -->
+  <div class="share-cta">
+    <h3>Found this useful?</h3>
+    <p>Share with a builder who should see this.</p>
+    <button class="share-btn" onclick="copyLink(this)">&#128279; Copy Link</button>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>AI Trends Scout &middot; Issue 06 &middot; April 27, 2026</p>
+    <p>Curated by Claude Code. Every source verified via live search.</p>
+    <div class="next-pill">Next issue: Monday, May 4 &rarr;</div>
+    <p style="margin-top:12px;"><img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Frajgupta-web.github.io%2Fai-trends-scout%2Fdigest-2026-04-27&label=readers&countColor=%232563eb" alt="reader count"></p>
+    <p class="credit">Built by Raj Gupta with <a href="https://claude.ai/code">Claude Code</a></p>
+  </div>
+
+</div>
+
+<script>
+// Reading progress bar
+const progressBar = document.getElementById('progressBar');
+const stickyNav = document.getElementById('stickyNav');
+const hero = document.getElementById('hero');
+
+function updateProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = Math.min((scrollTop / docHeight) * 100, 100);
+  progressBar.style.width = progress + '%';
+
+  // Show/hide sticky nav
+  const heroBottom = hero.offsetTop + hero.offsetHeight;
+  if (scrollTop > heroBottom) {
+    stickyNav.classList.add('visible');
+  } else {
+    stickyNav.classList.remove('visible');
+  }
+}
+
+window.addEventListener('scroll', updateProgress, { passive: true });
+updateProgress();
+
+// Copy link
+function copyLink(btn) {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    btn.classList.add('copied');
+    btn.innerHTML = '&#10003; Copied!';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = '&#128279; Copy Link';
+    }, 2000);
+  });
+}
+</script>
+</body>
+</html>
