@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Trends Scout — May 4, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ═══════════════════════════════
+     DESIGN SYSTEM
+     ═══════════════════════════════ */
+  :root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --ink: #111111;
+    --ink-2: #333333;
+    --ink-3: #666666;
+    --ink-4: #999999;
+    --ink-5: #cccccc;
+    --border: #e5e5e5;
+    --border-light: #f0f0f0;
+
+    --accent: #2563eb;
+    --accent-soft: #eff6ff;
+    --rose: #e11d48;
+    --rose-soft: #fff1f2;
+    --amber: #d97706;
+    --amber-soft: #fffbeb;
+    --emerald: #059669;
+    --emerald-soft: #ecfdf5;
+    --violet: #7c3aed;
+    --violet-soft: #f5f3ff;
+
+    --radius: 16px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.03);
+    --shadow-lg: 0 12px 32px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.04);
+
+    --grad-hero: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #0f172a 100%);
+    --grad-accent: linear-gradient(135deg, #2563eb, #7c3aed);
+    --grad-warm: linear-gradient(135deg, #f59e0b, #ef4444);
+  }
+
+  /* -- Dark mode -- warm slate, not black -- */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #171923;
+      --surface: #1e2133;
+      --ink: #eef0f6;
+      --ink-2: #c9cdd8;
+      --ink-3: #8b90a0;
+      --ink-4: #5c6178;
+      --ink-5: #363b50;
+      --border: #2a2e42;
+      --border-light: #222538;
+      --accent-soft: #1a2450;
+      --rose-soft: #35182a;
+      --amber-soft: #30250e;
+      --emerald-soft: #0e2a20;
+      --violet-soft: #231840;
+    }
+    .hero { background: linear-gradient(135deg, #0d0f1a 0%, #1a1f35 50%, #0d0f1a 100%); }
+    .sticky-nav { background: rgba(23,25,35,0.92); }
+    .why-box { background: var(--border); }
+    .play { border-color: var(--border); }
+    .rel { border-top-color: var(--border); }
+    .rel:hover { border-top-color: var(--accent); }
+    .story code, .play code { background: var(--border); }
+    .lead-story .why-box { background: var(--border); }
+    .lead-story code { background: var(--border); }
+    .big-idea-body { background: #131525; }
+    .big-idea-header { background: linear-gradient(135deg, #0d0f1a, #1a1f35); }
+    .share-cta { border-color: var(--border); }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+
+  /* -- READING PROGRESS BAR -- */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--grad-accent);
+    z-index: 1000;
+    transition: width 0.1s linear;
+  }
+
+  /* -- STICKY NAV -- */
+  .sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 999;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    padding: 0 24px;
+  }
+  .sticky-nav.visible { transform: translateY(0); }
+  @media (prefers-color-scheme: dark) {
+    .sticky-nav { background: rgba(23,25,35,0.92); }
+  }
+  .sticky-nav-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+  }
+  .sticky-nav .nav-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.3px;
+  }
+  .sticky-nav .nav-links {
+    display: flex;
+    gap: 6px;
+  }
+  .sticky-nav .nav-links a {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-3);
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    letter-spacing: 0.2px;
+  }
+  .sticky-nav .nav-links a:hover {
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+  @media (max-width: 600px) {
+    .sticky-nav .nav-links { display: none; }
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px 100px;
+  }
+
+  /* ═══════════════════════════════
+     HERO
+     ═══════════════════════════════ */
+  .hero {
+    background: var(--grad-hero);
+    margin: 0 -24px;
+    padding: 64px 48px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 25% 40%, rgba(37,99,235,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 75% 60%, rgba(124,58,237,0.1) 0%, transparent 45%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #60a5fa;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero-eyebrow .dot {
+    width: 6px;
+    height: 6px;
+    background: #60a5fa;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 52px;
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: -1.5px;
+    line-height: 1.05;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .hero .tagline {
+    font-size: 16px;
+    color: #94a3b8;
+    font-weight: 400;
+    line-height: 1.5;
+    position: relative;
+  }
+  .hero .date {
+    margin-top: 28px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #64748b;
+    position: relative;
+  }
+
+  /* ═══════════════════════════════
+     TL;DR + TOC
+     ═══════════════════════════════ */
+  .tldr-toc {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: -32px;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 600px) {
+    .tldr-toc { grid-template-columns: 1fr; }
+  }
+
+  .tldr {
+    background: var(--surface);
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 24px 24px 20px;
+    box-shadow: var(--shadow-lg);
+  }
+  .tldr-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .tldr ul {
+    list-style: none;
+  }
+  .tldr li {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.55;
+    padding: 7px 0;
+    padding-left: 20px;
+    position: relative;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .tldr li:last-child { border-bottom: none; padding-bottom: 0; }
+  .tldr li:first-child { padding-top: 0; }
+  .tldr li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .tldr li:first-child::before { top: 7px; }
+  .tldr li:nth-child(1)::before { background: var(--rose); }
+  .tldr li:nth-child(2)::before { background: var(--accent); }
+  .tldr li:nth-child(3)::before { background: var(--amber); }
+  .tldr li strong { color: var(--ink); font-weight: 700; }
+
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 24px 20px;
+    box-shadow: var(--shadow-lg);
+  }
+  .toc-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    margin-bottom: 14px;
+  }
+  .toc ul { list-style: none; }
+  .toc li { border-bottom: 1px solid var(--border-light); }
+  .toc li:last-child { border-bottom: none; }
+  .toc a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 0;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-2);
+    transition: color 0.2s;
+  }
+  .toc a:hover { color: var(--accent); }
+  .toc .toc-icon {
+    font-size: 14px;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .toc .toc-arrow {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--ink-5);
+    transition: color 0.2s, transform 0.2s;
+  }
+  .toc a:hover .toc-arrow { color: var(--accent); transform: translateX(2px); }
+
+  /* ═══════════════════════════════
+     FULL-BLEED TINTED BANDS
+     ═══════════════════════════════ */
+  .band {
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    padding-left: calc(50vw - 50%);
+    padding-right: calc(50vw - 50%);
+    padding-top: 16px;
+    padding-bottom: 24px;
+  }
+  .band-cool {
+    background: #f5f7fb;
+  }
+  .band-warm {
+    background: #faf8f5;
+  }
+  @media (prefers-color-scheme: dark) {
+    .band-cool { background: #161829; }
+    .band-warm { background: #1c1a1e; }
+  }
+
+  /* ═══════════════════════════════
+     SECTION HEADERS
+     ═══════════════════════════════ */
+  .sec {
+    margin-top: 64px;
+  }
+  .sec-header {
+    margin-bottom: 32px;
+  }
+  .sec-header .sec-eyebrow {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .sec-header h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.8px;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .sec-header .sec-rule {
+    width: 48px;
+    height: 3px;
+    border-radius: 2px;
+  }
+
+  /* ═══════════════════════════════
+     LEAD STORY (hero card)
+     ═══════════════════════════════ */
+  .lead-story {
+    background: var(--surface);
+    border-radius: 20px;
+    padding: 36px 36px 32px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-light);
+    border-left: 5px solid var(--rose);
+  }
+  .lead-story .lead-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--rose);
+    padding: 5px 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+  }
+  .lead-story .lead-num {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 96px;
+    font-weight: 400;
+    position: absolute;
+    right: 28px;
+    top: 12px;
+    color: rgba(225,29,72,0.07);
+    line-height: 1;
+    pointer-events: none;
+  }
+  @media (prefers-color-scheme: dark) {
+    .lead-story .lead-num { color: rgba(225,29,72,0.12); }
+  }
+  .lead-story h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    max-width: 85%;
+  }
+  .lead-story .lede {
+    font-size: 15px;
+    color: var(--ink-2);
+    line-height: 1.75;
+  }
+  .lead-story code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    background: var(--border-light);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .lead-story .why-box {
+    margin-top: 20px;
+    background: var(--border-light);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .lead-story .cite {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--ink-4);
+  }
+  .lead-story .cite a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  /* ═══════════════════════════════
+     STORY CARDS (2-5)
+     ═══════════════════════════════ */
+  .stories-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 600px) {
+    .stories-grid { grid-template-columns: 1fr; }
+  }
+
+  .story {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 24px 24px 20px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.25s, transform 0.15s;
+  }
+  .story:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .story::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+  }
+  .story.c-blue::before { background: var(--accent); }
+  .story.c-green::before { background: var(--emerald); }
+  .story.c-amber::before { background: var(--amber); }
+  .story.c-violet::before { background: var(--violet); }
+
+  .story .story-num {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--border);
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 4px;
+  }
+  .story .badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+  }
+  .badge-blue { color: #1e40af; background: var(--accent-soft); }
+  .badge-green { color: #065f46; background: var(--emerald-soft); }
+  .badge-amber { color: #92400e; background: var(--amber-soft); }
+  .badge-violet { color: #5b21b6; background: var(--violet-soft); }
+  .badge-rose { color: #9f1239; background: var(--rose-soft); }
+
+  .story h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.2px;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .story .lede {
+    font-size: 13px;
+    color: var(--ink-3);
+    line-height: 1.65;
+  }
+  .story code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    background: var(--border-light);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+  .story .cite {
+    margin-top: 12px;
+    font-size: 11px;
+    color: var(--ink-4);
+  }
+  .story .cite a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .story .cite a:hover { text-decoration: underline; }
+
+  .why-box {
+    margin-top: 12px;
+    background: var(--border-light);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .why-box .why-label {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    margin-bottom: 4px;
+  }
+  .why-box p {
+    font-size: 12.5px;
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+
+  /* ═══════════════════════════════
+     SIGNALS
+     ═══════════════════════════════ */
+  .signal {
+    display: flex;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-light);
+    align-items: flex-start;
+  }
+  .signal:last-child { border-bottom: none; }
+  .signal-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .signal-body { flex: 1; }
+  .signal-body h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 4px;
+  }
+  .signal-body p {
+    font-size: 13px;
+    color: var(--ink-3);
+    line-height: 1.6;
+  }
+  .signal-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .signal-meta a {
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .signal-meta a:hover { text-decoration: underline; }
+
+  /* HN Points Bar */
+  .hn-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--amber);
+  }
+  .hn-bar .bar-track {
+    width: 48px;
+    height: 4px;
+    background: var(--amber-soft);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .hn-bar .bar-fill {
+    height: 100%;
+    background: var(--amber);
+    border-radius: 2px;
+  }
+
+  /* ═══════════════════════════════
+     RELEASES
+     ═══════════════════════════════ */
+  .releases {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 600px) { .releases { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 400px) { .releases { grid-template-columns: 1fr; } }
+  .rel {
+    background: var(--surface);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    padding: 18px 18px 16px;
+    border: 1px solid var(--border-light);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .rel:hover { border-color: var(--accent); box-shadow: var(--shadow-md); }
+  .rel h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .rel p {
+    font-size: 11.5px;
+    color: var(--ink-3);
+    line-height: 1.5;
+  }
+  .rel a {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .rel a:hover { text-decoration: underline; }
+
+  /* ═══════════════════════════════
+     BUILDERS
+     ═══════════════════════════════ */
+  .builders-row {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 4px 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .builders-row::-webkit-scrollbar { display: none; }
+
+  .builder {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 22px 20px 18px;
+    min-width: 200px;
+    max-width: 220px;
+    flex-shrink: 0;
+    text-align: center;
+    transition: box-shadow 0.2s, transform 0.15s;
+  }
+  .builder:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .builder-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 22px;
+    color: #fff;
+    margin: 0 auto 12px;
+  }
+  .builder h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .builder p {
+    font-size: 12px;
+    color: var(--ink-3);
+    line-height: 1.5;
+  }
+  .builder a {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  /* ═══════════════════════════════
+     PLAYBOOK
+     ═══════════════════════════════ */
+  .play {
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    padding: 28px 28px 24px;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .play::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--grad-accent);
+  }
+  .play-step {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .play h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 10px;
+    letter-spacing: -0.2px;
+  }
+  .play p {
+    font-size: 14px;
+    color: var(--ink-2);
+    line-height: 1.7;
+  }
+  .play code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    background: var(--border-light);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .play pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin: 14px 0 4px;
+    overflow-x: auto;
+    line-height: 1.65;
+  }
+  .play pre .cm { color: #64748b; }
+  .play pre .k { color: #93c5fd; }
+  .play pre .v { color: #86efac; }
+
+  /* ═══════════════════════════════
+     BIG IDEA
+     ═══════════════════════════════ */
+  .big-idea {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  .big-idea-header {
+    background: var(--grad-hero);
+    padding: 36px 36px 0;
+    position: relative;
+  }
+  .big-idea-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top right, rgba(37,99,235,0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .big-idea-header .bi-label {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fbbf24;
+    position: relative;
+    margin-bottom: 14px;
+  }
+  .big-idea-header h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 34px;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    padding-bottom: 32px;
+    position: relative;
+  }
+  .big-idea-body {
+    background: #0f172a;
+    padding: 32px 36px 36px;
+  }
+  .big-idea-body p {
+    font-size: 15px;
+    color: #cbd5e1;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .big-idea-body strong { color: #f1f5f9; }
+  .big-idea-body .pullquote {
+    margin: 28px 0;
+    padding: 20px 24px;
+    background: rgba(255,255,255,0.03);
+    border-left: 3px solid #3b82f6;
+    border-radius: 0 10px 10px 0;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 20px;
+    color: #e2e8f0;
+    line-height: 1.45;
+    font-style: italic;
+  }
+
+  /* ═══════════════════════════════
+     SHARE CTA
+     ═══════════════════════════════ */
+  .share-cta {
+    margin-top: 48px;
+    background: var(--surface);
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    text-align: center;
+  }
+  .share-cta h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .share-cta p {
+    font-size: 14px;
+    color: var(--ink-3);
+    margin-bottom: 18px;
+  }
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--accent);
+    border: none;
+    padding: 12px 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    font-family: inherit;
+  }
+  .share-btn:hover { background: #1d4ed8; transform: translateY(-1px); }
+  .share-btn:active { transform: translateY(0); }
+  .share-btn.copied { background: var(--emerald); }
+
+  /* ═══════════════════════════════
+     FOOTER
+     ═══════════════════════════════ */
+  .footer {
+    margin-top: 48px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .footer p {
+    font-size: 13px;
+    color: var(--ink-4);
+    margin-bottom: 4px;
+  }
+  .footer .next-pill {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 8px 22px;
+    border-radius: 100px;
+  }
+  .footer .credit {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--ink-5);
+  }
+  .footer .credit a { color: var(--ink-4); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav class="sticky-nav" id="stickyNav">
+  <div class="sticky-nav-inner">
+    <div class="nav-title">AI Trends Scout</div>
+    <div class="nav-links">
+      <a href="#stories">Stories</a>
+      <a href="#signals">Signals</a>
+      <a href="#releases">Releases</a>
+      <a href="#builders">Builders</a>
+      <a href="#playbook">Playbook</a>
+      <a href="#bigidea">Big Idea</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <header class="hero" id="hero">
+    <div class="hero-eyebrow"><span class="dot"></span> Issue 07 &middot; Weekly</div>
+    <h1>AI Trends Scout</h1>
+    <div class="tagline">The sharpest AI use cases for builders.<br>No fluff. Every link verified.</div>
+    <div class="date">Sunday, May 4, 2026</div>
+  </header>
+
+  <!-- TL;DR + TOC -->
+  <div class="tldr-toc">
+    <div class="tldr">
+      <div class="tldr-label">30-Second Brief</div>
+      <ul>
+        <li><strong>200K MCP servers have an RCE flaw.</strong> Anthropic says it's a feature. Defense is on you.</li>
+        <li><strong>Cursor SDK ships.</strong> Build and distribute custom agents in TypeScript as installable team plugins.</li>
+        <li><strong>OpenAI Codex gets /goal.</strong> Set a persistent objective and let it work unsupervised across sessions.</li>
+      </ul>
+    </div>
+    <div class="toc">
+      <div class="toc-label">In This Issue</div>
+      <ul>
+        <li><a href="#stories"><span class="toc-icon">&#9733;</span> Top Stories <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#signals"><span class="toc-icon">&#128225;</span> Signals &amp; Buzz <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#releases"><span class="toc-icon">&#128230;</span> New Releases <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#builders"><span class="toc-icon">&#128736;</span> Builder Spotlights <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#playbook"><span class="toc-icon">&#9889;</span> Try This Week <span class="toc-arrow">&rarr;</span></a></li>
+        <li><a href="#bigidea"><span class="toc-icon">&#128161;</span> The Big Idea <span class="toc-arrow">&rarr;</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TOP STORIES -->
+  <div class="sec" id="stories">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--rose);">Top Stories</div>
+      <h2>What Happened This Week</h2>
+      <div class="sec-rule" style="background:var(--rose);"></div>
+    </div>
+
+    <!-- LEAD STORY -->
+    <div class="lead-story">
+      <div class="lead-num">01</div>
+      <span class="lead-badge">Ship It Now</span>
+      <h3>Cursor SDK: Package Your Entire AI Workflow as a Team Plugin</h3>
+      <p class="lede">Cursor shipped a public TypeScript SDK on April 29 that lets you programmatically spawn and orchestrate agents with a few lines of code, running on local machines or cloud VMs. The same week, Team Marketplace launched: teams can bundle MCP servers, skills, and subagents into installable plugins with three enforcement modes &mdash; Default Off, Default On, or Required. Combined with April 30's Security Review beta (two agents that scan PRs for vulnerabilities and prompt injections, plus a scheduled codebase scanner with Slack integration), Cursor's Enterprise offering is now a genuine platform, not just an IDE.</p>
+      <div class="why-box">
+        <div class="why-label">Why This Matters for Builders</div>
+        <p>You can now encode your best prompt patterns and tool configurations as a Cursor plugin and push it to your whole team instantly &mdash; with enforcement. Think of it as npm for AI workflows. The Security Review agents are particularly useful for small teams without a dedicated security engineer: automated security gates in the existing PR workflow, zero extra tooling.</p>
+      </div>
+      <div class="cite"><a href="https://cursor.com/changelog">Cursor Changelog</a></div>
+    </div>
+
+    <!-- STORIES 2-5 GRID -->
+    <div class="stories-grid">
+      <div class="story c-amber">
+        <div class="story-num">02</div>
+        <span class="badge badge-amber">Security</span>
+        <h3>Claude Code Hooks: Deterministic Kill Switch for Autonomous Agents</h3>
+        <p class="lede">Claude Code's hooks documentation (now live at code.claude.com) covers five lifecycle event types: shell scripts, HTTP endpoints, MCP tools, LLM prompts, and subagents. Key patterns: a <code>PostToolUse</code> hook that runs a linter on every file touched, and a <code>PreToolUse</code> hook that blocks dangerous commands with exit code 2. For headless / CI usage, hooks are how you move from babysitting the agent to trusting it.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>Encode your project's non-negotiables as hooks, not just instructions. A hook that blocks <code>rm -rf</code> is infinitely more reliable than "please don't delete things."</p>
+        </div>
+        <div class="cite"><a href="https://ofox.ai/blog/claude-code-hooks-subagents-skills-complete-guide-2026/">Complete Hooks Guide</a></div>
+      </div>
+
+      <div class="story c-blue">
+        <div class="story-num">03</div>
+        <span class="badge badge-blue">New Feature</span>
+        <h3>OpenAI Codex /goal: Set It and Let It Work Unsupervised</h3>
+        <p class="lede">Released in Codex v0.128.0 this week, <code>/goal</code> turns Codex from a turn-by-turn assistant into a persistent agent that pursues a defined objective across sessions, interruptions, and token budget resets. Goals include soft-stop behavior at budget boundaries and are shareable across multi-agent systems. Separately, Codex desktop gained background computer use on macOS &mdash; screen watching, clicking, and typing autonomously for testing and frontend iteration.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>Define a goal like "get auth tests to 90% coverage" and Codex keeps working toward it in the background. The first true set-and-forget coding agent pattern.</p>
+        </div>
+        <div class="cite"><a href="https://kingy.ai/ai/openai-codex-goal-the-new-long-horizon-mode-for-agentic-coding/">kingy.ai &mdash; Codex /goal Deep Dive</a></div>
+      </div>
+
+      <div class="story c-violet">
+        <div class="story-num">04</div>
+        <span class="badge badge-violet">Technique</span>
+        <h3>Agent Skills as SDLC Workflows: Addy Osmani's Framework</h3>
+        <p class="lede">Google Chrome's VP of Engineering published a high-signal post on structuring AI agent skills as markdown files with YAML frontmatter, checkpointed steps, and hard exit criteria. The key innovation: "anti-rationalization tables" &mdash; pre-written rebuttals to common excuses agents use to skip essential steps. Skills are organized around six SDLC phases (Define, Plan, Build, Verify, Review, Ship) and hit 99 points on HackerNews within hours of posting.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>Your CLAUDE.md skills files should look like this. A skill with hard exit criteria ("tests must pass before marking done") is far more reliable than prose instructions.</p>
+        </div>
+        <div class="cite"><a href="https://addyosmani.com/blog/agent-skills/">Addy Osmani &mdash; Agent Skills</a></div>
+      </div>
+
+      <div class="story c-green">
+        <div class="story-num">05</div>
+        <span class="badge badge-green">Parallel Agents</span>
+        <h3>Cursor 3 /best-of-n: Tournament Selection Native in Your IDE</h3>
+        <p class="lede">Cursor 3 (launched April 2, now battle-tested) lets you run multiple AI models on the same task simultaneously via <code>/best-of-n</code>, each on an isolated git worktree. Review outputs side-by-side and pick the best. Combine with <code>/multitask</code> for async parallel subagents and multi-root workspaces for cross-repo changes. Cloud agents continue working after you close your laptop.</p>
+        <div class="why-box">
+          <div class="why-label">Why This Matters</div>
+          <p>Run Claude, GPT, and Grok on the same refactor, pick the winner. Massive quality uplift for high-stakes code at ~3x the token cost of a single run &mdash; worth it on complex changes.</p>
+        </div>
+        <div class="cite"><a href="https://www.datacamp.com/blog/cursor-3">DataCamp &mdash; What Is Cursor 3</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIGNALS -->
+  <div class="band band-cool">
+  <div class="sec" id="signals">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--amber);">Signals &amp; Buzz</div>
+      <h2>What People Are Talking About</h2>
+      <div class="sec-rule" style="background:var(--amber);"></div>
+    </div>
+
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--rose-soft);">&#128274;</div>
+      <div class="signal-body">
+        <h3>200,000 MCP Servers Exposed to RCE &mdash; Anthropic Calls It a Feature</h3>
+        <p>OX Security disclosed that MCP's STDIO transport executes OS commands with no sanitization, affecting all four official SDKs (Python, TypeScript, Java, Rust). Confirmed arbitrary command execution on six live platforms; estimated 200,000 total vulnerable instances globally. Anthropic declined to change the protocol, calling it intentional design and placing sanitization responsibility on developers. The response generated significant community friction on r/ClaudeAI and r/LocalLLaMA all week.</p>
+        <div class="signal-meta">
+          <a href="https://news.backbox.org/2026/05/01/200000-mcp-servers-expose-a-command-execution-flaw-that-anthropic-calls-a-feature/">Backbox News</a>
+          <a href="https://thehackernews.com/2026/04/anthropic-mcp-design-vulnerability.html">The Hacker News</a>
+          <div class="hn-bar">
+            <div class="bar-track"><div class="bar-fill" style="width:95%"></div></div>
+            Top thread
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--accent-soft);">&#128200;</div>
+      <div class="signal-body">
+        <h3>MCP Donated to Linux Foundation, Hits 97M Downloads</h3>
+        <p>Anthropic announced MCP's donation to the newly formed Agentic AI Foundation (AAIF) under the Linux Foundation, co-founded with Block and OpenAI. Google, Microsoft, AWS, Cloudflare, and Bloomberg signed on. The protocol now has 10,000+ active public servers, 97M+ monthly SDK downloads, and a new community Registry for discovery. Community reaction: enthusiasm for open governance, concern that the security disclosure above dropped the same week as the donation press release.</p>
+        <div class="signal-meta">
+          <a href="https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation">Anthropic Blog</a>
+          <div class="hn-bar">
+            <div class="bar-track"><div class="bar-fill" style="width:72%"></div></div>
+            High engagement
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--emerald-soft);">&#128220;</div>
+      <div class="signal-body">
+        <h3>Addy Osmani's Agent Skills Post: 99 HN Points, Hot Thread</h3>
+        <p>The post by Google's VP of Engineering on structuring AI agent workflows as skill files hit 99 HN points within hours. The top comment thread debated whether "anti-rationalization tables" are a hack around model limitations or a genuinely new software engineering artifact. Consensus: this is what mature CLAUDE.md files should look like. Directly actionable for anyone using Claude Code or Cursor with project-specific skill files.</p>
+        <div class="signal-meta">
+          <a href="https://addyosmani.com/blog/agent-skills/">addyosmani.com</a>
+          <a href="https://news.ycombinator.com/">HackerNews</a>
+          <div class="hn-bar">
+            <div class="bar-track"><div class="bar-fill" style="width:66%"></div></div>
+            99 pts
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="signal">
+      <div class="signal-icon" style="background:var(--violet-soft);">&#128640;</div>
+      <div class="signal-body">
+        <h3>Vibe Coding Hits $4.7B Market &mdash; Forbes Covers the Hangover Too</h3>
+        <p>Forbes published a May 3 feature on business owners shipping products the day they think of them using vibe coding. Most-shared stat: 63% of vibe coding users aren't developers. Counter-narrative getting equal traction: MasteringAI study found 45% of developers say debugging AI-generated code is slower than writing from scratch &mdash; the "vibe coding hangover." Both sides are right; the debate is about which phase of a project you're in.</p>
+        <div class="signal-meta">
+          <a href="https://www.forbes.com/sites/jodiecook/2026/05/03/the-fastest-way-business-owners-are-shipping-products-with-vibe-coding/">Forbes</a>
+          <a href="https://www.masteringai.io/solo-founder-revolution">MasteringAI</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div><!-- /band-cool -->
+
+  <!-- RELEASES -->
+  <div class="sec" id="releases">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--emerald);">New Releases</div>
+      <h2>What Shipped</h2>
+      <div class="sec-rule" style="background:var(--emerald);"></div>
+    </div>
+
+    <div class="releases">
+      <div class="rel">
+        <h4>Cursor SDK</h4>
+        <p>Programmatic TypeScript API for building and deploying custom agents. Runs local or cloud VM. Apr 29.</p>
+        <a href="https://cursor.com/changelog">Cursor &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Cursor Security Review</h4>
+        <p>Two security agents for Teams/Enterprise: PR vulnerability scanner + scheduled codebase sweeps with Slack alerts. Apr 30.</p>
+        <a href="https://cursor.com/changelog">Cursor &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Cursor Team Marketplace</h4>
+        <p>Package MCP servers, skills, and subagents as installable plugins with Default Off / Default On / Required enforcement. May 1.</p>
+        <a href="https://cursor.com/changelog">Cursor &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Codex /goal (v0.128.0)</h4>
+        <p>Persistent long-horizon objectives that survive across sessions and token budget boundaries. May 2026.</p>
+        <a href="https://kingy.ai/ai/openai-codex-goal-the-new-long-horizon-mode-for-agentic-coding/">kingy.ai &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Codex Background Computer Use</h4>
+        <p>macOS-only autonomous screen control for testing and frontend iteration. Rolling to ChatGPT Plus and above.</p>
+        <a href="https://the-decoder.com/openai-turns-codex-into-an-always-on-coding-agent-that-watches-your-screen/">The Decoder &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Claude Mythos (gated)</h4>
+        <p>Anthropic's new frontier model, ~50 partner orgs, cybersecurity focus. $25/$125 per M tokens (input/output). Apr 7.</p>
+        <a href="https://fazm.ai/blog/new-llm-releases-april-2026">fazm.ai &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>Gemma 4 Family (Apache 2.0)</h4>
+        <p>Google open weights: 31B Dense, 26B MoE, E4B, E2B. All 256K context. E4B "outperforms models 20x its size."</p>
+        <a href="https://fazm.ai/blog/new-llm-releases-april-2026">fazm.ai &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>GLM-5.1 (MIT License)</h4>
+        <p>Zhipu AI. 744B params (40B active), 200K context. Claims to beat Opus 4.6 on SWE-Bench Pro. No registration required.</p>
+        <a href="https://fazm.ai/blog/new-llm-releases-april-2026">fazm.ai &rarr;</a>
+      </div>
+      <div class="rel">
+        <h4>MCP Agentic AI Foundation</h4>
+        <p>MCP donated to Linux Foundation AAIF. New community Registry for server discovery. Co-founded with Block and OpenAI.</p>
+        <a href="https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation">Anthropic &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUILDERS -->
+  <div class="band band-warm">
+  <div class="sec" id="builders">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--violet);">Builder Spotlights</div>
+      <h2>Who's Shipping</h2>
+      <div class="sec-rule" style="background:var(--violet);"></div>
+    </div>
+
+    <div class="builders-row">
+      <div class="builder">
+        <div class="builder-avatar" style="background: var(--grad-warm);">F</div>
+        <h3>Non-Technical Founder</h3>
+        <p>Freelancer proposal generator (auth, CRUD, Stripe) built in a day with AI IDE. $6,300 in preorders in 2 weeks via 81 lifetime deals + 5 service contracts.</p>
+        <a href="https://medium.com/write-a-catalyst/why-vibe-coding-startups-are-paying-founders-millions-and-how-i-built-one-without-code-756586fb0ee1">Read story &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background: var(--grad-accent);">L</div>
+        <h3>Pieter Levels (Levelsio)</h3>
+        <p>$3M+ ARR solo operator. Context engineering playbook: CLAUDE.md files, MCP server connections, RAG pipelines, structured memory systems.</p>
+        <a href="https://www.nxcode.io/resources/news/one-person-unicorn-context-engineering-solo-founder-guide-2026">Read playbook &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background: linear-gradient(135deg,#059669,#2563eb);">S</div>
+        <h3>Stripe Engineering</h3>
+        <p>Reformatted a 25M-line Ruby codebase overnight with rubyfmt. Zero human judgment calls. The template for AI-assisted large-scale code migrations.</p>
+        <a href="https://stripe.dev/blog/formatting-an-entire-25-million-line-codebase-overnight-the-rubyfmt-story">Read case study &rarr;</a>
+      </div>
+      <div class="builder">
+        <div class="builder-avatar" style="background: linear-gradient(135deg,#7c3aed,#e11d48);">C</div>
+        <h3>Cursor Enterprise Teams</h3>
+        <p>Two r/ClaudeAI builders caught real injection vulnerabilities in their MCP tool configs within the first week of Security Review beta. Zero security engineers on their teams.</p>
+        <a href="https://cursor.com/changelog">See feature &rarr;</a>
+      </div>
+    </div>
+  </div>
+  </div><!-- /band-warm -->
+
+  <!-- PLAYBOOK -->
+  <div class="sec" id="playbook">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--accent);">Try This Week</div>
+      <h2>Three Things to Try Now</h2>
+      <div class="sec-rule" style="background:var(--accent);"></div>
+    </div>
+
+    <div class="play">
+      <div class="play-step">Technique 01</div>
+      <h3>Convert Your CLAUDE.md Into an Addy Osmani-Style Skill File</h3>
+      <p>Instead of prose instructions, restructure your most-used workflows as skill files with YAML frontmatter, numbered steps, and hard exit criteria. Add an "anti-rationalization" section with pre-written rebuttals to the three excuses your agent uses most often to skip steps.</p>
+      <pre><span class="cm">---</span>
+<span class="k">name</span>: <span class="v">ship-feature</span>
+<span class="k">description</span>: <span class="v">End-to-end workflow for shipping a new feature</span>
+<span class="k">model</span>: <span class="v">claude-sonnet-4-6</span>
+<span class="cm">---</span>
+
+<span class="cm">## Step 3: Verify (NON-NEGOTIABLE)</span>
+<span class="v">- Run: npm test -- must pass 100%</span>
+<span class="v">- Run: npm run lint -- zero errors</span>
+<span class="v">- If either fails, fix before marking done</span>
+
+<span class="cm">## Do not skip this step because...</span>
+<span class="v">- "Tests were passing before my changes" -- run them anyway</span>
+<span class="v">- "It's just a small fix" -- small fixes break things too</span></pre>
+    </div>
+
+    <div class="play">
+      <div class="play-step">Technique 02</div>
+      <h3>Run /best-of-n on Your Next High-Stakes Refactor</h3>
+      <p>In Cursor 3, pick a function or module you're not happy with and use <code>/best-of-n</code> to run Claude Sonnet, GPT-4o, and one other model simultaneously. Each runs on its own git worktree &mdash; no interference. Review the three diffs side-by-side, pick the best, discard the rest. Budget: 3x the token cost of a single run, with 3x the confidence in the output. Best ROI on any refactor over ~200 lines.</p>
+    </div>
+
+    <div class="play">
+      <div class="play-step">Technique 03</div>
+      <h3>Lock Down Your MCP Server: Three Steps Given the RCE Disclosure</h3>
+      <p>Anthropic will not patch the STDIO vulnerability &mdash; defense is on you. Audit every MCP server you're running: (1) check whether you're using STDIO transport with web-facing inputs, (2) add explicit allowlists for any shell commands your server can trigger, (3) run your server in a sandboxed Docker container rather than directly on your workstation or in CI. If you're using Claude Code with an MCP tool in your hooks chain, treat that surface as a privileged execution boundary, not a connector.</p>
+    </div>
+  </div>
+
+  <!-- BIG IDEA -->
+  <div class="sec" id="bigidea">
+    <div class="sec-header">
+      <div class="sec-eyebrow" style="color:var(--amber);">The Big Idea</div>
+      <h2>One Thing to Sit With</h2>
+      <div class="sec-rule" style="background:var(--amber);"></div>
+    </div>
+
+    <div class="big-idea">
+      <div class="big-idea-header">
+        <div class="bi-label">Editorial</div>
+        <h3>The Stack Is Bifurcating: Orchestration Layer vs. Execution Layer</h3>
+      </div>
+      <div class="big-idea-body">
+        <p>This week's news reveals a clean split forming in the AI developer stack. On one side: <strong>orchestration tools</strong> &mdash; Cursor SDK, OpenAI <code>/goal</code>, Claude Code subagents, AAIF/MCP &mdash; that define what agents should pursue and how they coordinate. On the other: <strong>execution tools</strong> &mdash; background computer use, worktrees, headless Claude Code in CI, cloud agents &mdash; that do the actual work without human presence.</p>
+        <div class="pullquote">The builders winning right now have figured out both layers. Context engineering is how you make orchestration reliable. Hooks and skills are how you make execution safe.</div>
+        <p>The MCP security story is a reminder that these layers interact in ways that create new attack surfaces. Command execution that would never happen in a human workflow becomes trivially scriptable when agents are involved. Anthropic's "it's a feature" response is technically accurate and strategically problematic simultaneously &mdash; it pushes security responsibility to every developer running an MCP server, at a time when 200,000 of them apparently haven't thought about it.</p>
+        <p><strong>The prediction:</strong> within 6 months, "AI workflow engineer" becomes a real job title at companies with more than 20 engineers. Not a developer who uses AI, but someone whose primary job is designing the orchestration layer &mdash; the skills, hooks, MCP configurations, and goal architectures that make the execution layer trustworthy enough to run unsupervised. The Cursor Team Marketplace (bundle and enforce agent configs across your org) is an early sign of the tooling that role will use.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHARE CTA -->
+  <div class="share-cta">
+    <h3>Found this useful?</h3>
+    <p>Share it with one builder who should be reading this.</p>
+    <button class="share-btn" id="shareBtn" onclick="copyLink()">Copy Link</button>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p><img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Frajgupta-web.github.io%2Fai-trends-scout%2Fdigest-2026-05-04&label=readers&countColor=%232563eb" alt="reader count" style="margin-bottom:8px;"></p>
+    <div class="next-pill">Next issue: May 11, 2026</div>
+    <div class="credit">Built by <a href="#">Raj Gupta</a> with <a href="https://claude.ai/code">Claude Code</a></div>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+  // Reading progress bar
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop;
+    const scrollHeight = doc.scrollHeight - doc.clientHeight;
+    const progress = (scrollTop / scrollHeight) * 100;
+    document.getElementById('progressBar').style.width = progress + '%';
+  });
+
+  // Sticky nav: show after hero
+  const hero = document.getElementById('hero');
+  const nav = document.getElementById('stickyNav');
+  const observer = new IntersectionObserver(entries => {
+    nav.classList.toggle('visible', !entries[0].isIntersecting);
+  }, { threshold: 0 });
+  observer.observe(hero);
+
+  // Copy link
+  function copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      const btn = document.getElementById('shareBtn');
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'Copy Link';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
